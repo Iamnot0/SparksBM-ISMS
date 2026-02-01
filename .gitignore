@@ -3,3 +3,4 @@ SparksbmISMS/.gradle-cache/
 **/.gradle-cache/
 .gradle/
 build/dev/
+test_gemini_integration.py
