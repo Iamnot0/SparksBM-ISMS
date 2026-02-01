@@ -2,15 +2,8 @@ FROM gradle:8.5-jdk21-alpine AS builder
 
 WORKDIR /home/gradle/src
 
-# Install Git to manually clone (workaround for submodule issue)
-USER root
-RUN apk add --no-cache git
-
-# Manually clone the repo since Render is failing to sync the submodule content
-# Repo is now PUBLIC, so this clone should succeed.
-RUN git clone https://github.com/Iamnot0/verinice-veo.git verinice-veo
-
-WORKDIR /home/gradle/src/verinice-veo
+# Copy the core code (files are now in the repo)
+COPY SparksbmISMS/verinice-veo/ .
 
 # Ensure gradlew is executable
 RUN chmod +x gradlew
@@ -23,7 +16,7 @@ FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # Copy the built jar
-COPY --from=builder /home/gradle/src/verinice-veo/veo-rest/build/libs/*.jar app.jar
+COPY --from=builder /home/gradle/src/veo-rest/build/libs/*.jar app.jar
 
 EXPOSE 8080
 

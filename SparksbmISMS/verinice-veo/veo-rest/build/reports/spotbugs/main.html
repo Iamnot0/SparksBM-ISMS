@@ -1,0 +1,478 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="UTF-8"/>
+      <title>SpotBugs Report</title>
+      <style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+
+		.tablerow0:hover, .tablerow1:hover {
+			background: #aaffaa;
+		}
+
+		.priority-1 {
+				color: red;
+				font-weight: bold;
+		}
+		.priority-2 {
+				color: orange;
+				font-weight: bold;
+		}
+		.priority-3 {
+				color: green;
+				font-weight: bold;
+		}
+		.priority-4 {
+				color: blue;
+				font-weight: bold;
+		}
+		</style>
+      <script type="text/javascript">
+			function toggleRow(elid) {
+				if (document.getElementById) {
+					element = document.getElementById(elid);
+					if (element) {
+						if (element.style.display == 'none') {
+							element.style.display = 'block';
+							//window.status = 'Toggle on!';
+						} else {
+							element.style.display = 'none';
+							//window.status = 'Toggle off!';
+						}
+					}
+				}
+			}
+		</script>
+   </head>
+   <body>
+      <h1>
+         <a href="https://spotbugs.github.io/">SpotBugs</a> Report</h1>
+      <h2>Project Information</h2>
+      <p>Project: 
+		veo-rest (spotbugsMain)</p>
+      <p>SpotBugs version: 4.9.8</p>
+      <p>Code analyzed:</p>
+      <ul>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/listeners/ClientChangedEventListener$NoRestriction.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/listeners/VersioningEventListener.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/listeners/ElementTypeDefinitionUpdateEventListener.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/listeners/RiskComponentChangeListener.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/listeners/ControlChangeListener.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/listeners/ClientChangedEventListener.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/listeners/ClientChangedEventListener$1.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/jobs/AsSystemUser.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/jobs/MessageDeletionJob$EventDeleter.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/jobs/EventRetriever.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/jobs/MessageDeletionJob.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/jobs/MessageSubscriber.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/jobs/MessagingJob.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ContentCustomizingController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/PersonController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/PersonInDomainController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ProcessInDomainController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ScopeInDomainController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ScenarioInDomainController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/WebMvcContext$2.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/AssetController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/AdminController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ReportingController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ScenarioController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/AssetRiskResource.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/UserAccessRightsProviderImpl.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/AssetInDomainController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/DocumentController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/IncidentController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/interactor/UseCaseInteractorImpl.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/interactor/UseCaseInteractorImpl$1.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ReportingController$RiskAssessmentEntry.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ApplicationUserArgumentResolver.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/UserConfigurationController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/DomainController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/AbstractVeoController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ContentCreationController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/IncidentInDomainController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/VeoMessage.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/AbstractEntityController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/DocumentInDomainController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/annotations/UnitUuidParam.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ControllerConstants.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ProcessController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/DomainTemplateController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/schemas/resource/TranslationsResource.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/schemas/resource/EntitySchemaResource.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/schemas/controller/TranslationController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/schemas/controller/EntitySchemaController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/schemas/EvaluateElementOutputSchema.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/UnitController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/MessageController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/RiskAffectedInDomainResource.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ScopeRiskResource.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/CompactJsonHttpMessageConverter$Dummy.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ElementInDomainResource.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/TransactionalRunner.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ProcessRiskResource.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/WebMvcContext$1.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ControlController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/AbstractElementController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/AbstractCompositeElementController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/InternalProccesingException.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/WebMvcContext.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/RestApplication.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/BannerProvider.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/RiskAffectedResource.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/configuration/ModuleConfiguration.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/configuration/SchedulingConfiguration.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/configuration/HttpTraceActuatorConfiguration.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/common/marshalling/ReferenceAssemblerImpl.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/common/marshalling/ReferenceDeserializer.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/common/marshalling/SymIdRefDeserializer.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/common/marshalling/ElementInDomainReferenceDeserializer.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/common/ElementInDomainService.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/common/VeriniceExceptionHandler.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/common/RestApiResponse.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/common/ClientNotActiveException.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/CompactJsonHttpMessageConverter$1.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/security/AuthAwareImpl.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/security/WebSecurity$1.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/security/WebSecurity.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/security/ApplicationUser.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/security/AccountProviderImpl.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/security/AccountImpl.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/security/CurrentUserProviderImpl.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/VeoRestConfiguration.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ScopeController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/VeoMessage$Constants.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/ControlInDomainController.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/rest/CompactJsonHttpMessageConverter.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/SpringPropertyLogger.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/core/events/MessageCreatorImpl$1.class</li>
+         <li>/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/build/classes/java/main/org/veo/core/events/MessageCreatorImpl.class</li>
+      </ul>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Metrics</h2>
+      <p>4770 lines of code analyzed,
+	in 94 classes, 
+	in 14 packages.</p>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Metric</th>
+            <th align="right">Total</th>
+            <th align="right">Density*</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>High Priority Warnings</td>
+            <td align="right"/>
+            <td align="right">0.00</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>Medium Priority Warnings</td>
+            <td align="right">10</td>
+            <td align="right">2.10</td>
+         </tr>
+         <tr class="$totalClass">
+            <td>
+               <b>Total Warnings</b>
+            </td>
+            <td align="right">
+               <b>10</b>
+            </td>
+            <td align="right">
+               <b>2.10</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <i>(* Defects per Thousand lines of non-commenting source statements)</i>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Contents</h2>
+      <ul>
+         <li>
+            <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+         </li>
+         <li>
+            <a href="#Warnings_STYLE">Dodgy code Warnings</a>
+         </li>
+         <li>
+            <a href="#Details">Details</a>
+         </li>
+      </ul>
+      <h1>Summary</h1>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Warning Type</th>
+            <th align="right">Number</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+            </td>
+            <td align="right">5</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <a href="#Warnings_STYLE">Dodgy code Warnings</a>
+            </td>
+            <td align="right">5</td>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <b>Total</b>
+            </td>
+            <td align="right">
+               <b>10</b>
+            </td>
+         </tr>
+      </table>
+      <h1>Warnings</h1>
+      <p>Click on a warning row to see full context information.</p>
+      <h2>
+         <a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+      </h2>
+      <table class="warningtable" width="100%" cellspacing="0">
+         <tr class="tableheader">
+            <th align="left">Code</th>
+            <th align="left">Warning</th>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e307');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in org.veo.rest.ReportingController.generatePDFFromText(String, String)</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e307" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class org.veo.rest.ReportingController<br/>In method org.veo.rest.ReportingController.generatePDFFromText(String, String)<br/>Called method String.format(String, Object[])<br/>Format string "%010d %05d n \n"<br/>At ReportingController.java:[line 1331]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e324');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in org.veo.rest.ReportingController.generatePDFFromText(String, String)</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e324" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class org.veo.rest.ReportingController<br/>In method org.veo.rest.ReportingController.generatePDFFromText(String, String)<br/>Called method String.format(String, Object[])<br/>Format string "%010d %05d n \n"<br/>At ReportingController.java:[line 1332]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e341');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in org.veo.rest.ReportingController.generatePDFFromText(String, String)</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e341" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class org.veo.rest.ReportingController<br/>In method org.veo.rest.ReportingController.generatePDFFromText(String, String)<br/>Called method String.format(String, Object[])<br/>Format string "%010d %05d n \n"<br/>At ReportingController.java:[line 1335]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e358');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in org.veo.rest.ReportingController.generatePDFFromText(String, String)</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e358" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class org.veo.rest.ReportingController<br/>In method org.veo.rest.ReportingController.generatePDFFromText(String, String)<br/>Called method String.format(String, Object[])<br/>Format string "%010d %05d n \n"<br/>At ReportingController.java:[line 1336]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e375');">
+            <td>
+               <span class="priority-2">FS</span>
+            </td>
+            <td>Format string should use %n rather than \n in org.veo.rest.ReportingController.generatePDFFromText(String, String)</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e375" style="display: none;">
+                  <a href="#VA_FORMAT_STRING_USES_NEWLINE">Bug type VA_FORMAT_STRING_USES_NEWLINE (click for details)</a>
+                  <br/>In class org.veo.rest.ReportingController<br/>In method org.veo.rest.ReportingController.generatePDFFromText(String, String)<br/>Called method String.format(String, Object[])<br/>Format string "%010d 65535 f \n"<br/>At ReportingController.java:[line 1330]</p>
+            </td>
+         </tr>
+      </table>
+      <h2>
+         <a name="Warnings_STYLE">Dodgy code Warnings</a>
+      </h2>
+      <table class="warningtable" width="100%" cellspacing="0">
+         <tr class="tableheader">
+            <th align="left">Code</th>
+            <th align="left">Warning</th>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e214');">
+            <td>
+               <span class="priority-2">BC</span>
+            </td>
+            <td>instanceof will always return true for all non-null values in org.veo.rest.ReportingController.generateInventoryOfAssetsReport(List, String, String), since all org.veo.core.entity.Asset are instances of org.veo.core.entity.RiskAffected</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e214" style="display: none;">
+                  <a href="#BC_VACUOUS_INSTANCEOF">Bug type BC_VACUOUS_INSTANCEOF (click for details)</a>
+                  <br/>In class org.veo.rest.ReportingController<br/>In method org.veo.rest.ReportingController.generateInventoryOfAssetsReport(List, String, String)<br/>Actual type org.veo.core.entity.Asset<br/>Expected org.veo.core.entity.RiskAffected<br/>At ReportingController.java:[line 422]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e234');">
+            <td>
+               <span class="priority-2">BC</span>
+            </td>
+            <td>instanceof will always return true for all non-null values in org.veo.rest.ReportingController.generateRiskAssessmentReport(List, String, String), since all org.veo.persistence.entity.jpa.AssetData are instances of org.veo.core.entity.RiskAffected</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e234" style="display: none;">
+                  <a href="#BC_VACUOUS_INSTANCEOF">Bug type BC_VACUOUS_INSTANCEOF (click for details)</a>
+                  <br/>In class org.veo.rest.ReportingController<br/>In method org.veo.rest.ReportingController.generateRiskAssessmentReport(List, String, String)<br/>Actual type org.veo.persistence.entity.jpa.AssetData<br/>Expected org.veo.core.entity.RiskAffected<br/>At ReportingController.java:[line 653]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e254');">
+            <td>
+               <span class="priority-2">DLS</span>
+            </td>
+            <td>Dead store to timeZone in org.veo.rest.ReportingController.generateReport(String, Map)</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e254" style="display: none;">
+                  <a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+                  <br/>In class org.veo.rest.ReportingController<br/>In method org.veo.rest.ReportingController.generateReport(String, Map)<br/>Local variable named timeZone<br/>At ReportingController.java:[line 213]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e271');">
+            <td>
+               <span class="priority-2">UC</span>
+            </td>
+            <td>Useless object stored in variable memberTypeCounts of method org.veo.rest.ReportingController.generateInventoryOfAssetsReport(List, String, String)</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e271" style="display: none;">
+                  <a href="#UC_USELESS_OBJECT">Bug type UC_USELESS_OBJECT (click for details)</a>
+                  <br/>In class org.veo.rest.ReportingController<br/>In method org.veo.rest.ReportingController.generateInventoryOfAssetsReport(List, String, String)<br/>Value memberTypeCounts<br/>Type java.util.HashMap<br/>At ReportingController.java:[line 249]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e289');">
+            <td>
+               <span class="priority-2">UC</span>
+            </td>
+            <td>Useless object stored in variable memberIds of method org.veo.rest.ReportingController.generateRiskAssessmentReport(List, String, String)</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e289" style="display: none;">
+                  <a href="#UC_USELESS_OBJECT">Bug type UC_USELESS_OBJECT (click for details)</a>
+                  <br/>In class org.veo.rest.ReportingController<br/>In method org.veo.rest.ReportingController.generateRiskAssessmentReport(List, String, String)<br/>Value memberIds<br/>Type java.util.ArrayList<br/>At ReportingController.java:[line 615]</p>
+            </td>
+         </tr>
+      </table>
+      <h1>
+         <a name="Details">Details</a>
+      </h1>
+      <h2>
+         <a name="BC_VACUOUS_INSTANCEOF">BC_VACUOUS_INSTANCEOF: instanceof will always return true</a>
+      </h2>
+
+<p>
+This instanceof test will always return true (unless the value being tested is null).
+Although this is safe, make sure it isn't
+an indication of some misunderstanding or some other logic error.
+If you really want to test the value for being null, perhaps it would be clearer to do
+better to do a null test rather than an instanceof test.
+</p>
+<p>See <a href="https://cwe.mitre.org/data/definitions/571.html">CWE-571: Expression is Always True</a>.
+</p>
+
+    <h2>
+         <a name="DLS_DEAD_LOCAL_STORE">DLS_DEAD_LOCAL_STORE: Dead store to local variable</a>
+      </h2>
+
+<p>
+This instruction assigns a value to a local variable,
+but the value is not read or used in any subsequent instruction.
+Often, this indicates an error, because the value computed is never
+used.
+</p>
+<p>
+Note that Sun's javac compiler often generates dead stores for
+final local variables. Because SpotBugs is a bytecode-based tool,
+there is no easy way to eliminate these false positives.
+</p>
+<p>See <a href="https://cwe.mitre.org/data/definitions/563.html">CWE-563: Assignment to Variable without Use</a>.
+</p>
+
+    <h2>
+         <a name="VA_FORMAT_STRING_USES_NEWLINE">VA_FORMAT_STRING_USES_NEWLINE: Format string should use %n rather than \n</a>
+      </h2>
+
+<p>
+This format string includes a newline character (\n). In format strings, it is generally
+ preferable to use %n, which will produce the platform-specific line separator.
+
+ When using text blocks introduced in Java 15, use the <code>\</code> escape sequence:
+
+<code>String value = """
+                first line%n\
+                second line%n\
+                """;</code>
+</p>
+
+     <h2>
+         <a name="UC_USELESS_OBJECT">UC_USELESS_OBJECT: Useless object created</a>
+      </h2>
+
+<p>Our analysis shows that this object is useless.
+It's created and modified, but its value never goes outside the method or produces any side effect.
+Either there is a mistake and object was intended to be used, or it can be removed.</p>
+<p>This analysis rarely produces false-positives. Common false-positive cases include:</p>
+<p>- This object used to implicitly throw some obscure exception.</p>
+<p>- This object used as a stub to generalize the code.</p>
+<p>- This object used to hold strong references to weak/soft-referenced objects.</p>
+
+    </body>
+</html>

@@ -1,0 +1,76 @@
+/*******************************************************************************
+ * verinice.veo
+ * Copyright (C) 2019  Urs Zeidler.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
+package org.veo.core.usecase.domain
+
+import org.veo.core.entity.exception.NotFoundException
+import org.veo.core.repository.DomainRepository
+import org.veo.core.usecase.UseCase.EntityId
+import org.veo.core.usecase.UseCaseSpec
+import org.veo.rest.security.NoRestrictionAccessRight
+
+class GetDomainUseCaseSpec extends UseCaseSpec {
+
+    DomainRepository repository = Mock()
+    def existingDomainId
+
+    GetDomainUseCase usecase = new GetDomainUseCase(repository)
+
+    def setup() {
+        existingDomainId = UUID.randomUUID()
+        existingDomain.getId() >> existingDomainId
+        existingDomain.owner >> existingClient
+
+        repository.getById(existingDomainId, existingClient.id) >> existingDomain
+        repository.getById(_, _) >> {throw new NotFoundException("")}
+    }
+
+    def "retrieve a domain"() {
+        when :
+        existingDomain.isActive() >> true
+        def output = usecase.execute(new EntityId(existingDomainId), noRestrictionExistingClient)
+
+        then:
+        output.domain != null
+        output.domain.id == existingDomainId
+    }
+
+    def "retrieve an inactive domain"() {
+        when:
+        existingDomain.isActive() >> false
+        usecase.execute(new EntityId(existingDomainId), noRestrictionExistingClient)
+
+        then:
+        thrown(NotFoundException)
+    }
+
+    def "retrieve a domain unknown client"() {
+        when:
+        usecase.execute(new EntityId(existingDomainId), NoRestrictionAccessRight.from(anotherClient.id.toString()))
+
+        then:
+        thrown(NotFoundException)
+    }
+
+    def "retrieve an unknown domain"() {
+        when:
+        usecase.execute(new EntityId(UUID.randomUUID()), noRestrictionExistingClient)
+
+        then:
+        thrown(NotFoundException)
+    }
+}

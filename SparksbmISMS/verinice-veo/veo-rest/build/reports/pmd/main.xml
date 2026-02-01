@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 https://pmd.github.io/schema/report_2_0_0.xsd" version="7.19.0" timestamp="2026-01-04T14:41:43.348">
+<file name="/home/clay/Desktop/SparksBM/SparksbmISMS/verinice-veo/veo-rest/src/main/java/org/veo/rest/ReportingController.java">
+<violation beginline="213" endline="213" begincolumn="12" endcolumn="20" rule="UnusedLocalVariable" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateReport" variable="timeZone" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'timeZone'.
+</violation>
+<violation beginline="228" endline="228" begincolumn="5" endcolumn="16" rule="LooseCoupling" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#loosecoupling" priority="3">
+Avoid using implementation types like 'HttpHeaders'; use the interface instead
+</violation>
+<violation beginline="239" endline="239" begincolumn="53" endcolumn="84" rule="NcssCount" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#ncsscount" priority="3">
+The method 'generateInventoryOfAssetsReport(List&lt;Map&lt;String, Object&gt;&gt;, String, String)' has a NCSS line count of 178.
+</violation>
+<violation beginline="240" endline="240" begincolumn="49" endcolumn="57" rule="UnusedFormalParameter" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" variable="language" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedformalparameter" priority="3">
+Avoid unused method parameters such as 'language'.
+</violation>
+<violation beginline="240" endline="240" begincolumn="66" endcolumn="76" rule="UnusedFormalParameter" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" variable="outputType" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedformalparameter" priority="3">
+Avoid unused method parameters such as 'outputType'.
+</violation>
+<violation beginline="242" endline="242" begincolumn="35" endcolumn="54" rule="InsufficientStringBufferDeclaration" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" variable="reportContent" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#insufficientstringbufferdeclaration" priority="3">
+StringBuilder has been initialized with size 16, but has at least 322 characters appended.
+</violation>
+<violation beginline="244" endline="244" begincolumn="5" endcolumn="55" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="244" endline="244" begincolumn="26" endcolumn="53" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="250" endline="250" begincolumn="31" endcolumn="50" rule="InsufficientStringBufferDeclaration" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" variable="scopeInfo" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#insufficientstringbufferdeclaration" priority="3">
+StringBuilder has been initialized with size 16, but has at least 53 characters appended.
+</violation>
+<violation beginline="265" endline="265" begincolumn="36" endcolumn="42" rule="UnusedLocalVariable" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" variable="domain" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'domain'.
+</violation>
+<violation beginline="303" endline="303" begincolumn="69" endcolumn="73" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="303" endline="303" begincolumn="69" endcolumn="73" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="344" endline="344" begincolumn="109" endcolumn="113" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="348" endline="348" begincolumn="5" endcolumn="37" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="352" endline="352" begincolumn="5" endcolumn="11" rule="SystemPrintln" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#systemprintln" priority="2">
+Usage of System.out/err
+</violation>
+<violation beginline="353" endline="353" begincolumn="5" endcolumn="11" rule="SystemPrintln" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#systemprintln" priority="2">
+Usage of System.out/err
+</violation>
+<violation beginline="355" endline="355" begincolumn="7" endcolumn="13" rule="SystemPrintln" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#systemprintln" priority="2">
+Usage of System.out/err
+</violation>
+<violation beginline="359" endline="359" begincolumn="7" endcolumn="47" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="359" endline="359" begincolumn="28" endcolumn="45" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="369" endline="369" begincolumn="7" endcolumn="47" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="369" endline="369" begincolumn="28" endcolumn="45" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="370" endline="370" begincolumn="7" endcolumn="75" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="370" endline="370" begincolumn="69" endcolumn="73" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="370" endline="370" begincolumn="69" endcolumn="73" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="372" endline="372" begincolumn="89" endcolumn="93" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="380" endline="380" begincolumn="7" endcolumn="46" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="380" endline="380" begincolumn="28" endcolumn="44" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 3 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="381" endline="381" begincolumn="7" endcolumn="71" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="399" endline="401" begincolumn="11" endcolumn="10" rule="EmptyCatchBlock" ruleset="Error Prone" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="412" endline="414" begincolumn="13" endcolumn="12" rule="EmptyCatchBlock" ruleset="Error Prone" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="424" endline="424" begincolumn="67" endcolumn="113" rule="UnnecessaryCast" ruleset="Code Style" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" variable="riskAffected" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_codestyle.html#unnecessarycast" priority="3">
+Unnecessary cast (RiskAffected&lt;?, ?&gt;)
+</violation>
+<violation beginline="425" endline="425" begincolumn="110" endcolumn="122" rule="UnusedLocalVariable" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" variable="impactValues" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'impactValues'.
+</violation>
+<violation beginline="431" endline="433" begincolumn="13" endcolumn="12" rule="EmptyCatchBlock" ruleset="Error Prone" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="476" endline="476" begincolumn="16" endcolumn="28" rule="UnusedLocalVariable" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" variable="abbreviation" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'abbreviation'.
+</violation>
+<violation beginline="490" endline="490" begincolumn="11" endcolumn="53" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="490" endline="490" begincolumn="32" endcolumn="51" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="491" endline="491" begincolumn="11" endcolumn="79" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="491" endline="491" begincolumn="73" endcolumn="77" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="491" endline="491" begincolumn="73" endcolumn="77" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="492" endline="493" begincolumn="11" endcolumn="99" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="493" endline="493" begincolumn="93" endcolumn="97" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="493" endline="493" begincolumn="93" endcolumn="97" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="506" endline="506" begincolumn="32" endcolumn="36" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="508" endline="508" begincolumn="9" endcolumn="72" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="508" endline="508" begincolumn="48" endcolumn="55" rule="AssignmentInOperand" ruleset="Error Prone" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_errorprone.html#assignmentinoperand" priority="3">
+Avoid assignment to index in operand
+</violation>
+<violation beginline="508" endline="508" begincolumn="64" endcolumn="70" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="513" endline="513" begincolumn="32" endcolumn="36" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="519" endline="519" begincolumn="32" endcolumn="36" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="525" endline="525" begincolumn="32" endcolumn="36" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="531" endline="531" begincolumn="32" endcolumn="36" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="534" endline="535" begincolumn="9" endcolumn="110" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="535" endline="535" begincolumn="102" endcolumn="108" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="544" endline="544" begincolumn="5" endcolumn="16" rule="LooseCoupling" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateInventoryOfAssetsReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#loosecoupling" priority="3">
+Avoid using implementation types like 'HttpHeaders'; use the interface instead
+</violation>
+<violation beginline="553" endline="553" begincolumn="53" endcolumn="81" rule="NcssCount" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#ncsscount" priority="3">
+The method 'generateRiskAssessmentReport(List&lt;Map&lt;String, Object&gt;&gt;, String, String)' has a NCSS line count of 179.
+</violation>
+<violation beginline="554" endline="554" begincolumn="49" endcolumn="57" rule="UnusedFormalParameter" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" variable="language" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedformalparameter" priority="3">
+Avoid unused method parameters such as 'language'.
+</violation>
+<violation beginline="554" endline="554" begincolumn="66" endcolumn="76" rule="UnusedFormalParameter" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" variable="outputType" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedformalparameter" priority="3">
+Avoid unused method parameters such as 'outputType'.
+</violation>
+<violation beginline="556" endline="556" begincolumn="35" endcolumn="54" rule="InsufficientStringBufferDeclaration" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" variable="reportContent" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#insufficientstringbufferdeclaration" priority="3">
+StringBuilder has been initialized with size 16, but has at least 333 characters appended.
+</violation>
+<violation beginline="558" endline="558" begincolumn="5" endcolumn="51" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="558" endline="558" begincolumn="26" endcolumn="49" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="585" endline="585" begincolumn="86" endcolumn="90" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="614" endline="614" begincolumn="13" endcolumn="24" rule="UnusedLocalVariable" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" variable="memberCount" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'memberCount'.
+</violation>
+<violation beginline="630" endline="636" begincolumn="19" endcolumn="20" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#avoiddeeplynestedifstmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="635" endline="635" begincolumn="41" endcolumn="97" rule="UseLocaleWithCaseConversions" ruleset="Error Prone" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_errorprone.html#uselocalewithcaseconversions" priority="3">
+When doing a String.toLowerCase()/toUpperCase() call, use a Locale
+</violation>
+<violation beginline="653" endline="668" begincolumn="19" endcolumn="20" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#avoiddeeplynestedifstmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="653" endline="653" begincolumn="23" endcolumn="40" rule="SimplifyConditional" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#simplifyconditional" priority="3">
+No need to check for null before an instanceof
+</violation>
+<violation beginline="654" endline="654" begincolumn="55" endcolumn="85" rule="UnnecessaryCast" ruleset="Code Style" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" variable="riskAffected" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_codestyle.html#unnecessarycast" priority="3">
+Unnecessary cast (RiskAffected&lt;?, ?&gt;)
+</violation>
+<violation beginline="670" endline="672" begincolumn="17" endcolumn="16" rule="EmptyCatchBlock" ruleset="Error Prone" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="673" endline="675" begincolumn="15" endcolumn="14" rule="EmptyCatchBlock" ruleset="Error Prone" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="680" endline="680" begincolumn="16" endcolumn="32" rule="UnusedLocalVariable" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" variable="scopeDescription" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'scopeDescription'.
+</violation>
+<violation beginline="681" endline="681" begincolumn="16" endcolumn="27" rule="UnusedLocalVariable" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" variable="scopeStatus" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'scopeStatus'.
+</violation>
+<violation beginline="684" endline="684" begincolumn="73" endcolumn="77" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="684" endline="684" begincolumn="73" endcolumn="77" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="687" endline="687" begincolumn="9" endcolumn="94" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="687" endline="687" begincolumn="86" endcolumn="92" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="691" endline="691" begincolumn="57" endcolumn="61" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="699" endline="699" begincolumn="7" endcolumn="87" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="699" endline="699" begincolumn="28" endcolumn="85" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 3 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="700" endline="700" begincolumn="7" endcolumn="44" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="701" endline="701" begincolumn="65" endcolumn="69" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="703" endline="703" begincolumn="100" endcolumn="104" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="705" endline="705" begincolumn="7" endcolumn="49" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="705" endline="705" begincolumn="28" endcolumn="47" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="706" endline="706" begincolumn="71" endcolumn="75" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="706" endline="706" begincolumn="71" endcolumn="75" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="709" endline="709" begincolumn="7" endcolumn="92" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="709" endline="709" begincolumn="84" endcolumn="90" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="717" endline="717" begincolumn="7" endcolumn="58" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="717" endline="717" begincolumn="28" endcolumn="56" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="727" endline="727" begincolumn="32" endcolumn="36" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="730" endline="731" begincolumn="9" endcolumn="53" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="731" endline="731" begincolumn="47" endcolumn="51" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="731" endline="731" begincolumn="47" endcolumn="51" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="732" endline="732" begincolumn="47" endcolumn="78" rule="UseLocaleWithCaseConversions" ruleset="Error Prone" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_errorprone.html#uselocalewithcaseconversions" priority="3">
+When doing a String.toLowerCase()/toUpperCase() call, use a Locale
+</violation>
+<violation beginline="732" endline="732" begincolumn="87" endcolumn="91" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="734" endline="734" begincolumn="82" endcolumn="86" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="740" endline="740" begincolumn="7" endcolumn="71" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="740" endline="740" begincolumn="45" endcolumn="56" rule="AssignmentInOperand" ruleset="Error Prone" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_errorprone.html#assignmentinoperand" priority="3">
+Avoid assignment to riskIndex in operand
+</violation>
+<violation beginline="740" endline="740" begincolumn="65" endcolumn="69" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="740" endline="740" begincolumn="65" endcolumn="69" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="746" endline="746" begincolumn="9" endcolumn="91" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="746" endline="746" begincolumn="85" endcolumn="89" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="746" endline="746" begincolumn="85" endcolumn="89" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="747" endline="747" begincolumn="88" endcolumn="92" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="749" endline="749" begincolumn="92" endcolumn="96" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="756" endline="756" begincolumn="88" endcolumn="92" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="762" endline="762" begincolumn="9" endcolumn="95" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="762" endline="762" begincolumn="89" endcolumn="93" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="762" endline="762" begincolumn="89" endcolumn="93" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="763" endline="763" begincolumn="90" endcolumn="94" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="772" endline="772" begincolumn="92" endcolumn="96" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="778" endline="778" begincolumn="119" endcolumn="123" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="789" endline="789" begincolumn="105" endcolumn="109" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="802" endline="804" begincolumn="17" endcolumn="18" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#avoiddeeplynestedifstmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="803" endline="803" begincolumn="117" endcolumn="121" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="806" endline="808" begincolumn="17" endcolumn="18" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#avoiddeeplynestedifstmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="807" endline="807" begincolumn="117" endcolumn="121" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="810" endline="814" begincolumn="17" endcolumn="18" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#avoiddeeplynestedifstmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="811" endline="811" begincolumn="19" endcolumn="62" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="813" endline="813" begincolumn="78" endcolumn="82" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="816" endline="818" begincolumn="17" endcolumn="18" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#avoiddeeplynestedifstmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="817" endline="817" begincolumn="126" endcolumn="130" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="820" endline="822" begincolumn="17" endcolumn="18" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#avoiddeeplynestedifstmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="821" endline="821" begincolumn="129" endcolumn="133" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="831" endline="831" begincolumn="28" endcolumn="32" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="839" endline="839" begincolumn="5" endcolumn="16" rule="LooseCoupling" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateRiskAssessmentReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#loosecoupling" priority="3">
+Avoid using implementation types like 'HttpHeaders'; use the interface instead
+</violation>
+<violation beginline="848" endline="848" begincolumn="53" endcolumn="91" rule="NcssCount" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#ncsscount" priority="3">
+The method 'generateStatementOfApplicabilityReport(List&lt;Map&lt;String, Object&gt;&gt;, String, String)' has a NCSS line count of 69.
+</violation>
+<violation beginline="849" endline="849" begincolumn="49" endcolumn="57" rule="UnusedFormalParameter" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" variable="language" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedformalparameter" priority="3">
+Avoid unused method parameters such as 'language'.
+</violation>
+<violation beginline="849" endline="849" begincolumn="66" endcolumn="76" rule="UnusedFormalParameter" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" variable="outputType" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedformalparameter" priority="3">
+Avoid unused method parameters such as 'outputType'.
+</violation>
+<violation beginline="851" endline="851" begincolumn="35" endcolumn="54" rule="InsufficientStringBufferDeclaration" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" variable="reportContent" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#insufficientstringbufferdeclaration" priority="3">
+StringBuilder has been initialized with size 16, but has at least 387 characters appended.
+</violation>
+<violation beginline="853" endline="853" begincolumn="5" endcolumn="62" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="853" endline="853" begincolumn="26" endcolumn="60" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="883" endline="883" begincolumn="71" endcolumn="75" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="883" endline="883" begincolumn="71" endcolumn="75" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="886" endline="886" begincolumn="9" endcolumn="94" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="886" endline="886" begincolumn="86" endcolumn="92" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 4 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="887" endline="887" begincolumn="9" endcolumn="41" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="890" endline="890" begincolumn="9" endcolumn="49" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="891" endline="891" begincolumn="9" endcolumn="77" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="891" endline="891" begincolumn="71" endcolumn="75" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="891" endline="891" begincolumn="71" endcolumn="75" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="892" endline="892" begincolumn="9" endcolumn="92" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="892" endline="892" begincolumn="86" endcolumn="90" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="892" endline="892" begincolumn="86" endcolumn="90" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 5 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="915" endline="915" begincolumn="9" endcolumn="48" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="916" endline="916" begincolumn="9" endcolumn="125" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="950" endline="952" begincolumn="21" endcolumn="22" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#avoiddeeplynestedifstmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="955" endline="957" begincolumn="19" endcolumn="18" rule="EmptyCatchBlock" ruleset="Error Prone" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="969" endline="969" begincolumn="9" endcolumn="79" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="969" endline="969" begincolumn="73" endcolumn="77" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="969" endline="969" begincolumn="73" endcolumn="77" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="970" endline="970" begincolumn="86" endcolumn="90" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="982" endline="982" begincolumn="5" endcolumn="16" rule="LooseCoupling" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generateStatementOfApplicabilityReport" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#loosecoupling" priority="3">
+Avoid using implementation types like 'HttpHeaders'; use the interface instead
+</violation>
+<violation beginline="1029" endline="1029" begincolumn="28" endcolumn="32" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="escapePDFText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1033" endline="1033" begincolumn="28" endcolumn="31" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="escapePDFText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1045" endline="1045" begincolumn="61" endcolumn="68" rule="UnusedFormalParameter" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" variable="pageNum" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedformalparameter" priority="3">
+Avoid unused method parameters such as 'pageNum'.
+</violation>
+<violation beginline="1045" endline="1045" begincolumn="74" endcolumn="84" rule="UnusedFormalParameter" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" variable="totalPages" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedformalparameter" priority="3">
+Avoid unused method parameters such as 'totalPages'.
+</violation>
+<violation beginline="1047" endline="1047" begincolumn="5" endcolumn="65" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1047" endline="1047" begincolumn="56" endcolumn="63" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1048" endline="1048" begincolumn="5" endcolumn="91" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1048" endline="1048" begincolumn="57" endcolumn="60" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1048" endline="1048" begincolumn="82" endcolumn="89" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 3 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1049" endline="1049" begincolumn="5" endcolumn="49" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1052" endline="1052" begincolumn="5" endcolumn="68" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1052" endline="1052" begincolumn="59" endcolumn="66" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1053" endline="1053" begincolumn="5" endcolumn="96" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1053" endline="1053" begincolumn="57" endcolumn="60" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1053" endline="1053" begincolumn="87" endcolumn="94" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 3 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1054" endline="1054" begincolumn="5" endcolumn="49" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageHeaderExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1063" endline="1063" begincolumn="5" endcolumn="27" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageFooterExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1063" endline="1063" begincolumn="19" endcolumn="25" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageFooterExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 3 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1064" endline="1064" begincolumn="5" endcolumn="27" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageFooterExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1065" endline="1065" begincolumn="51" endcolumn="58" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageFooterExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1071" endline="1071" begincolumn="5" endcolumn="91" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageFooterExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1071" endline="1071" begincolumn="54" endcolumn="57" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageFooterExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1071" endline="1071" begincolumn="82" endcolumn="89" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageFooterExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1072" endline="1072" begincolumn="5" endcolumn="57" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageFooterExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1072" endline="1072" begincolumn="19" endcolumn="22" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageFooterExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1072" endline="1072" begincolumn="47" endcolumn="55" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="addPageFooterExact" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1077" endline="1077" begincolumn="18" endcolumn="23" rule="ClassWithOnlyPrivateConstructorsShouldBeFinal" ruleset="Design" package="org.veo.rest" class="ReportingController.RiskAssessmentEntry" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#classwithonlyprivateconstructorsshouldbefinal" priority="1">
+This class has only private constructors and may be final
+</violation>
+<violation beginline="1088" endline="1088" begincolumn="18" endcolumn="37" rule="NcssCount" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#ncsscount" priority="3">
+The method 'generatePDFFromText(String, String)' has a NCSS line count of 192.
+</violation>
+<violation beginline="1088" endline="1088" begincolumn="58" endcolumn="63" rule="UnusedFormalParameter" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" variable="title" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedformalparameter" priority="3">
+Avoid unused method parameters such as 'title'.
+</violation>
+<violation beginline="1094" endline="1094" begincolumn="9" endcolumn="19" rule="UnusedLocalVariable" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" variable="pageHeight" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'pageHeight'.
+</violation>
+<violation beginline="1113" endline="1113" begincolumn="9" endcolumn="28" rule="UnusedLocalVariable" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" variable="spacingAfterSection" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'spacingAfterSection'.
+</violation>
+<violation beginline="1143" endline="1143" begincolumn="13" endcolumn="20" rule="UnusedLocalVariable" ruleset="Best Practices" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" variable="inTable" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'inTable'.
+</violation>
+<violation beginline="1156" endline="1156" begincolumn="25" endcolumn="44" rule="InsufficientStringBufferDeclaration" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#insufficientstringbufferdeclaration" priority="3">
+StringBuilder has been initialized with size 16, but has at least 41 characters appended.
+</violation>
+<violation beginline="1172" endline="1172" begincolumn="9" endcolumn="78" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1172" endline="1172" begincolumn="69" endcolumn="76" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1173" endline="1173" begincolumn="9" endcolumn="102" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1173" endline="1173" begincolumn="68" endcolumn="71" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1173" endline="1173" begincolumn="93" endcolumn="100" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1174" endline="1174" begincolumn="30" endcolumn="33" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1174" endline="1174" begincolumn="58" endcolumn="66" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1181" endline="1181" begincolumn="9" endcolumn="81" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1181" endline="1181" begincolumn="72" endcolumn="79" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1182" endline="1182" begincolumn="9" endcolumn="102" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1182" endline="1182" begincolumn="68" endcolumn="71" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1182" endline="1182" begincolumn="93" endcolumn="100" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1183" endline="1183" begincolumn="30" endcolumn="33" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1183" endline="1183" begincolumn="58" endcolumn="66" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1198" endline="1198" begincolumn="13" endcolumn="42" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1199" endline="1199" begincolumn="13" endcolumn="84" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1199" endline="1199" begincolumn="47" endcolumn="50" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1200" endline="1200" begincolumn="13" endcolumn="107" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1200" endline="1200" begincolumn="70" endcolumn="73" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1200" endline="1200" begincolumn="99" endcolumn="105" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 3 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1201" endline="1201" begincolumn="13" endcolumn="41" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1209" endline="1209" begincolumn="13" endcolumn="80" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1209" endline="1209" begincolumn="71" endcolumn="78" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1210" endline="1210" begincolumn="13" endcolumn="100" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1210" endline="1210" begincolumn="66" endcolumn="69" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1210" endline="1210" begincolumn="91" endcolumn="98" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1211" endline="1211" begincolumn="34" endcolumn="37" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1220" endline="1220" begincolumn="9" endcolumn="38" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1221" endline="1221" begincolumn="9" endcolumn="86" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1221" endline="1221" begincolumn="49" endcolumn="52" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1222" endline="1222" begincolumn="9" endcolumn="87" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1222" endline="1222" begincolumn="50" endcolumn="53" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1222" endline="1222" begincolumn="79" endcolumn="85" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 3 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1223" endline="1223" begincolumn="9" endcolumn="43" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1232" endline="1232" begincolumn="26" endcolumn="50" rule="UseIndexOfChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" variable="colonPos" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#useindexofchar" priority="3">
+String.indexOf(char) is faster than String.indexOf(String).
+</violation>
+<violation beginline="1239" endline="1239" begincolumn="13" endcolumn="79" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1239" endline="1239" begincolumn="70" endcolumn="77" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1240" endline="1240" begincolumn="13" endcolumn="106" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1240" endline="1240" begincolumn="72" endcolumn="75" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1240" endline="1240" begincolumn="97" endcolumn="104" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1241" endline="1241" begincolumn="34" endcolumn="37" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1244" endline="1249" begincolumn="13" endcolumn="14" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_design.html#avoiddeeplynestedifstmts" priority="3">
+Deeply nested if..then statements are hard to read
+</violation>
+<violation beginline="1247" endline="1247" begincolumn="15" endcolumn="104" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1247" endline="1247" begincolumn="70" endcolumn="73" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1247" endline="1247" begincolumn="95" endcolumn="102" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1248" endline="1248" begincolumn="36" endcolumn="39" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1253" endline="1253" begincolumn="13" endcolumn="79" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1253" endline="1253" begincolumn="70" endcolumn="77" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1254" endline="1254" begincolumn="13" endcolumn="106" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1254" endline="1254" begincolumn="72" endcolumn="75" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1254" endline="1254" begincolumn="97" endcolumn="104" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1255" endline="1255" begincolumn="34" endcolumn="37" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1260" endline="1260" begincolumn="11" endcolumn="77" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1260" endline="1260" begincolumn="68" endcolumn="75" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1261" endline="1261" begincolumn="11" endcolumn="104" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1261" endline="1261" begincolumn="70" endcolumn="73" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1261" endline="1261" begincolumn="95" endcolumn="102" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1262" endline="1262" begincolumn="32" endcolumn="35" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1275" endline="1275" begincolumn="25" endcolumn="44" rule="InsufficientStringBufferDeclaration" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" variable="pdf" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#insufficientstringbufferdeclaration" priority="3">
+StringBuilder has been initialized with size 16, but has at least 392 characters appended.
+</violation>
+<violation beginline="1280" endline="1280" begincolumn="5" endcolumn="29" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1280" endline="1280" begincolumn="16" endcolumn="27" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 3 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1281" endline="1281" begincolumn="5" endcolumn="55" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1286" endline="1286" begincolumn="5" endcolumn="29" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1286" endline="1286" begincolumn="16" endcolumn="27" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1290" endline="1290" begincolumn="42" endcolumn="45" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1292" endline="1292" begincolumn="5" endcolumn="64" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1292" endline="1292" begincolumn="55" endcolumn="62" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1306" endline="1306" begincolumn="7" endcolumn="49" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1306" endline="1306" begincolumn="37" endcolumn="47" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1307" endline="1308" begincolumn="7" endcolumn="139" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1308" endline="1308" begincolumn="40" endcolumn="137" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1317" endline="1317" begincolumn="7" endcolumn="51" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1317" endline="1317" begincolumn="39" endcolumn="49" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1318" endline="1318" begincolumn="7" endcolumn="70" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1318" endline="1318" begincolumn="61" endcolumn="68" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1319" endline="1319" begincolumn="7" endcolumn="30" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1320" endline="1320" begincolumn="7" endcolumn="33" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1321" endline="1321" begincolumn="7" endcolumn="33" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1321" endline="1321" begincolumn="18" endcolumn="31" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1328" endline="1328" begincolumn="5" endcolumn="26" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1328" endline="1328" begincolumn="16" endcolumn="24" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1329" endline="1329" begincolumn="5" endcolumn="60" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1329" endline="1329" begincolumn="54" endcolumn="58" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1330" endline="1330" begincolumn="5" endcolumn="54" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1331" endline="1331" begincolumn="5" endcolumn="62" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1335" endline="1335" begincolumn="7" endcolumn="80" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1340" endline="1340" begincolumn="5" endcolumn="29" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1340" endline="1340" begincolumn="16" endcolumn="27" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1341" endline="1341" begincolumn="5" endcolumn="82" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1341" endline="1341" begincolumn="61" endcolumn="80" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+<violation beginline="1342" endline="1342" begincolumn="5" endcolumn="31" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1343" endline="1343" begincolumn="5" endcolumn="38" rule="ConsecutiveAppendsShouldReuse" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveappendsshouldreuse" priority="3">
+StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+</violation>
+<violation beginline="1343" endline="1343" begincolumn="32" endcolumn="36" rule="AppendCharacterWithChar" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#appendcharacterwithchar" priority="3">
+Avoid appending characters as strings in StringBuffer.append.
+</violation>
+<violation beginline="1343" endline="1343" begincolumn="32" endcolumn="36" rule="ConsecutiveLiteralAppends" ruleset="Performance" package="org.veo.rest" class="ReportingController" method="generatePDFFromText" externalInfoUrl="https://docs.pmd-code.org/pmd-doc-7.19.0/pmd_rules_java_performance.html#consecutiveliteralappends" priority="3">
+StringBuffer (or StringBuilder).append is called 2 consecutive times with literals. Use a single append with a single combined String.
+</violation>
+</file>
+</pmd>

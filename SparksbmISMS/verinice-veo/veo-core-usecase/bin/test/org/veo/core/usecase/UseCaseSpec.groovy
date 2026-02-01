@@ -1,0 +1,92 @@
+/*******************************************************************************
+ * verinice.veo
+ * Copyright (C) 2020  Jochen Kemnade.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
+package org.veo.core.usecase
+
+import org.veo.core.UserAccessRights
+import org.veo.core.entity.Client
+import org.veo.core.entity.Domain
+import org.veo.core.entity.IncarnationConfiguration
+import org.veo.core.entity.Unit
+import org.veo.core.entity.transform.EntityFactory
+import org.veo.core.entity.transform.IdentifiableFactory
+import org.veo.core.repository.ClientRepository
+import org.veo.core.repository.PagedResult
+import org.veo.core.repository.RepositoryProvider
+import org.veo.core.repository.UnitRepository
+import org.veo.core.usecase.service.RefResolverFactory
+import org.veo.rest.security.NoRestrictionAccessRight
+
+import spock.lang.Specification
+
+/**
+ * Base class for use-case unit tests
+ */
+abstract class UseCaseSpec extends Specification {
+
+    Client existingClient
+    UserAccessRights noRestrictionExistingClient
+    Client anotherClient
+    Unit existingUnit
+    Domain existingDomain
+    ClientRepository clientRepository = Mock()
+    UnitRepository unitRepository = Mock()
+    RepositoryProvider repositoryProvider = Mock()
+    EntityFactory entityFactory = Mock()
+    IdentifiableFactory identifiableFactory = Mock()
+    RefResolverFactory refResolverFactory = new RefResolverFactory(repositoryProvider, identifiableFactory)
+
+    def setup() {
+        existingDomain = Mock()
+        existingDomain.modelInterface >> Domain.class
+        existingDomain.incarnationConfiguration >> new IncarnationConfiguration()
+
+        def id1 = UUID.randomUUID()
+        Client client = Mock()
+        client.getId() >> id1
+        client.getIdAsString() >> id1.toString()
+        client.getDomains() >> [existingDomain]
+        existingDomain.getOwner() >> client
+        client.getName()>> "Existing client"
+        existingClient = client
+
+        noRestrictionExistingClient = NoRestrictionAccessRight.from(existingClient.idAsString)
+        def id2 = UUID.randomUUID()
+        anotherClient = Mock()
+        anotherClient.getId() >> id2
+        anotherClient.getName()>> "Another client"
+
+        def id = UUID.randomUUID()
+
+        existingUnit = Mock()
+        existingUnit.getClient() >> client
+        existingUnit.getDomains() >> []
+        existingUnit.getParent() >> null
+        existingUnit.getName() >> "Existing unit"
+        existingUnit.getId() >> id
+        existingUnit.getIdAsString() >> id.toString()
+        existingUnit.id >> id
+        existingUnit.getModelInterface() >> Unit
+        existingUnit.getVersion() >> 0
+
+        client.createUnit(_)>>existingUnit
+    }
+
+    PagedResult singleResult(entity, pagingConfiguration) {
+        new PagedResult(pagingConfiguration,[entity],  1, 1)
+    }
+}

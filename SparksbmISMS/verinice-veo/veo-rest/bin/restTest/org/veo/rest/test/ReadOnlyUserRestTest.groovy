@@ -1,0 +1,103 @@
+/*******************************************************************************
+ * verinice.veo
+ * Copyright (C) 2022  Alexander Koderman
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
+package org.veo.rest.test
+
+import groovy.util.logging.Slf4j
+
+@Slf4j
+class ReadOnlyUserRestTest extends VeoRestTest {
+
+    String unitId
+    String unitUri
+    String processId
+    String eTag
+
+    def setup() {
+        unitId = postNewUnit().resourceId
+        unitUri = "$baseUrl/units/$unitId"
+
+        processId = post("/domains/$dsgvoDomainId/processes", [
+            name: "data processing",
+            subType: "PRO_DataProcessing",
+            status: "NEW",
+            owner: [targetUri: unitUri]
+        ]).body.resourceId
+        eTag = get("/processes/$processId").getETag()
+    }
+
+    def "user without write permission may GET a process"() {
+        expect:
+        get("/processes/$processId", 200, UserType.READ_ONLY)
+    }
+
+    def "user without write access may not POST a process"() {
+        expect:
+        post("/domains/$dsgvoDomainId/processes", [
+            name   : "can't create this",
+            subType: "PRO_DataProcessing",
+            status : "NEW",
+            owner  : [targetUri: unitUri]
+        ], 403, UserType.READ_ONLY)
+    }
+
+    def "user without write access may not PUT a process"() {
+        expect:
+        put("/domains/$dsgvoDomainId/processes/$processId", [
+            name   : "can't touch this",
+            subType: "PRO_DataProcessing",
+            status : "NEW",
+            owner  : [targetUri: unitUri]
+        ], eTag, 403, UserType.READ_ONLY)
+    }
+
+    def "user without write access may not POST element type definitions"() {
+        expect:
+        post("/domains/$dsgvoDomainId/elementtypedefinitions/scope/updatefromobjectschema", [
+            name: "cantupdatefromobjectschemathiselementtypedefinition"
+        ], 403, UserType.READ_ONLY)
+    }
+
+    def "user without write access may not DELETE a process"() {
+        expect:
+        delete("/processes/$processId",
+                403, UserType.READ_ONLY)
+    }
+
+    def "user without write access may POST evaluations"() {
+        expect:
+        // TODO VEO-1987 remove legacy endpoint call
+        post("/processes/evaluation?domain=$dsgvoDomainId", [
+            name: "you can evaluate this",
+            domains: [
+                (dsgvoDomainId): [
+                    subType: "PRO_DataProcessing",
+                    status: "NEW"
+                ],
+            ]
+        ], 400, UserType.READ_ONLY)
+        post("/domains/$dsgvoDomainId/processes/evaluation", [
+            name: "you can evaluate this",
+            domains: [
+                (dsgvoDomainId): [
+                    subType: "PRO_DataProcessing",
+                    status: "NEW"
+                ],
+            ]
+        ], 400, UserType.READ_ONLY)
+    }
+}

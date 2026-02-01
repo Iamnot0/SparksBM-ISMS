@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/veo}
+    username: ${SPRING_DATASOURCE_USERNAME:sparksbm}
+    password: ${SPRING_DATASOURCE_PASSWORD:sparksbm123}
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:localhost}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:guest}
+    password: ${SPRING_RABBITMQ_PASSWORD:guest}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${SPRING_SECURITY_OAUTH2_ISSUER_URI:http://localhost:8080/realms/sparksbm}
+          jwk-set-uri: ${SPRING_SECURITY_OAUTH2_JWK_SET_URI:http://localhost:8080/realms/sparksbm/protocol/openid-connect/certs}
+
+veo:
+  api-keys:
+    unit-count: dracula
+    system-messages: hello

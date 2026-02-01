@@ -1,6 +1,3 @@
-[submodule "SparksbmISMS/verinice-veo"]
-	path = SparksbmISMS/verinice-veo
-	url = https://github.com/Iamnot0/verinice-veo
 [submodule "SparksbmISMS/verinice-veo-forms"]
 	path = SparksbmISMS/verinice-veo-forms
 	url = https://github.com/Iamnot0/verinice-veo-forms
