@@ -1,0 +1,80 @@
+{
+  "conversational": {
+    "greeting_regex": "^(hey|hi|hello|yo|sup|whats?\\s*up|greetings?|good\\s*(morning|afternoon|evening))(\\s+(there|sparksbm|intelligent))?[!.?]*$",
+    "thanks_regex": "^(thanks?|thank\\s*you|thx|ty|appreciate\\s*it|thanks\\s*a\\s*lot|thank\\s*you\\s*so\\s*much)[!.?]*$",
+    "affirmative": [
+      "yes", "yeah", "yep", "yup", "sure", "ok", "okay", "alright",
+      "of course", "absolutely", "definitely", "go ahead", "proceed", "do it"
+    ],
+    "follow_up": [
+      "and then", "what next", "what else", "what can you do",
+      "what should i do", "what do i do", "how about",
+      "can you", "could you", "would you"
+    ]
+  },
+  "capabilities": {
+    "show_patterns": [
+      "show capabilities", "show my capabilities", "list capabilities", "your capabilities",
+      "show tools", "display capabilities", "show cablities", "show capabilitites",
+      "show capabilites", "show availabilities", "show available tools",
+      "show me your tools", "show me your capabilities", "can you show", "show me",
+      "list tools", "available tools", "your tools", "how can i command",
+      "how can i use", "how to use", "how do i", "commands",
+      "what commands", "available commands", "show skill", "show skills",
+      "your skill", "your skills"
+    ],
+    "query_patterns": [
+      "capabilities", "capability", "cablities", "cabalities",
+      "availabilities", "availability", "what can you", "what can u",
+      "what do you", "what do u", "your tools", "your skills",
+      "what are you", "who are you", "tell me about", "describe yourself"
+    ]
+  },
+  "system_queries": {
+    "llm_status": [
+      "check llm", "llm status", "check api", "api status",
+      "check configuration", "show llm"
+    ],
+    "state_history": [
+      "show history", "show state", "my history", "execution history",
+      "what have you done", "show my state"
+    ],
+    "workflow_test": [
+      "test workflow", "run workflow", "multi-step", "workflow test"
+    ],
+    "system_flow": [
+      "show system flow", "system flow", "how it works",
+      "explain system", "system logic", "show logic flow"
+    ],
+    "agent_management": [
+      "manage agents", "list agents", "create agent",
+      "register agent", "show agents", "agent management"
+    ]
+  },
+  "action_verbs": {
+    "show": "show_capabilities",
+    "display": "show_capabilities",
+    "list": "show_capabilities"
+  },
+  "typo_variations": {
+    "capabilit": ["capabilit", "cablit", "cababilit"],
+    "availabilit": ["availabilit", "availabil", "availab"],
+    "creat": ["creat", "crate"],
+    "create": ["creat", "crate"],
+    "asset": ["assest", "assests"],
+    "assets": ["assest", "assests"],
+    "scope": ["scop", "scops"],
+    "scopes": ["scop", "scops"],
+    "person": ["persn", "persns"],
+    "persons": ["persn", "persns"]
+  },
+  "knowledge_questions": {
+    "question_starters": ["what", "how", "why", "when", "where", "who", "explain", "define", "tell me", "describe"],
+    "question_phrases": ["how do", "how can", "how to", "what is", "what are", "what does", "what should", "why", "explain", "tell me about", "describe"],
+    "what_patterns": ["what", "explain", "define"],
+    "how_to_create_patterns": ["how", "do i"]
+  },
+  "constants": {
+    "fuzzy_match_min_word_length": 2
+  }
+}

@@ -1,0 +1,5 @@
+workspace/
+SparksbmISMS/.gradle-cache/
+**/.gradle-cache/
+.gradle/
+build/

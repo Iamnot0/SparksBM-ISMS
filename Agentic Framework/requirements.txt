@@ -1,0 +1,10 @@
+# Core dependencies
+pandas>=2.0.0
+python-dotenv>=1.0.0
+pycryptodome>=3.19.0
+
+# Google Gemini
+google-generativeai>=0.3.0
+
+# Testing (optional)
+# pytest>=7.0.0

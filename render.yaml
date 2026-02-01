@@ -1,0 +1,65 @@
+services:
+  # 1. Java Backend (ISMS Core)
+  - type: web
+    name: sparksbm-core
+    env: docker
+    dockerContext: .
+    dockerfilePath: SparksbmISMS/verinice-veo/Dockerfile
+    plan: starter # Java needs more RAM than free tier usually offers
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://ep-young-bread-a1f8nuq1-pooler.ap-southeast-1.aws.neon.tech/SparksBM?sslmode=require
+      - key: SPRING_DATASOURCE_USERNAME
+        value: neondb_owner
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: npg_UYhru41qVIZS
+      - key: KEYCLOAK_AUTH_SERVER_URL
+        fromService:
+          type: web
+          name: sparksbm-auth
+          property: url
+      - key: SPRING_RABBITMQ_HOST
+        fromService:
+          type: pserv
+          name: sparksbm-queue
+          property: host
+
+  # 2. Keycloak (Authentication)
+  - type: web
+    name: sparksbm-auth
+    env: docker
+    dockerfilePath: ./k8s/keycloak.dockerfile # We need to create a simple wrapper or use image directly if Render supports it (it prefers Dockerfiles for 'web')
+    # Since Render wants a repo, we'll point to a simple Dockerfile we create
+    envVars:
+      - key: KC_DB
+        value: postgres
+      - key: KC_DB_URL
+        value: jdbc:postgresql://ep-young-bread-a1f8nuq1-pooler.ap-southeast-1.aws.neon.tech/SparksBM?sslmode=require
+      - key: KC_DB_USERNAME
+        value: neondb_owner
+      - key: KC_DB_PASSWORD
+        value: npg_UYhru41qVIZS
+      - key: KC_HOSTNAME
+        value: 0.0.0.0 # Render handles routing
+      - key: KC_PROXY
+        value: edge
+      - key: KEYCLOAK_ADMIN
+        value: admin
+      - key: KEYCLOAK_ADMIN_PASSWORD
+        value: admin123
+
+  # 3. Python Agent (NotebookLLM API)
+  - type: web
+    name: sparksbm-agent
+    env: docker
+    dockerContext: .
+    dockerfilePath: NotebookLLM/api/Dockerfile
+    envVars:
+      - key: API_PORT
+        value: 8000
+
+  # 4. RabbitMQ (Queue)
+  - type: pserv
+    name: sparksbm-queue
+    env: docker
+    dockerfilePath: ./k8s/rabbitmq.dockerfile

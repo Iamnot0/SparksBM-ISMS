@@ -1,0 +1,930 @@
+{
+  "name": "ISO/IEC 27001",
+  "authority": "ISO",
+  "templateVersion": "1.0.0",
+  "description": "Information Security Management System based on ISO/IEC 27001 standard",
+  "elementTypeDefinitions": {
+    "scope": {
+      "subTypes": {
+        "OrganizationalScope": {
+          "statuses": [
+            "NEW",
+            "ACTIVE",
+            "ARCHIVED"
+          ]
+        },
+        "TechnicalScope": {
+          "statuses": [
+            "NEW",
+            "ACTIVE",
+            "ARCHIVED"
+          ]
+        },
+        "ProcessScope": {
+          "statuses": [
+            "NEW",
+            "ACTIVE",
+            "ARCHIVED"
+          ]
+        }
+      }
+    },
+    "asset": {
+      "subTypes": {
+        "InformationAsset": {
+          "statuses": [
+            "NEW",
+            "ACTIVE",
+            "RETIRED"
+          ]
+        },
+        "ITAsset": {
+          "statuses": [
+            "NEW",
+            "ACTIVE",
+            "RETIRED"
+          ]
+        },
+        "PhysicalAsset": {
+          "statuses": [
+            "NEW",
+            "ACTIVE",
+            "RETIRED"
+          ]
+        },
+        "ApplicationAsset": {
+          "statuses": [
+            "NEW",
+            "ACTIVE",
+            "RETIRED"
+          ]
+        }
+      }
+    },
+    "control": {
+      "subTypes": {
+        "TechnicalControl": {
+          "statuses": [
+            "NEW",
+            "PLANNED",
+            "IMPLEMENTED",
+            "VERIFIED"
+          ]
+        },
+        "OrganizationalControl": {
+          "statuses": [
+            "NEW",
+            "PLANNED",
+            "IMPLEMENTED",
+            "VERIFIED"
+          ]
+        },
+        "PhysicalControl": {
+          "statuses": [
+            "NEW",
+            "PLANNED",
+            "IMPLEMENTED",
+            "VERIFIED"
+          ]
+        },
+        "ComplianceControl": {
+          "statuses": [
+            "NEW",
+            "PLANNED",
+            "IMPLEMENTED",
+            "VERIFIED"
+          ]
+        }
+      }
+    },
+    "process": {
+      "subTypes": {
+        "BusinessProcess": {
+          "statuses": [
+            "NEW",
+            "ACTIVE",
+            "ARCHIVED"
+          ]
+        },
+        "ITProcess": {
+          "statuses": [
+            "NEW",
+            "ACTIVE",
+            "ARCHIVED"
+          ]
+        },
+        "SecurityProcess": {
+          "statuses": [
+            "NEW",
+            "ACTIVE",
+            "ARCHIVED"
+          ]
+        }
+      }
+    },
+    "person": {
+      "subTypes": {
+        "Employee": {
+          "statuses": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        },
+        "ExternalPerson": {
+          "statuses": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        },
+        "Role": {
+          "statuses": [
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        }
+      }
+    },
+    "scenario": {
+      "subTypes": {
+        "ThreatScenario": {
+          "statuses": [
+            "NEW",
+            "ANALYZED",
+            "MITIGATED"
+          ]
+        },
+        "RiskScenario": {
+          "statuses": [
+            "NEW",
+            "ANALYZED",
+            "MITIGATED"
+          ]
+        }
+      }
+    },
+    "incident": {
+      "subTypes": {
+        "SecurityIncident": {
+          "statuses": [
+            "NEW",
+            "INVESTIGATING",
+            "RESOLVED",
+            "CLOSED"
+          ]
+        },
+        "DataBreach": {
+          "statuses": [
+            "NEW",
+            "INVESTIGATING",
+            "RESOLVED",
+            "CLOSED"
+          ]
+        }
+      }
+    },
+    "document": {
+      "subTypes": {
+        "Policy": {
+          "statuses": [
+            "DRAFT",
+            "APPROVED",
+            "ARCHIVED"
+          ]
+        },
+        "Procedure": {
+          "statuses": [
+            "DRAFT",
+            "APPROVED",
+            "ARCHIVED"
+          ]
+        },
+        "Guideline": {
+          "statuses": [
+            "DRAFT",
+            "APPROVED",
+            "ARCHIVED"
+          ]
+        }
+      }
+    }
+  },
+  "catalogItems": [],
+  "riskDefinitions": {
+    "ISORA": {
+      "id": "ISORA",
+      "probability": {
+        "id": "Prob",
+        "translations": {
+          "en": {
+            "name": "Probability",
+            "description": "",
+            "abbreviation": "Prob"
+          }
+        },
+        "levels": [
+          {
+            "ordinalValue": 0,
+            "htmlColor": "#8DBAFF",
+            "translations": {
+              "en": {
+                "name": "Rare",
+                "abbreviation": "1",
+                "description": "Event could occur at most every five years based on current knowledge."
+              }
+            }
+          },
+          {
+            "ordinalValue": 1,
+            "htmlColor": "#699AF4",
+            "translations": {
+              "en": {
+                "name": "Medium",
+                "abbreviation": "2",
+                "description": "Event occurs once every five years to once a year."
+              }
+            }
+          },
+          {
+            "ordinalValue": 2,
+            "htmlColor": "#427BD2",
+            "translations": {
+              "en": {
+                "name": "Frequent",
+                "abbreviation": "3",
+                "description": "Event occurs once a year to once a month"
+              }
+            }
+          },
+          {
+            "ordinalValue": 3,
+            "htmlColor": "#045DB0",
+            "translations": {
+              "en": {
+                "name": "Very frequent",
+                "abbreviation": "4",
+                "description": "Event occurs several times a month"
+              }
+            }
+          }
+        ]
+      },
+      "implementationStateDefinition": {
+        "id": "Ctr",
+        "translations": {
+          "en": {
+            "name": "Control State",
+            "description": "",
+            "abbreviation": "Ctr"
+          }
+        },
+        "levels": [
+          {
+            "ordinalValue": 0,
+            "htmlColor": "#12AE0F",
+            "translations": {
+              "en": {
+                "name": "yes",
+                "abbreviation": "Y",
+                "description": "The measure is fully implemented."
+              }
+            }
+          },
+          {
+            "ordinalValue": 1,
+            "htmlColor": "#AE0D11",
+            "translations": {
+              "en": {
+                "name": "no",
+                "abbreviation": "N",
+                "description": "The measure has not been implemented."
+              }
+            }
+          },
+          {
+            "ordinalValue": 2,
+            "htmlColor": "#EDE92F",
+            "translations": {
+              "en": {
+                "name": "partial",
+                "abbreviation": "P",
+                "description": "The measure is not fully implemented."
+              }
+            }
+          },
+          {
+            "ordinalValue": 3,
+            "htmlColor": "#49A2ED",
+            "translations": {
+              "en": {
+                "name": "not applicable",
+                "abbreviation": "NA",
+                "description": "The measure is not applicable to the subject under consideration."
+              }
+            }
+          }
+        ]
+      },
+      "categories": [
+        {
+          "id": "C",
+          "translations": {
+            "en": {
+              "name": "Confidentiality",
+              "description": "",
+              "abbreviation": "C"
+            }
+          },
+          "potentialImpacts": [
+            {
+              "ordinalValue": 0,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "negligible",
+                  "abbreviation": "1",
+                  "description": "The damage impact is low and can be neglected."
+                }
+              }
+            },
+            {
+              "ordinalValue": 1,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "limited",
+                  "abbreviation": "2",
+                  "description": "The damage impact is limited and manageable."
+                }
+              }
+            },
+            {
+              "ordinalValue": 2,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "considerable",
+                  "abbreviation": "3",
+                  "description": "The damage impact can be considerable."
+                }
+              }
+            },
+            {
+              "ordinalValue": 3,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "existential",
+                  "abbreviation": "4",
+                  "description": "The damage impact can reach an existentially threatening, catastrophic extent."
+                }
+              }
+            }
+          ],
+          "valueMatrix": [
+            [
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              }
+            ]
+          ]
+        },
+        {
+          "id": "I",
+          "translations": {
+            "en": {
+              "name": "Integrity",
+              "description": "",
+              "abbreviation": "I"
+            }
+          },
+          "potentialImpacts": [
+            {
+              "ordinalValue": 0,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "negligible",
+                  "abbreviation": "1"
+                }
+              }
+            },
+            {
+              "ordinalValue": 1,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "limited",
+                  "abbreviation": "2"
+                }
+              }
+            },
+            {
+              "ordinalValue": 2,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "considerable",
+                  "abbreviation": "3"
+                }
+              }
+            },
+            {
+              "ordinalValue": 3,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "existential",
+                  "abbreviation": "4"
+                }
+              }
+            }
+          ],
+          "valueMatrix": [
+            [
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              }
+            ]
+          ]
+        },
+        {
+          "id": "A",
+          "translations": {
+            "en": {
+              "name": "Availability",
+              "description": "",
+              "abbreviation": "A"
+            }
+          },
+          "potentialImpacts": [
+            {
+              "ordinalValue": 0,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "negligible",
+                  "abbreviation": "1"
+                }
+              }
+            },
+            {
+              "ordinalValue": 1,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "limited",
+                  "abbreviation": "2"
+                }
+              }
+            },
+            {
+              "ordinalValue": 2,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "considerable",
+                  "abbreviation": "3"
+                }
+              }
+            },
+            {
+              "ordinalValue": 3,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "existential",
+                  "abbreviation": "4"
+                }
+              }
+            }
+          ],
+          "valueMatrix": [
+            [
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              }
+            ]
+          ]
+        },
+        {
+          "id": "R",
+          "translations": {
+            "en": {
+              "name": "Resilience",
+              "description": "",
+              "abbreviation": "R"
+            }
+          },
+          "potentialImpacts": [
+            {
+              "ordinalValue": 0,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "negligible",
+                  "abbreviation": "1"
+                }
+              }
+            },
+            {
+              "ordinalValue": 1,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "limited",
+                  "abbreviation": "2"
+                }
+              }
+            },
+            {
+              "ordinalValue": 2,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "considerable",
+                  "abbreviation": "3"
+                }
+              }
+            },
+            {
+              "ordinalValue": 3,
+              "htmlColor": "#004643",
+              "translations": {
+                "en": {
+                  "name": "existential",
+                  "abbreviation": "4"
+                }
+              }
+            }
+          ],
+          "valueMatrix": [
+            [
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "htmlColor": "#A0CF11",
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 1,
+                "htmlColor": "#FFFF13",
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "htmlColor": "#FF8E43",
+                "symbolicRisk": "symbolic_risk_3"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              },
+              {
+                "ordinalValue": 3,
+                "htmlColor": "#FF1212",
+                "symbolicRisk": "symbolic_risk_4"
+              }
+            ]
+          ]
+        }
+      ],
+      "riskValues": [
+        {
+          "symbolicRisk": "symbolic_risk_1",
+          "ordinalValue": 0
+        },
+        {
+          "symbolicRisk": "symbolic_risk_2",
+          "ordinalValue": 1
+        },
+        {
+          "symbolicRisk": "symbolic_risk_3",
+          "ordinalValue": 2
+        },
+        {
+          "symbolicRisk": "symbolic_risk_4",
+          "ordinalValue": 3
+        }
+      ],
+      "riskMethod": "MATRIX"
+    }
+  },
+  "translations": {
+    "en": {
+      "name": "ISO/IEC 27001",
+      "abbreviation": "ISO27001",
+      "description": "Information Security Management System based on ISO/IEC 27001 standard"
+    }
+  },
+  "abbreviation": "ISO27001"
+}

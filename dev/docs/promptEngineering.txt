@@ -1,0 +1,71 @@
+# Prompt Engineering Architecture Report
+Generated on: 2026-01-29
+
+## 1. Overview
+The Agentic ISMS Framework employs a **hybrid approach** to prompt engineering. While it features a sophisticated rule-based routing system (`ChatRouter`) and extensive regex pattern matching, the actual LLM interaction relies on **hardcoded system prompts** embedded directly within Python classes.
+
+A dedicated `PromptVersionManager` exists in the codebase but is currently **unused** in the active execution flow.
+
+## 2. Active Prompting Strategy
+
+The system does *not* use external text files (like `.prompts` or `.txt`) for its active system prompts. Instead, prompts are constructed dynamically in Python.
+
+### A. Hardcoded System Prompts
+The following components define their own system prompts as Python strings:
+
+*   **`ISMSAgent` (`Agentic Framework/agents/ismsAgent.py`)**
+    *   **Method:** `_build_system_prompt(mode)`
+    *   **Content:** Defines the agent as an "ISMS Operations Specialist".
+    *   **Dynamic Injection:** Injects tool descriptions, response format (JSON), and mode-specific instructions (e.g., "Deep Reasoning Mode").
+    *   **Key Features:** Strict JSON output enforcement, "ReAct" style reasoning loop.
+
+*   **`IntentClassifier` (`Agentic Framework/orchestrator/intentClassifier.py`)**
+    *   **Method:** `_llmBasedClassification`
+    *   **Content:** "You are an expert at classifying user queries..."
+    *   **Dynamic Injection:** Injects user query, conversation history, and valid intent types (`verinice_create`, `verinice_list`, etc.).
+    *   **Key Features:** extensive few-shot examples provided in the prompt to guide classification.
+
+*   **`GeminiReasoningEngine` (`Agentic Framework/orchestrator/reasoningEngine.py`)**
+    *   **Method:** `_getSystemPromptForMode`
+    *   **Content:** customized constraints based on response mode ("concise", "normal", "detailed").
+    *   **Key Features:** Explicitly forbids markdown/formatting in "concise" mode to prevent UI clutter.
+
+*   **`MainAgent` (`Agentic Framework/agents/mainAgent.py`)**
+    *   **Location:** `__init__` method.
+    *   **Content:** "You are SparksBM Intelligent..."
+    *   **Usage:** Used for general fallback chat or when using the generic `generate` tool.
+
+### B. Pattern-Based Configuration (`instructions.py`)
+While not "prompts" in the LLM sense, the system relies heavily on regex patterns defined in JSON files to route queries *before* they reach an LLM.
+
+*   **Registry:** `Agentic Framework/agents/instructions.py`
+*   **Sources:**
+    *   `Agentic Framework/utils/ismsInstructions.json`: ISMS-specific keywords (object types, operations).
+    *   `Agentic Framework/utils/commonInstructions.json`: Conversational patterns (greetings, thanks).
+*   **Usage:** These are used by `ChatRouter` and `MainAgent` to perform deterministic routing (e.g., detecting "create scope" via regex rather than LLM intent classification).
+
+## 3. Unused Infrastructure: `PromptVersionManager`
+
+*   **File:** `Agentic Framework/utils/promptVersioning.py`
+*   **Purpose:** Designed to store, version, and evaluate prompts (A/B testing).
+*   **Storage:** `Agentic Framework/utils/prompt_versions/`
+*   **Status:** **Dead Code**.
+    *   It is not imported or used by `MainAgent`, `ISMSAgent`, or `ChatRouter`.
+    *   The prompt engineering test suite (`test_promptEngineering.py`) does *not* use this system; it tests the API end-to-end.
+
+## 4. Testing Strategy
+
+*   **File:** `dev/test/test_promptEngineering.py`
+*   **Approach:** End-to-End Black Box Testing.
+*   **Workflow:**
+    1.  Reads a list of user queries (formerly in this file).
+    2.  Sends them to the running API (`http://localhost:8000`).
+    3.  Checks for HTTP 200 OK and non-error responses.
+    4.  **Note:** It does *not* validate the *quality* of the prompt or the reasoning, only that the system produces a "success" status.
+
+## 5. Summary
+The "Prompt Engineering" in this project is currently:
+1.  **Code-First:** Prompts are strings in Python code.
+2.  **Dynamic:** Constructed at runtime based on state/context.
+3.  **Hybrid:** Heavily augmented by regex/pattern matching to reduce reliance on pure LLM inference for known operations.
+4.  **Unversioned:** The capability for prompt versioning exists but is not implemented in the active agents.

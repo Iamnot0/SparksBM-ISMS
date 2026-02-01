@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notebook-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notebook-frontend
+  template:
+    metadata:
+      labels:
+        app: notebook-frontend
+    spec:
+      containers:
+      - name: notebook-frontend
+        image: gcr.io/PROJECT_ID_PLACEHOLDER/notebook-frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NUXT_PUBLIC_API_BASE
+          value: "http://notebook-api"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notebook-frontend
+spec:
+  selector:
+    app: notebook-frontend
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 3000

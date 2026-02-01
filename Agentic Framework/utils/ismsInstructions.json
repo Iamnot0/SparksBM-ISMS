@@ -1,0 +1,82 @@
+{
+  "verinice": {
+    "object_types": [
+      "scope", "scopes", "asset", "assets", "control", "controls",
+      "process", "processes", "person", "persons", "scenario", "scenarios",
+      "incident", "incidents", "document", "documents"
+    ],
+    "operation_keywords": {
+      "create": ["create", "new", "add", "make", "build"],
+      "list": ["list", "show", "display"],
+      "get": ["get", "view"],
+      "update": ["update", "edit", "modify", "change", "alter"],
+      "delete": ["delete", "remove", "drop", "erase"],
+      "analyze": ["analyze", "analysis", "analyze on", "analyze the"],
+      "compare": ["compare", "comparison", "diff", "difference", "differences"]
+    },
+    "question_filters": {
+      "question_starters": [
+        "how do", "how can", "how to", "what is", "what are", "what does",
+        "what should", "why", "explain", "tell me about", "describe"
+      ],
+      "question_words": ["how", "what", "why", "which"]
+    },
+    "conversational_patterns": {
+      "list_prompts": [
+        "how about",
+        "what about",
+        "do we have",
+        "are there",
+        "what {objectType} do we have",
+        "what {objectType} are there",
+        "ok so how about",
+        "ok how about"
+      ],
+      "subtype_queries": [
+        "how many subtypes",
+        "what subtypes",
+        "list subtypes",
+        "show subtypes",
+        "get subtypes",
+        "subtypes for",
+        "subtypes of"
+      ]
+    },
+    "subtype_mappings": {
+      "controllers": "scope",
+      "controller": "scope",
+      "joint controllerships": "scope",
+      "joint controllership": "scope"
+    },
+    "report_patterns": {
+      "keywords": ["generate", "create", "make", "get"],
+      "types": [
+        "inventory of assets",
+        "risk assessment",
+        "statement of applicability",
+        "inventory",
+        "risk",
+        "statement"
+      ],
+      "type_mappings": {
+        "inventory-of-assets": ["inventory", "asset"],
+        "risk-assessment": ["risk", "assessment"],
+        "statement-of-applicability": ["statement", "applicability"]
+      }
+    },
+    "typo_corrections": {
+      "creat": "create",
+      "crate": "create",
+      "reate": "create",
+      "dop": "dpo",
+      "assest": "asset",
+      "assests": "assets",
+      "scop": "scope",
+      "scops": "scopes",
+      "socpes": "scopes",
+      "socpe": "scope",
+      "persn": "person",
+      "persns": "persons"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sparksbm-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sparksbm-postgres
+  template:
+    metadata:
+      labels:
+        app: sparksbm-postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15-alpine
+        env:
+        - name: POSTGRES_USER
+          value: "sparksbm"
+        - name: POSTGRES_PASSWORD
+          value: "sparksbm123"
+        - name: POSTGRES_DB
+          value: "sparksbm"
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: postgres-storage
+      volumes:
+      - name: postgres-storage
+        emptyDir: {} # For production, use PersistentVolumeClaim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: sparksbm-postgres
+  ports:
+    - port: 5432
+      targetPort: 5432

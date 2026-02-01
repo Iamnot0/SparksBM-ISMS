@@ -1,0 +1,34 @@
+steps:
+  # Build Notebook Frontend
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/notebook-frontend:$COMMIT_SHA', '-f', 'NotebookLLM/frontend/Dockerfile', '.']
+    dir: '.'
+
+  # Build Notebook API
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/notebook-api:$COMMIT_SHA', '-f', 'NotebookLLM/api/Dockerfile', '.']
+    dir: '.'
+
+  # Build SparksBM Java App
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/sparksbm-app:$COMMIT_SHA', '-f', 'SparksbmISMS/verinice-veo/Dockerfile', 'SparksbmISMS/verinice-veo']
+  
+  # Push Images
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/notebook-frontend:$COMMIT_SHA']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/notebook-api:$COMMIT_SHA']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/sparksbm-app:$COMMIT_SHA']
+
+  # Deploy to GKE (Example - requires existing cluster)
+  # - name: 'gcr.io/cloud-builders/kubectl'
+  #   args: ['apply', '-f', 'k8s/']
+  #   env:
+  #   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  #   - 'CLOUDSDK_CONTAINER_CLUSTER=sparksbm-cluster'
+
+images:
+  - 'gcr.io/$PROJECT_ID/notebook-frontend:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/notebook-api:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/sparksbm-app:$COMMIT_SHA'

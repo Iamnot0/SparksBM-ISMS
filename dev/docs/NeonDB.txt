@@ -1,0 +1,10 @@
+Database Connection:
+psql 'postgresql://neondb_owner:npg_UYhru41qVIZS@ep-young-bread-a1f8nuq1-pooler.ap-southeast-1.aws.neon.tech/SparksBM?sslmode=require&channel_binding=require'
+
+Step1: 
+    {Commant to create db in neon with postgresql}
+
+Step2:
+    Check do we have Render and Neon MCP server setpup, 
+
+Setp3: 

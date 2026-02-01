@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notebook-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notebook-api
+  template:
+    metadata:
+      labels:
+        app: notebook-api
+    spec:
+      containers:
+      - name: notebook-api
+        image: gcr.io/PROJECT_ID_PLACEHOLDER/notebook-api:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        env:
+        - name: API_PORT
+          value: "8000"
+        - name: CORS_ORIGINS
+          value: "*"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notebook-api
+spec:
+  selector:
+    app: notebook-api
+  ports:
+    - port: 80
+      targetPort: 8000
