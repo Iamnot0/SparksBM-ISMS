@@ -1,0 +1,12 @@
+[submodule "SparksbmISMS/verinice-veo"]
+	path = SparksbmISMS/verinice-veo
+	url = https://github.com/Iamnot0/verinice-veo
+[submodule "SparksbmISMS/verinice-veo-forms"]
+	path = SparksbmISMS/verinice-veo-forms
+	url = https://github.com/Iamnot0/verinice-veo-forms
+[submodule "SparksbmISMS/verinice-veo-history"]
+	path = SparksbmISMS/verinice-veo-history
+	url = https://github.com/Iamnot0/verinice-veo-history
+[submodule "SparksbmISMS/verinice-veo-web"]
+	path = SparksbmISMS/verinice-veo-web
+	url = https://github.com/Iamnot0/verinice-veo-web
