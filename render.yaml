@@ -4,7 +4,7 @@ services:
     name: sparksbm-core
     env: docker
     dockerContext: .
-    dockerfilePath: SparksbmISMS/verinice-veo/Dockerfile
+    dockerfilePath: Dockerfile.core
     plan: starter # Java needs more RAM than free tier usually offers
     envVars:
       - key: SPRING_DATASOURCE_URL
