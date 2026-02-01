@@ -4,7 +4,7 @@ import os
 from typing import Dict, Any, Optional
 
 _currentDir = os.path.dirname(os.path.abspath(__file__))
-_agenticFrameworkPath = os.path.join(_currentDir, '..', '..', 'Agentic Framework')
+_agenticFrameworkPath = os.path.join(_currentDir, '..', '..', 'AgenticFramework')
 if os.path.exists(_agenticFrameworkPath) and _agenticFrameworkPath not in sys.path:
     sys.path.insert(0, _agenticFrameworkPath)
 

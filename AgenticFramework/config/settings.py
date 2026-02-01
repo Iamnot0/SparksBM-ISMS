@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Dict
 from dotenv import load_dotenv
 
-# Load .env from Agentic Framework directory (explicit path)
+# Load .env from AgenticFramework directory (explicit path)
 try:
     _agenticFrameworkDir = Path(__file__).parent.parent
     _envFile = _agenticFrameworkDir / '.env'

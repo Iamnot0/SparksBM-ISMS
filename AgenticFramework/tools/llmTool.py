@@ -6,17 +6,15 @@ from pathlib import Path
 from typing import Dict, Optional, List, Any
 from dotenv import load_dotenv
 
-# Load .env from Agentic Framework directory (explicit path)
+# Load .env from AgenticFramework directory (explicit path)
 try:
     _agenticFrameworkDir = Path(__file__).parent.parent
     _envFile = _agenticFrameworkDir / '.env'
     if _envFile.exists() and _envFile.is_file():
         try:
-            load_dotenv(_envFile, override=False)
-        except (PermissionError, OSError) as e:
-            import logging
-            logger = logging.getLogger(__name__)
-            logger.warning(f"Could not read .env from Agentic Framework dir: {e}")
+            load_dotenv(_envFile, override=True)
+        except Exception as e:
+            logger.warning(f"Could not read .env from AgenticFramework dir: {e}")
             _projectRoot = _agenticFrameworkDir.parent
             _envFileProject = _projectRoot / '.env'
             if _envFileProject.exists() and _envFileProject.is_file():

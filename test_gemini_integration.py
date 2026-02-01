@@ -9,7 +9,7 @@ import os
 from pathlib import Path
 
 # Add Agentic Framework to path
-sys.path.insert(0, str(Path(__file__).parent / "Agentic Framework"))
+sys.path.insert(0, str(Path(__file__).parent / "AgenticFramework"))
 
 def test_gemini_integration():
     """Test Gemini integration with error handling"""
