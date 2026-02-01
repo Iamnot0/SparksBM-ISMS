@@ -178,13 +178,13 @@ async def ismsOperation(request: Dict[str, Any]):
             }
         
         if not hasattr(agent, '_ismsController') or not agent._ismsController:
-# Import from Agentic Framework
-import sys
-_currentDir = os.path.dirname(os.path.abspath(__file__))
-_projectRoot = os.path.join(_currentDir, '..', '..')
-agenticFrameworkPath = os.path.join(_projectRoot, '..', 'AgenticFramework')
-if agenticFrameworkPath not in sys.path:
-    sys.path.insert(0, agenticFrameworkPath)
+            # Import from Agentic Framework
+            import sys
+            _currentDir = os.path.dirname(os.path.abspath(__file__))
+            _projectRoot = os.path.join(_currentDir, '..', '..')
+            agenticFrameworkPath = os.path.join(_projectRoot, '..', 'AgenticFramework')
+            if agenticFrameworkPath not in sys.path:
+                sys.path.insert(0, agenticFrameworkPath)
             
             from agents.ismsController import ISMSController
             from api.services.eventQueue import get_event_queue
