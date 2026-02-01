@@ -2,14 +2,17 @@ FROM gradle:8.5-jdk21-alpine AS builder
 
 WORKDIR /home/gradle/src
 
-# Copy the core submodule code
-COPY SparksbmISMS/verinice-veo/ .
+# Copy the parent directory to see what's inside
+COPY SparksbmISMS/ /home/gradle/src/SparksbmISMS/
 
-# Debug: List files to confirm copy worked
-RUN ls -la
+# Debug: Recursive list to see where the files are
+RUN ls -R /home/gradle/src/
 
-# Ensure gradlew is executable
-RUN chmod +x gradlew
+# Change directory to where the app code *should* be
+WORKDIR /home/gradle/src/SparksbmISMS/verinice-veo
+
+# Ensure gradlew is executable (if it exists)
+RUN if [ -f ./gradlew ]; then chmod +x gradlew; fi
 
 # Build the application
 RUN ./gradlew bootJar --no-daemon
