@@ -7,7 +7,7 @@ USER root
 RUN apk add --no-cache git
 
 # Manually clone the repo since Render is failing to sync the submodule content
-# We clone into a temporary dir and move it to the expected location
+# Repo is now PUBLIC, so this clone should succeed.
 RUN git clone https://github.com/Iamnot0/verinice-veo.git verinice-veo
 
 WORKDIR /home/gradle/src/verinice-veo
