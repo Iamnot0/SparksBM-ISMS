@@ -57,6 +57,8 @@ services:
     envVars:
       - key: API_PORT
         value: 8000
+      - key: GEMINI_API_KEY
+        sync: false
 
   # 4. RabbitMQ (Queue)
   - type: pserv
