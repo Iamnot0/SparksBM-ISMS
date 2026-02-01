@@ -2,17 +2,18 @@ FROM gradle:8.5-jdk21-alpine AS builder
 
 WORKDIR /home/gradle/src
 
-# Copy the parent directory to see what's inside
-COPY SparksbmISMS/ /home/gradle/src/SparksbmISMS/
+# Install Git to manually clone (workaround for submodule issue)
+USER root
+RUN apk add --no-cache git
 
-# Debug: Recursive list to see where the files are
-RUN ls -R /home/gradle/src/
+# Manually clone the repo since Render is failing to sync the submodule content
+# We clone into a temporary dir and move it to the expected location
+RUN git clone https://github.com/Iamnot0/verinice-veo.git verinice-veo
 
-# Change directory to where the app code *should* be
-WORKDIR /home/gradle/src/SparksbmISMS/verinice-veo
+WORKDIR /home/gradle/src/verinice-veo
 
-# Ensure gradlew is executable (if it exists)
-RUN if [ -f ./gradlew ]; then chmod +x gradlew; fi
+# Ensure gradlew is executable
+RUN chmod +x gradlew
 
 # Build the application
 RUN ./gradlew bootJar --no-daemon
@@ -21,12 +22,12 @@ FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
 
-# Copy the built jar from the correct location
-COPY --from=builder /home/gradle/src/veo-rest/build/libs/*.jar app.jar
+# Copy the built jar
+COPY --from=builder /home/gradle/src/verinice-veo/veo-rest/build/libs/*.jar app.jar
 
 EXPOSE 8080
 
-# Memory settings for Render (Starter tier is 512MB)
+# Memory settings for Render
 ENV JAVA_TOOL_OPTIONS="-Xmx350m -Xms350m"
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
