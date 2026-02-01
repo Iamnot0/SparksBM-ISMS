@@ -5,3 +5,14 @@ SparksbmISMS/.gradle-cache/
 build/dev/
 test_gemini_integration.py
 AgenticFramework/.env.backup
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
