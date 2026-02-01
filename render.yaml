@@ -14,10 +14,12 @@ services:
       - key: SPRING_DATASOURCE_PASSWORD
         value: npg_UYhru41qVIZS
       - key: KEYCLOAK_AUTH_SERVER_URL
+        value: https://${KEYCLOAK_HOST}
+      - key: KEYCLOAK_HOST
         fromService:
           type: web
           name: sparksbm-auth
-          property: url
+          property: host
       - key: SPRING_RABBITMQ_HOST
         fromService:
           type: pserv
