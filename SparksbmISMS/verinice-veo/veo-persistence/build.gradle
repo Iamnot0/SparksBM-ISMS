@@ -1,0 +1,41 @@
+apply plugin: 'groovy'
+apply plugin: 'java-library'
+
+dependencies {
+
+    api project(":veo-core-usecase")
+    api 'net.ttddyy:datasource-proxy:1.11.0'
+
+    compileOnly 'org.projectlombok:lombok'
+
+    compileOnly 'jakarta.validation:jakarta.validation-api'
+    implementation 'org.apache.groovy:groovy'
+    implementation 'org.apache.groovy:groovy-json'
+    implementation 'org.apache.groovy:groovy-sql'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.module:jackson-module-blackbird'
+
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'io.hypersistence:hypersistence-utils-hibernate-62:3.9.4'
+    implementation 'org.apache.commons:commons-collections4:4.5.0'
+
+    runtimeOnly 'org.flywaydb:flyway-database-postgresql'
+}
+
+testing {
+    suites {
+        test {
+            dependencies {
+                implementation 'org.springframework.boot:spring-boot-starter-test'
+                implementation 'org.springframework.boot:spring-boot-starter-validation'
+                implementation project(":veo-test")
+
+                runtimeOnly "org.testcontainers:postgresql"
+                runtimeOnly 'org.postgresql:postgresql'
+                runtimeOnly 'org.spockframework:spock-spring:2.4-M7-groovy-4.0'
+            }
+        }
+    }
+}

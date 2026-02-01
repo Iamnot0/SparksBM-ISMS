@@ -1,0 +1,19 @@
+{
+  "name": "Data type (created for k6 load test)",
+  "description": "Angaben zur Person, Kontaktdaten, Lebenslauf, Zeugnisse",
+  "domains": {},
+  "owner": {
+    "targetUri": "https://api.develop.verinice.com/veo/units/d8af429e-8706-4b05-b894-3c8cc262b9fd"
+  },
+  "links": {},
+  "customAspects": {
+    "asset_details": {
+      "domains": [],
+      "attributes": {
+        "asset_details_operatingStage": "asset_details_operatingStage_operation"
+      }
+    }
+  },
+  "type": "asset",
+  "parts": []
+}

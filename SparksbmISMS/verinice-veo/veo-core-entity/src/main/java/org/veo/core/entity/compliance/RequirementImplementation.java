@@ -1,0 +1,98 @@
+/*******************************************************************************
+ * verinice.veo
+ * Copyright (C) 2023  Alexander Koderman
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
+package org.veo.core.entity.compliance;
+
+import java.time.LocalDate;
+import java.util.UUID;
+
+import org.veo.core.entity.Control;
+import org.veo.core.entity.Document;
+import org.veo.core.entity.Person;
+import org.veo.core.entity.RiskAffected;
+
+public interface RequirementImplementation {
+  UUID getId();
+
+  void setOrigin(RiskAffected<?, ?> origin);
+
+  RiskAffected<?, ?> getOrigin();
+
+  Origination getOrigination();
+
+  void setOrigination(Origination origination);
+
+  Person getResponsible();
+
+  void setResponsible(Person responsible);
+
+  ImplementationStatus getStatus();
+
+  void setStatus(ImplementationStatus status);
+
+  String getImplementationStatement();
+
+  void setImplementationStatement(String implementationStatement);
+
+  LocalDate getImplementationUntil();
+
+  void setImplementationUntil(LocalDate implementationUntil);
+
+  boolean isUnedited();
+
+  Control getControl();
+
+  Integer getCost();
+
+  LocalDate getImplementationDate();
+
+  Person getImplementedBy();
+
+  Document getDocument();
+
+  LocalDate getLastRevisionDate();
+
+  Person getLastRevisionBy();
+
+  LocalDate getNextRevisionDate();
+
+  Person getNextRevisionBy();
+
+  LocalDate getAssessmentDate();
+
+  Person getAssessmentBy();
+
+  void setCost(Integer cost);
+
+  void setImplementationDate(LocalDate implementationDate);
+
+  void setImplementedBy(Person implementedBy);
+
+  void setDocument(Document document);
+
+  void setLastRevisionDate(LocalDate lastRevisionDate);
+
+  void setLastRevisionBy(Person lastRevisionBy);
+
+  void setNextRevisionDate(LocalDate nextRevisionDate);
+
+  void setNextRevisionBy(Person nextRevisionBy);
+
+  void setAssessmentDate(LocalDate assessmentDate);
+
+  void setAssessmentBy(Person assessmentBy);
+}

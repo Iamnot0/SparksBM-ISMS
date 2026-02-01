@@ -1,0 +1,138 @@
+server:
+  compression:
+    enabled: true
+  port: ${SERVER_PORT:8070}
+
+veo:
+  cors:
+    # A comma-separated list of allowed CORS origin-patterns.
+    # Example: https://*.domain1.com, https://*.domain1.com:[8080,8081], https://*.domain1.com:[*]
+    # Can be overridden via VEO_CORS_ORIGINS environment variable
+    origins: ${VEO_CORS_ORIGINS:*}
+    # A comma-separated-list of additional headers to allow in CORS requests
+    # Note: The 'Authorization' & 'Content-Type' headers are always allowed.
+    # Example: X-Ample, X-Custom-Header
+    headers: Accept,Accept-Language,Content-Language,If-Match,If-None-Match
+  # Salt for hashing the ETags, enter a 10 random characters
+  # etag:
+    # salt:
+  default:
+    domaintemplate:
+      names: 'DS-GVO'
+    user-configurations-max: 10
+    user-configuration-bytes-max: 4000
+  logging:
+    properties: 'spring.datasource.url,spring.jpa.database-platform'
+  message:
+    routing-key-prefix: 'veo.message.'
+    exchanges:
+      veo: 'veo.entity_exchange'
+      veo-subscriptions: 'veo.subscriptions'
+    queues:
+      veo: 'veo'
+      veo-subscriptions: 'veo/subscriptions'
+    consume:
+      dlx: 'veo_dlx'
+      autoDelete: 'false'
+  messages:
+    deletion:
+      delayMs: 500
+    publishing:
+      lockExpirationMs: 20000
+      delayMs: 500
+      processingChunkSize: 5000
+  taskExecutor:
+    virtualThreads: true
+
+spring:
+  data:
+    rest:
+      detection-strategy: annotated
+  flyway:
+    locations: classpath:org/veo/persistence/migrations
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+  jndi:
+    ignore: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    ## Turn OSIV off - only the business layer decides the fetching strategy for a particular use case:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        order_inserts: true
+        jdbc:
+          # execute statements in batches:
+          batch_size: 30
+          # batch updates and deletes for entities that have a @Version property:
+          batch_versioned_data: true
+        query:
+          # prevent in-memory pagination when join fetching collections:
+          fail_on_pagination_over_collection_fetch: true
+          # pad 'IN'-clauses to next power from 2 to improve statement caching:
+          in_clause_parameter_padding: true
+        connection:
+          # removes the necessity to acquire the db connection at the beginning from each
+          # transaction to check the autocommit status:
+          # IMPORTANT: hikari.auto-commit=false must be set as well
+          provider_disables_autocommit: true
+      jakarta:
+        persistence:
+          schema-generation:
+            scripts:
+              action: none
+              create-target: schema.local.sql
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      auto-commit: false
+  rabbitmq:
+    publisher-confirm-type: correlated
+    publisher-returns: false
+    listener:
+      simple:
+        defaultRequeueRejected: false
+    #host: localhost
+    #port: 5672
+    #username: <username>
+    #password: <password>
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          ## Auth Server OIDC Discovery location, i.e.: http://<AUTHSERVER>/auth/realms/<REALM>
+          ## Can be overridden via SPRING_SECURITY_OAUTH2_ISSUER_URI environment variable
+          issuer-uri: ${SPRING_SECURITY_OAUTH2_ISSUER_URI:http://localhost:8080/realms/sparksbm}
+          ## Auth Server private key location, i.e.: http://<AUTHSERVER>/auth/realms/<REALM>/protocol/openid-connect/certs
+          ## Can be overridden via SPRING_SECURITY_OAUTH2_JWK_SET_URI environment variable
+          jwk-set-uri: ${SPRING_SECURITY_OAUTH2_JWK_SET_URI:http://localhost:8080/realms/sparksbm/protocol/openid-connect/certs}
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  threads:
+    virtual:
+      enabled: true
+
+springdoc:
+  api-docs:
+    version: OPENAPI_3_1
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
+  swagger-ui:
+    disable-swagger-default-url: true
+
+json:
+  schemaProvider: entityType
+
+## Change log level for different packages:
+#logging:
+#  level:
+#    org.springframework: DEBUG
+

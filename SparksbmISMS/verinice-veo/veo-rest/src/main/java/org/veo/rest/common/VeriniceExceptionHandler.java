@@ -1,0 +1,206 @@
+/*******************************************************************************
+ * verinice.veo
+ * Copyright (C) 2018  Daniel Murygin.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
+package org.veo.rest.common;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import jakarta.validation.ConstraintViolationException;
+
+import org.apache.commons.lang3.NotImplementedException;
+import org.springframework.context.MessageSourceResolvable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
+
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+
+import org.veo.adapter.presenter.api.DeviatingIdException;
+import org.veo.adapter.presenter.api.common.ApiResponseBody;
+import org.veo.core.entity.DomainException;
+import org.veo.core.entity.TranslationException;
+import org.veo.core.entity.exception.EntityAlreadyExistsException;
+import org.veo.core.entity.exception.NotFoundException;
+import org.veo.core.entity.exception.ReferenceTargetNotFoundException;
+import org.veo.core.entity.exception.RiskConsistencyException;
+import org.veo.core.entity.exception.UnprocessableDataException;
+import org.veo.core.entity.specification.ClientBoundaryViolationException;
+import org.veo.core.entity.specification.ContentTooLongException;
+import org.veo.core.entity.specification.ExceedLimitException;
+import org.veo.core.entity.specification.LicensingException;
+import org.veo.core.entity.specification.MaxUnitsExceededException;
+import org.veo.core.entity.specification.MissingAdminPrivilegesException;
+import org.veo.core.entity.specification.NotAllowedException;
+import org.veo.core.usecase.common.ETagMismatchException;
+import org.veo.core.usecase.domain.DomainInUseException;
+
+import lombok.extern.slf4j.Slf4j;
+
+@ControllerAdvice
+@Slf4j
+public class VeriniceExceptionHandler {
+
+  @ExceptionHandler({TranslationException.class})
+  protected ResponseEntity<ApiResponseBody> handle(TranslationException exception) {
+    return handle(exception, HttpStatus.UNPROCESSABLE_ENTITY);
+  }
+
+  @ExceptionHandler({DomainException.class})
+  protected ResponseEntity<ApiResponseBody> handle(DomainException exception) {
+    return handle(exception, HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler({ClientBoundaryViolationException.class})
+  protected ResponseEntity<ApiResponseBody> handle(ClientBoundaryViolationException exception) {
+    log.warn("client boundary violation, mapping to 404", exception);
+    return handle(new NotFoundException(exception.getRef()), HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler({IllegalArgumentException.class})
+  protected ResponseEntity<ApiResponseBody> handle(IllegalArgumentException exception) {
+    return handle(exception, HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler({ExceedLimitException.class})
+  protected ResponseEntity<ApiResponseBody> handle(ExceedLimitException exception) {
+    return handle(exception, HttpStatus.CONFLICT);
+  }
+
+  @ExceptionHandler({ContentTooLongException.class})
+  protected ResponseEntity<ApiResponseBody> handle(ContentTooLongException exception) {
+    return handle(exception, HttpStatus.PAYLOAD_TOO_LARGE);
+  }
+
+  @ExceptionHandler({EntityAlreadyExistsException.class})
+  protected ResponseEntity<ApiResponseBody> handle(EntityAlreadyExistsException exception) {
+    return handle(exception, HttpStatus.CONFLICT);
+  }
+
+  @ExceptionHandler({DeviatingIdException.class})
+  protected ResponseEntity<ApiResponseBody> handle(DeviatingIdException exception) {
+    return handle(exception, HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler({NotFoundException.class})
+  protected ResponseEntity<ApiResponseBody> handle(NotFoundException exception) {
+    return handle(exception, HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler({NotImplementedException.class})
+  protected ResponseEntity<ApiResponseBody> handle(NotImplementedException exception) {
+    return handle(exception, HttpStatus.NOT_IMPLEMENTED);
+  }
+
+  @ExceptionHandler(ETagMismatchException.class)
+  protected ResponseEntity<ApiResponseBody> handle(ETagMismatchException exception) {
+    return handle(exception, HttpStatus.PRECONDITION_FAILED);
+  }
+
+  @ExceptionHandler({NotAllowedException.class})
+  protected ResponseEntity<ApiResponseBody> handle(NotAllowedException exception) {
+    return handle(exception, HttpStatus.FORBIDDEN);
+  }
+
+  @ExceptionHandler({MissingAdminPrivilegesException.class})
+  protected ResponseEntity<ApiResponseBody> handle(MissingAdminPrivilegesException exception) {
+    return handle(exception, HttpStatus.FORBIDDEN);
+  }
+
+  @ExceptionHandler({MaxUnitsExceededException.class})
+  protected ResponseEntity<ApiResponseBody> handle(MaxUnitsExceededException exception) {
+    return handle(exception, HttpStatus.FORBIDDEN);
+  }
+
+  @ExceptionHandler({UnprocessableDataException.class})
+  protected ResponseEntity<ApiResponseBody> handle(UnprocessableDataException exception) {
+    return handle(exception, HttpStatus.UNPROCESSABLE_ENTITY);
+  }
+
+  @ExceptionHandler({ReferenceTargetNotFoundException.class})
+  protected ResponseEntity<ApiResponseBody> handle(ReferenceTargetNotFoundException exception) {
+    return handle(exception, HttpStatus.UNPROCESSABLE_ENTITY);
+  }
+
+  @ExceptionHandler({RiskConsistencyException.class})
+  protected ResponseEntity<ApiResponseBody> handle(RiskConsistencyException exception) {
+    return handle(exception, HttpStatus.UNPROCESSABLE_ENTITY);
+  }
+
+  @ExceptionHandler(ClientNotActiveException.class)
+  public ResponseEntity<ApiResponseBody> handleClientDecativatedExceptions(
+      ClientNotActiveException ex) {
+    return handle(ex, HttpStatus.FORBIDDEN);
+  }
+
+  @ExceptionHandler(DomainInUseException.class)
+  public ResponseEntity<ApiResponseBody> handleDomainInUseExceptions(DomainInUseException ex) {
+    return handle(ex, HttpStatus.CONFLICT);
+  }
+
+  @ExceptionHandler(ConstraintViolationException.class)
+  public ResponseEntity<ApiResponseBody> handleConstraintViolationException(
+      ConstraintViolationException ex) {
+    return handle(ex, HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public ResponseEntity<Map<String, String>> handleValidationExceptions(
+      MethodArgumentNotValidException ex) {
+    log.error("Error validating request", ex);
+    return handle(ex.getBindingResult().getAllErrors());
+  }
+
+  @ExceptionHandler(HandlerMethodValidationException.class)
+  public ResponseEntity<Map<String, String>> handleValidationExceptions(
+      HandlerMethodValidationException ex) {
+    log.error("Error validating request", ex);
+    return handle(ex.getAllErrors());
+  }
+
+  @ExceptionHandler({InvalidFormatException.class})
+  protected ResponseEntity<ApiResponseBody> handle(InvalidFormatException exception) {
+    return handle(exception, HttpStatus.UNPROCESSABLE_ENTITY);
+  }
+
+  @ExceptionHandler({LicensingException.class})
+  protected ResponseEntity<ApiResponseBody> handle(LicensingException exception) {
+    return handle(exception, HttpStatus.FORBIDDEN);
+  }
+
+  private static ResponseEntity<Map<String, String>> handle(
+      List<? extends MessageSourceResolvable> errors) {
+    return new ResponseEntity<>(
+        errors.stream()
+            .map(FieldError.class::cast)
+            // TODO #2496 use JSON path instead of field path
+            .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)),
+        HttpStatus.BAD_REQUEST);
+  }
+
+  private ResponseEntity<ApiResponseBody> handle(Throwable exception, HttpStatus status) {
+    log.error("Error handling request", exception);
+    return new ResponseEntity<>(
+        new ApiResponseBody(false, Optional.empty(), exception.getMessage()), status);
+  }
+}

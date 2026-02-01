@@ -1,0 +1,35 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version("1.0.0")
+}
+
+rootProject.name = 'verinice veo'
+include ':veo-rest'
+include ':veo-core-entity'
+include ':veo-core-usecase'
+include ':veo-core-api'
+include ':veo-adapter'
+include ':veo-persistence'
+include ':veo-test'
+include ':veo-message'
+
+boolean isCiServer = System.getenv().containsKey("CI")
+
+buildCache {
+    local {
+        enabled = !isCiServer
+    }
+    System.env.GRADLE_REMOTE_BUILD_CACHE_URL?.with { url->
+        remote(HttpBuildCache) {
+            it.url = url
+            push = isCiServer
+            allowUntrustedServer = isCiServer
+        }
+    }
+}

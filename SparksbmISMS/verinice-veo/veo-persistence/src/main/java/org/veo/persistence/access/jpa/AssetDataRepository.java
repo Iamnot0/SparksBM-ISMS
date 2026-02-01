@@ -1,0 +1,64 @@
+/*******************************************************************************
+ * verinice.veo
+ * Copyright (C) 2019  Urs Zeidler.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
+package org.veo.persistence.access.jpa;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
+
+import org.veo.persistence.entity.jpa.AssetData;
+import org.veo.persistence.entity.jpa.ScenarioData;
+
+public interface AssetDataRepository extends CompositeRiskAffectedDataRepository<AssetData> {
+  @Query(
+      "select distinct a from #{#entityName} a "
+          + "left join fetch a.risks risks "
+          + "left join fetch risks.riskAspects "
+          + "where risks.scenario in ?1")
+  Set<AssetData> findRisksWithValue(Collection<ScenarioData> causes);
+
+  @Query(
+      "select distinct a from #{#entityName} a "
+          + "left join fetch a.risks risks "
+          + "left join fetch risks.riskAspects ra "
+          + "left join fetch ra.domain "
+          + "where a.id IN ?1 and a.owner.client.id = ?2  and (?3 = false or a.owner.id in ?4)")
+  Set<AssetData> findByIdsWithRiskValues(
+      Set<UUID> ids, UUID clientId, boolean restrictUnitAccess, Set<UUID> allowedUnits);
+
+  @Query(
+      """
+               select distinct e from #{#entityName} e
+               inner join fetch e.riskValuesAspects
+               inner join fetch e.risks r
+               left join fetch r.riskAspects a
+               left join fetch a.domain
+               inner join fetch r.scenario s
+               left join fetch s.riskValuesAspects
+               where e.id in ?1""")
+  Set<AssetData> findWithRisksAndScenariosByIdIn(Iterable<UUID> ids);
+
+  @Transactional(readOnly = true)
+  @EntityGraph(attributePaths = "riskValuesAspects")
+  Set<AssetData> findAllWithRiskValuesAspectsByIdIn(List<UUID> ids);
+}

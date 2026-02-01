@@ -1,0 +1,186 @@
+import java.util.concurrent.Callable
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+
+plugins {
+    id "com.gorylenko.gradle-git-properties" version "2.5.4"
+    id 'com.google.cloud.tools.jib' version '3.5.1'
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'groovy'
+
+dependencies {
+    implementation project(":veo-adapter")
+    implementation project(":veo-persistence")
+    implementation project(":veo-message")
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'io.swagger.core.v3:swagger-annotations-jakarta:2.2.41'
+    implementation 'com.fasterxml.jackson.module:jackson-module-blackbird'
+    implementation 'org.apache.commons:commons-lang3'
+    implementation 'org.springdoc:springdoc-openapi-starter-common:2.8.14'
+
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.13.0'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.13.0'
+    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    runtimeOnly 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14'
+}
+
+jar {
+    enabled = false
+}
+
+bootRun {
+    def activeSpringProfiles = 'psql'
+    findProperty('springProfiles')?.with { activeSpringProfiles = it }
+    System.properties.'spring.profiles.active'?.with { activeSpringProfiles = it }
+    systemProperty 'spring.profiles.active', activeSpringProfiles
+    systemProperty 'veo.etag.salt', "zu#4Q8JKdy"
+    if ( project.hasProperty('jvmArgs') ) {
+        jvmArgs = (project.jvmArgs.split("\\s+") as List)
+    }
+}
+
+def continuousIntegrationBuild = rootProject.hasProperty('ci')
+
+// some of the data we include in the build and git info property files make the
+// UP-TO-DATE check fail because they change with every build.
+// we only need that data for builds that we are going to deploy, so
+// we exclude them for the other builds to make them faster
+def includeRealInfo = continuousIntegrationBuild && rootProject.getProperty('ciJobName').with {
+    it.endsWith('develop') || it=~ /\/\d+\.\d+\.\d+$/
+}
+
+// create build-info.properties with build information
+springBoot {
+    buildInfo {
+        properties {
+            if (!includeRealInfo) {
+                time = null
+            }
+            // add additional CI information when building in Jenkins
+            if (continuousIntegrationBuild) {
+                def additionalInfo = [
+                    'ci.jobname': rootProject.getProperty('ciJobName')
+                ]
+                if (includeRealInfo) {
+                    additionalInfo.'ci.buildnumber' = rootProject.getProperty('ciBuildNumber')
+                }
+                additional = additionalInfo
+            }
+        }
+    }
+}
+
+// since we're building in Docker containers which don't have a fixed hostname,
+// this information is not useful and leads to UP-TO-DATE checks failing
+gitProperties {
+    keys -= 'git.build.host'
+}
+
+// the git properties file contains changing information (like the git commit)
+// that causes  UP-TO-DATE checks to fail.
+tasks.withType(com.gorylenko.GenerateGitPropertiesTask).all {
+    enabled = includeRealInfo
+}
+
+jib {
+    from {
+        image = 'gcr.io/distroless/java21-debian12:nonroot'
+    }
+    container {
+        labels = project.provider {
+            [
+                'org.opencontainers.image.title':"vernice.veo backend",
+                'org.opencontainers.image.description':"Backend of the verinice.veo web application.",
+                'org.opencontainers.image.ref.name':'verinice.veo',
+                'org.opencontainers.image.vendor':"SerNet GmbH",
+                'org.opencontainers.image.authors':'verinice@sernet.de',
+                'org.opencontainers.image.licenses':'AGPL-3.0',
+                'org.opencontainers.image.source':'https://github.com/verinice/verinice-veo',
+                'org.opencontainers.image.version': project.version,
+                'org.opencontainers.image.revision': rootProject.getProperty('ciCommitId')
+            ]
+        }
+        environment = ['JDK_JAVA_OPTIONS':'-Djdk.serialFilter=maxbytes=0']
+        user = 'nonroot'
+        ports = ['8070']
+    }
+}
+
+testing {
+    suites {
+        configureEach {
+            dependencies {
+                implementation 'org.keycloak:keycloak-authz-client:26.0.7'
+
+                implementation 'org.springframework.boot:spring-boot-starter-test'
+                implementation 'org.springframework.security:spring-security-test'
+                implementation project(":veo-test")
+                implementation 'org.apache.groovy:groovy-json'
+
+                runtimeOnly 'org.postgresql:postgresql'
+            }
+        }
+        test {
+            dependencies {
+                implementation 'com.networknt:json-schema-validator:2.0.0'
+                implementation "org.testcontainers:testcontainers"
+                implementation 'org.spockframework:spock-spring:2.4-M7-groovy-4.0'
+
+                runtimeOnly "org.testcontainers:spock"
+                runtimeOnly 'org.testcontainers:postgresql'
+            }
+        }
+        restTest(JvmTestSuite) {
+            dependencies {
+                implementation project()
+
+                runtimeOnly 'org.spockframework:spock-spring:2.4-M7-groovy-4.0'
+            }
+            // https://github.com/gradle/gradle/issues/19684
+            sources {
+                compileClasspath += sourceSets.main.output
+                runtimeClasspath += sourceSets.main.output
+            }
+            targets {
+                all {
+                    testTask.configure {
+
+                        shouldRunAfter(test)
+                        inputs.property("veoBaseUrl") {
+                            System.getenv("VEO_RESTTEST_BASEURL")
+                        }.optional(true)
+
+                        systemProperties System.properties.subMap([
+                            "http.proxyHost",
+                            "http.proxyPort",
+                            "http.nonProxyHosts",
+                            "https.proxyHost",
+                            "https.proxyPort",
+                            "http.nonProxyHosts"
+                        ]) + [
+                            // Enable Origin header for CORS tests
+                            "sun.net.http.allowRestrictedHeaders": "true"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
+
+spotbugsRestTest.enabled = false
+
+configurations{
+    // https://github.com/gradle/gradle/issues/23477
+    restTestImplementation.extendsFrom implementation
+}

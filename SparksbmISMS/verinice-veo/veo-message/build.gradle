@@ -1,0 +1,21 @@
+apply plugin: 'groovy'
+apply plugin: 'java-library'
+
+dependencies {
+
+    api project(":veo-core-api")
+
+    compileOnly 'org.projectlombok:lombok'
+
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+}
+
+testing {
+    suites {
+        test{
+            dependencies {
+                implementation 'org.springframework.boot:spring-boot-starter-test'
+            }
+        }
+    }
+}

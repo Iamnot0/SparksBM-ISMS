@@ -1,0 +1,284 @@
+/*******************************************************************************
+ * verinice.veo
+ * Copyright (C) 2020  Jochen Kemnade.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
+package org.veo.core
+
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.Import
+import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.web.servlet.ResultActions
+import org.springframework.transaction.support.TransactionSynchronizationManager
+import org.springframework.transaction.support.TransactionTemplate
+
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.networknt.schema.ExecutionContext
+import com.networknt.schema.Schema
+import com.networknt.schema.SchemaContext
+import com.networknt.schema.SchemaRegistry
+import com.networknt.schema.SpecificationVersion
+
+import org.veo.adapter.service.domaintemplate.DomainTemplateServiceImpl
+import org.veo.core.entity.Client
+import org.veo.core.entity.ClientState
+import org.veo.core.entity.Domain
+import org.veo.core.entity.Element
+import org.veo.core.entity.ElementType
+import org.veo.core.entity.Unit
+import org.veo.core.repository.ClientRepository
+import org.veo.core.repository.GenericElementRepository
+import org.veo.core.service.EntitySchemaService
+import org.veo.core.service.UserAccessRightsProvider
+import org.veo.core.usecase.UseCase
+import org.veo.core.usecase.unit.DeleteUnitUseCase
+import org.veo.jobs.SpringSpecDomainTemplateCreator
+import org.veo.persistence.access.jpa.AssetDataRepository
+import org.veo.persistence.access.jpa.ClientDataRepository
+import org.veo.persistence.access.jpa.ControlDataRepository
+import org.veo.persistence.access.jpa.DocumentDataRepository
+import org.veo.persistence.access.jpa.DomainDataRepository
+import org.veo.persistence.access.jpa.DomainTemplateDataRepository
+import org.veo.persistence.access.jpa.IncidentDataRepository
+import org.veo.persistence.access.jpa.PersonDataRepository
+import org.veo.persistence.access.jpa.ProcessDataRepository
+import org.veo.persistence.access.jpa.ScenarioDataRepository
+import org.veo.persistence.access.jpa.ScopeDataRepository
+import org.veo.persistence.access.jpa.StoredEventDataRepository
+import org.veo.persistence.access.jpa.SystemMessageDataRepository
+import org.veo.persistence.access.jpa.UnitDataRepository
+import org.veo.rest.RestApplication
+import org.veo.rest.configuration.WebMvcSecurityConfiguration
+import org.veo.rest.security.ApplicationUser
+import org.veo.rest.security.CustomUserDetailsManager
+import org.veo.rest.security.NoRestrictionAccessRight
+import org.veo.service.DefaultDomainCreator
+import org.veo.test.VeoSpec
+
+import groovy.transform.stc.ClosureParams
+import groovy.transform.stc.SimpleType
+
+/**
+ * Base class for veo specifications that use Spring
+ */
+@SpringBootTest(classes = RestApplication)
+@ActiveProfiles("test")
+@Import(NopEntityValidationConfiguration)
+@ImportAutoConfiguration
+@ComponentScan("org.veo")
+abstract class VeoSpringSpec extends VeoSpec {
+    // Name-Based UUID: https://v.de/veo/domain-templates/dsgvo/v1.4.0
+    public static final UUID DSGVO_DOMAINTEMPLATE_UUID = UUID.fromString("dbbf0dbd-073f-51fc-86d2-d890169a3083")
+
+    // Name-Based UUID: https://v.de/veo/domain-templates/dsgvo/v2.0.0
+    public static final UUID DSGVO_DOMAINTEMPLATE_V2_UUID = UUID.fromString("b492c7da-0033-59c3-a225-c749595d2b8d")
+
+    // dsgvo-test-1.json
+    public static final UUID DSGVO_TEST_DOMAIN_TEMPLATE_ID = UUID.fromString("fece7858-8da5-59a3-b34a-6f8f831a256f")
+
+    // test-domain.json
+    public static final UUID TEST_DOMAIN_TEMPLATE_ID = UUID.fromString("b641354b-ca8f-5d43-9e87-d3369451de89")
+
+    @Autowired
+    ClientRepository clientRepository
+
+    @Autowired
+    ClientDataRepository clientDataRepository
+
+    @Autowired
+    DomainTemplateDataRepository domainTemplateDataRepository
+    @Autowired
+    DomainDataRepository domainDataRepository
+
+    @Autowired
+    UnitDataRepository unitDataRepository
+
+    @Autowired
+    GenericElementRepository elementRepository
+
+    @Autowired
+    AssetDataRepository assetDataRepository
+
+    @Autowired
+    ControlDataRepository controlDataRepository
+
+    @Autowired
+    DocumentDataRepository documentDataRepository
+
+    @Autowired
+    IncidentDataRepository incidentDataRepository
+
+    @Autowired
+    ScenarioDataRepository scenarioDataRepository
+
+    @Autowired
+    PersonDataRepository personDataRepository
+
+    @Autowired
+    ProcessDataRepository processDataRepository
+
+    @Autowired
+    ScopeDataRepository scopeDataRepository
+
+    @Autowired
+    StoredEventDataRepository eventStoreDataRepository
+
+    @Autowired
+    DomainTemplateServiceImpl domainTemplateService
+
+    @Autowired
+    DefaultDomainCreator defaultDomainCreator
+
+    @Autowired
+    TransactionTemplate txTemplate
+
+    @Autowired
+    DeleteUnitUseCase deleteUnitUseCase
+
+    @Autowired
+    SpringSpecDomainTemplateCreator domainTemplateCreator
+
+    @Autowired
+    EntitySchemaService entitySchemaService
+
+    @Autowired
+    CustomUserDetailsManager userDetailsManager
+
+    @Autowired
+    SystemMessageDataRepository systemMessageDataRepository
+
+    @Autowired
+    UserAccessRightsProvider userAccessRightsProvider
+
+    def setup() {
+
+        txTemplate.execute {
+            TransactionSynchronizationManager.setCurrentTransactionName("TEST_TXTEMPLATE")
+            clientDataRepository.findAll().each { client ->
+                unitDataRepository.findByClientId(client.id, false, null).each {
+                    deleteUnitUseCase.execute(new UseCase.EntityId(it.id), NoRestrictionAccessRight.from(it.client.idAsString))
+                }
+                // Reload the client since the persistence context was cleared
+                clientRepository.delete(clientRepository.getById(client.id))
+            }
+            domainTemplateDataRepository.deleteAll()
+            eventStoreDataRepository.deleteAll()
+            systemMessageDataRepository.deleteAll()
+        }
+    }
+
+    def cleanup() {
+        userDetailsManager.restoreDefaultUsers()
+    }
+
+    def createTestDomainTemplate(UUID templateId) {
+        domainTemplateCreator.createTestTemplate(templateId)
+    }
+
+    Client createTestClient() {
+        return clientRepository.save(newClient {
+            id = UUID.fromString(WebMvcSecurityConfiguration.TESTCLIENT_UUID)
+            state = ClientState.ACTIVATED
+        })
+    }
+
+    def deleteTestClient() {
+        clientRepository.deleteById(UUID.fromString(WebMvcSecurityConfiguration.TESTCLIENT_UUID))
+    }
+
+    Domain createTestDomain(Client client, UUID templateId, boolean copyProfiles = true) {
+        return txTemplate.execute {
+            return domainTemplateCreator.createDomainFromTemplate(templateId, client, copyProfiles)
+        }
+    }
+
+    Domain deactivateDomain(String domainId) {
+        def domain = domainDataRepository.findById(domainId).orElseThrow()
+        domain.setActive(false)
+        return domainDataRepository.save(domain)
+    }
+
+    def <T> T executeInTransaction(Closure<T> cl) {
+        txTemplate.execute {
+            cl.call()
+        }
+    }
+
+    Schema getSchema(Client client, ElementType type) {
+        parseSchema(entitySchemaService.getSchema(type, client.domains))
+    }
+
+    Schema getSchema(Domain domain, ElementType elementType) {
+        parseSchema(entitySchemaService.getSchema(elementType, domain))
+    }
+
+    List<Error> validate(Object target, ResultActions schema) {
+        return parseSchema(schema.andReturn().response.contentAsString).with {
+            validateWriteOnly(it, new ObjectMapper().valueToTree(target))
+        }
+    }
+
+    List<Error> validateWriteOnly(Schema schema, JsonNode node) {
+        schema.validate(node, { ExecutionContext executionContext, SchemaContext schemaContext ->
+            executionContext.executionConfig {it.writeOnly(true)}
+        })
+    }
+
+    private Schema parseSchema(String schema) {
+        SchemaRegistry.withDefaultDialect(SpecificationVersion.DRAFT_2019_09).getSchema(
+                schema)
+    }
+
+    Element saveNewElement(ElementType type, Unit owner, Domain domain, @DelegatesTo(value = Element.class, strategy = Closure.DELEGATE_FIRST) @ClosureParams(value = SimpleType, options = "org.veo.core.entity.Element") Closure init = {}) {
+        def subType = domain.findElementTypeDefinition(type).get().getSubTypes().keySet().first()
+
+        return elementRepository.saveAll(List.of(newElement(type, owner) {
+            associateWithDomain(domain, subType, "NEW")
+            init.delegate = it
+            init.resolveStrategy = Closure.DELEGATE_FIRST
+            init.call(it)
+        })).first()
+    }
+
+    protected ApplicationUser updateUser(String username, TestUserRights rights, UUID testUnitId, Collection<String> additionalRoles = Collections.emptyList()) {
+        userDetailsManager.loadUserByUsername(username).with {
+            roles.clear()
+            roles.add("veo-user")
+            if (rights.restrictUnitAccess) {
+                roles.add(UserAccessRights.UNIT_ACCESS_RESTRICTION)
+            }
+            if (rights.accessAllUnits) {
+                roles.add(UserAccessRights.READ_WRITE_ALL_UNITS)
+            }
+            readableUnitIds.clear()
+            if (rights.testUnitReadable) {
+                readableUnitIds.add(testUnitId)
+            }
+            writableUnitIds.clear()
+            if (rights.testUnitWritable) {
+                writableUnitIds.add(testUnitId)
+            }
+            if(!additionalRoles.isEmpty()) {
+                roles.addAll(additionalRoles)
+            }
+
+            return it
+        }
+    }
+}

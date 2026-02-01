@@ -1,0 +1,152 @@
+{
+  "name": "Data processing (created for k6 load test)",
+  "description": "Bewerbungen können postalisch und auf elektronischem Wege erfolgen. Dies ist insbesondere dann der Fall, wenn ein Bewerber entsprechende Bewerbungsunterlagen auf dem elektronischen Wege, beispielsweise per E-Mail, an den für die Verarbeitung Verantwortlichen übermittelt",
+  "domains": {},
+  "owner": {
+    "targetUri": "https://api.develop.verinice.com/veo/units/d8af429e-8706-4b05-b894-3c8cc262b9fd"
+  },
+  "links": {
+    "process_responsiblePerson": [
+      {
+        "domains": [],
+        "attributes": {},
+        "target": {
+          "targetUri": "https://api.develop.verinice.com/veo/persons/48cbe187-bd5f-4273-9e18-9be57e6b054d"
+        }
+      }
+    ],
+    "process_responsibleBody": [
+      {
+        "domains": [],
+        "attributes": {},
+        "target": {
+          "targetUri": "https://api.develop.verinice.com/veo/scopes/27809ca4-4d89-4e03-b9ab-ca0d70a23c5d"
+        }
+      }
+    ],
+    "process_jointControllership": [
+      {
+        "domains": [],
+        "attributes": {},
+        "target": {
+          "targetUri": "https://api.develop.verinice.com/veo/scopes/9a7bfae1-b908-4b1e-bb54-cfc77b380336"
+        }
+      }
+    ],
+    "process_dataType": [
+      {
+        "domains": [],
+        "attributes": {
+          "process_dataType_dataOrigin": "process_dataType_dataOrigin_direct",
+          "process_dataType_deletionPeriod": "process_dataType_deletionPeriod_month",
+          "process_dataType_deletionPeriodStart": "process_dataType_deletionPeriodStart_appplicationClosure"
+        },
+        "target": {
+          "targetUri": "https://api.develop.verinice.com/veo/assets/78f1c565-329a-41d3-be72-2931964857c6"
+        }
+      }
+    ],
+    "process_requiredApplications": [
+      {
+        "domains": [],
+        "attributes": {},
+        "target": {
+          "targetUri": "https://api.develop.verinice.com/veo/assets/d236eb12-d952-4c2b-9d91-f7ae2428e2e7"
+        }
+      }
+    ],
+    "process_requiredITSystems": [
+      {
+        "domains": [],
+        "attributes": {},
+        "target": {
+          "targetUri": "https://api.develop.verinice.com/veo/assets/ae685f47-ca01-4adc-ad84-77c3850e8ef2"
+        }
+      }
+    ],
+    "process_dataTransmission": [
+      {
+        "domains": [],
+        "attributes": {},
+        "target": {
+          "targetUri": "https://api.develop.verinice.com/veo/processes/4a55ed91-7652-4522-9db7-27ee010438b6"
+        }
+      }
+    ]
+  },
+  "customAspects": {
+    "process_processingDetails": {
+      "domains": [],
+      "attributes": {
+        "process_processingDetails_typeOfSurvey": "process_processingDetails_typeOfSurvey_new",
+        "process_processingDetails_operatingStage": "process_processingDetails_operatingStage_operation",
+        "process_processingDetails_surveyConductedOn": "2021-08-02",
+        "process_processingDetails_responsibleDepartment": "Personalabteilung"
+      }
+    },
+    "process_accessAuthorization": {
+      "domains": [],
+      "attributes": {
+        "process_accessAuthorization_concept": true,
+        "process_accessAuthorization_description": "Zuständiger Sachbearbeiter im Personalbereich, Teamleiter, ggf. Geschäftsführer"
+      }
+    },
+    "process_processing": {
+      "domains": [],
+      "attributes": {
+        "process_processing_asProcessor": false
+      }
+    },
+    "process_dataProcessing": {
+      "domains": [],
+      "attributes": {
+        "process_dataProcessing_legalBasis": [],
+        "process_dataProcessing_explanation": "Für die Begründung eines Beschäftigungsverhältnisses",
+        "process_dataProcessing_otherLegalBasis": "§ 26 I BDSG, § 26 III BDSG"
+      }
+    },
+    "process_opinionDPO": {
+      "domains": [],
+      "attributes": {
+        "process_opinionDPO_findings": "Keine Löschvorgaben festgesetzt",
+        "process_opinionDPO_recommendations": "Löschung der Daten 6 Monate nach Vergabe der Stelle, außer der Bewerber hat der Aufnahme in Bewerberpool explizit zugestimmt"
+      }
+    },
+    "process_dataSubjects": {
+      "domains": [],
+      "attributes": {
+        "process_dataSubjects_dataSubjects": [
+          "process_dataSubjects_dataSubjects_applicants"
+        ],
+        "process_dataSubjects_otherDataSubjects": "Keine"
+      }
+    },
+    "process_intendedPurpose": {
+      "domains": [],
+      "attributes": {
+        "process_intendedPurpose_intendedPurpose": "Personalbeschaffung"
+      }
+    },
+    "process_privacyImpactAssessment": {
+      "domains": [],
+      "attributes": {
+        "process_privacyImpactAssessment_otherExclusions": false,
+        "process_privacyImpactAssessment_processingOperationAccordingArt35": false
+      }
+    },
+    "process_generalInformation": {
+      "domains": [],
+      "attributes": {}
+    },
+    "process_informationsObligations": {
+      "domains": [],
+      "attributes": {
+        "process_informationsObligations_status": true,
+        "process_informationsObligations_explanation": "Informationspflichten sind erfüllt, Vorlagen anbei"
+      }
+    }
+  },
+  "type": "process",
+  "parts": [],
+  "status": "IN_PROGRESS"
+}

@@ -1,0 +1,177 @@
+import groovy.json.JsonSlurper
+import org.veo.SpockBlockFormatterStep
+
+plugins {
+    id 'org.springframework.boot' version '3.5.8' apply false
+    id "com.github.spotbugs" version '6.4.7'
+    id "com.diffplug.spotless" version "8.1.0" apply false
+    id "io.freefair.lombok" version "9.1.0"
+}
+
+def continuousIntegrationBuild = rootProject.hasProperty('ci')
+
+allprojects  {
+    group = 'org.veo'
+    version = '0.70.0'
+
+    apply plugin: "com.diffplug.spotless"
+
+    repositories {
+        mavenCentral()
+    }
+
+    spotless {
+        groovyGradle {
+            greclipse()
+            replaceRegex('Excessive line breaks', /\n{3,}/, '\n\n')
+            leadingTabsToSpaces(4)
+            trimTrailingWhitespace()
+        }
+        java {
+            target 'src/**/*.java', 'buildSrc/**/*.java'
+            googleJavaFormat()
+            importOrder('java', 'jakarta', 'javax', 'org', 'com', 'org.veo', '')
+            addStep org.veo.LicenseHeaderStep.create(project.rootDir)
+            addStep org.veo.NoWildcardImportsStep.create()
+            removeUnusedImports()
+            trimTrailingWhitespace()
+            replaceRegex('Consecutive empty block comment lines', /( *\*\n){2,}/, '*\n')
+            replaceRegex('Empty line at block comment end', / \*\n *\*\//, ' */')
+            replaceRegex('Empty comment block', /\/\*+\s+\*\//, '')
+            replaceRegex('Empty line after annotation', /(^ +@[a-zA-Z0-9]+\([^)]+\)\n)\n+/, '$1')
+            replaceRegex('Empty line inside annotation', /(^ +@[a-zA-Z0-9]+\([^)]+\n)\n+/, '$1')
+            replaceRegex('Default value for Schema#required()', /((?<=@Schema\([^)]{1,500}), required = false)|((?<=@Schema\()required = false(, )?)/, '')
+        }
+        groovy {
+            target 'src/**/*.groovy', 'buildSrc/**/*.groovy'
+            addStep org.veo.LicenseHeaderStep.create(project.rootDir)
+            addStep org.veo.NoWildcardImportsStep.create()
+            addStep SpockBlockFormatterStep.create()
+            greclipse()
+            importOrder('java', 'javax', 'org', 'com', 'org.veo', '')
+            leadingTabsToSpaces(4)
+            trimTrailingWhitespace()
+            replaceRegex('Excessive line breaks', /\n{3,}/, '\n\n')
+            replaceRegex('Extra space around equals sign', /(  += )|( =  +)/, ' = ')
+            replaceRegex('Not one space between right round and left curly bracket', /\) *\{/, ') {')
+        }
+        format 'xml', {
+            target 'src/**/*.xml', 'misc/eclipse/java-format.xml'
+            eclipseWtp('xml')
+        }
+        format 'git', {
+            target '**/.gitignore'
+
+            trimTrailingWhitespace()
+            endWithNewline()
+        }
+        format 'markdown', {
+            target '**/*.md'
+            targetExclude '**/bin/**', '**/target/**'
+            trimTrailingWhitespace()
+            leadingSpacesToTabs()
+            endWithNewline()
+        }
+        json {
+            target '**/*.json'
+            targetExclude '**/bin/**', '**/target/**'
+            gson()
+                    .indentWithSpaces(2)
+            endWithNewline()
+        }
+        yaml {
+            target '.gitlab-ci.yml'
+            trimTrailingWhitespace()
+            endWithNewline()
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'com.github.spotbugs'
+    apply plugin: 'pmd'
+    apply plugin: 'jacoco'
+    apply plugin: 'io.freefair.lombok'
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    }
+
+    tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
+
+    testing {
+        suites {
+            configureEach {
+                useSpock('2.4-M5-groovy-4.0')
+                targets {
+                    all {
+                        testTask.configure {
+                            maxHeapSize = '1g'
+                            systemProperties project.properties.subMap([
+                                "http.proxyHost",
+                                "http.proxyPort",
+                                "https.proxyHost",
+                                "https.proxyPort"
+                            ])
+                            systemProperty 'user.language', 'en'
+                            systemProperty 'user.country', 'US'
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    pmd {
+        toolVersion = '7.19.0'
+        ruleSetConfig = rootProject.resources.text.fromFile('misc/pmd/rules.xml')
+        ruleSets = []
+        rulesMinimumPriority = 3
+        consoleOutput = true
+        sourceSets = project.sourceSets.matching {it.name != 'test'}
+    }
+
+    spotbugs.excludeFilter = rootProject.file('misc/spotbugs/exclude.xml')
+    spotbugsTest.enabled = false
+    // write human readable report on normal builds
+    spotbugsMain.reports {
+        // Jenkins needs xml reports to detect and display bugs.
+        xml.enabled = continuousIntegrationBuild
+        html.enabled = !continuousIntegrationBuild
+    }
+
+    // specific "continuous integration" settings needed by Jenkins
+    if (continuousIntegrationBuild) {
+        tasks.withType(Test) {
+            testLogging {
+                showStandardStreams = true
+                exceptionFormat = 'full'
+            }
+        }
+    }
+
+    dependencies {
+        implementation platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+        compileOnly 'org.slf4j:slf4j-api'
+        runtimeOnly 'ch.qos.logback:logback-classic'
+        runtimeOnly 'ch.qos.logback.contrib:logback-json-classic:0.1.5'
+        runtimeOnly 'ch.qos.logback.contrib:logback-jackson:0.1.5'
+        spotbugsPlugins "jp.skypencil.findbugs.slf4j:bug-pattern:1.5.0@jar"
+        spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.14.0'
+    }
+
+    tasks.withType(JavaCompile) {
+        configure(options){
+            debugOptions.debugLevel = "source,lines,vars"
+            // See https://docs.oracle.com/en/java/javase/11/tools/javac.html#GUID-AEEC9F07-CB49-4E96-8BC7-BCC2C7F725C9
+            // for a detailed list of linting keys.
+            compilerArgs.addAll([
+                '-Xlint:all',
+                '-Xlint:-serial'
+            ])
+        }
+    }
+}

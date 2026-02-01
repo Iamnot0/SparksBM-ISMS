@@ -1,0 +1,562 @@
+{
+  "id": "b641354b-ca8f-5d43-9e87-d3369451de89",
+  "name": "test-domain",
+  "abbreviation": "td",
+  "authority": "SERNET",
+  "templateVersion": "1.0.0",
+  "catalogItems": [
+    {
+      "name": "Control-2",
+      "abbreviation": "c-2",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+      "tailoringReferences": [],
+      "subType": "TOM",
+      "status": "NEW",
+      "customAspects": {},
+      "elementType": "control",
+      "id": "6796b233-03de-4acd-812e-de4d27c6e0cb"
+    },
+    {
+      "name": "Control-1",
+      "abbreviation": "c-1",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+      "tailoringReferences": [],
+      "subType": "TOM",
+      "status": "NEW",
+      "customAspects": {},
+      "elementType": "control",
+      "id": "a82b9bce-2732-48a1-abda-e5a157abfcb5"
+    },
+    {
+      "name": "Control-4",
+      "abbreviation": "c-4",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+      "tailoringReferences": [
+        {
+          "target": {
+            "targetUri": "/domains/b641354b-ca8f-5d43-9e87-d3369451de89/catalog-items/6796b233-03de-4acd-812e-de4d27c6e0cb"
+          },
+          "referenceType": "LINK_EXTERNAL",
+          "linkType": "Control_details_Control",
+          "attributes": {}
+        }
+      ],
+      "subType": "TOM",
+      "status": "NEW",
+      "customAspects": {},
+      "elementType": "control",
+      "id": "e25fef68-43a4-4589-a8f6-d90605b5f198"
+    },
+    {
+      "name": "Control-cc-1",
+      "abbreviation": "cc-1",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.",
+      "tailoringReferences": [
+        {
+          "target": {
+            "targetUri": "/domains/b641354b-ca8f-5d43-9e87-d3369451de89/catalog-items/02b6bc1c-ef85-44e1-b701-2539893a5fb3"
+          },
+          "referenceType": "LINK",
+          "linkType": "Control_details_Control",
+          "attributes": {}
+        }
+      ],
+      "subType": "TOM",
+      "status": "NEW",
+      "customAspects": {},
+      "elementType": "control",
+      "id": "0f6f5e59-4eef-4f3a-9331-1cd6de4dc6b6"
+    },
+    {
+      "name": "Control-3",
+      "abbreviation": "c-3",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.",
+      "tailoringReferences": [
+        {
+          "target": {
+            "targetUri": "/domains/b641354b-ca8f-5d43-9e87-d3369451de89/catalog-items/a82b9bce-2732-48a1-abda-e5a157abfcb5"
+          },
+          "referenceType": "LINK",
+          "linkType": "Control_details_Control",
+          "attributes": {}
+        }
+      ],
+      "subType": "TOM",
+      "status": "NEW",
+      "customAspects": {},
+      "elementType": "control",
+      "id": "f6ed0e04-9cb3-4730-a8ad-5e7413b3f155"
+    },
+    {
+      "name": "Control-cc-2",
+      "abbreviation": "cc-2",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.",
+      "tailoringReferences": [
+        {
+          "target": {
+            "targetUri": "/domains/b641354b-ca8f-5d43-9e87-d3369451de89/catalog-items/0f6f5e59-4eef-4f3a-9331-1cd6de4dc6b6"
+          },
+          "referenceType": "LINK",
+          "linkType": "Control_details_Control",
+          "attributes": {}
+        }
+      ],
+      "subType": "TOM",
+      "status": "NEW",
+      "customAspects": {},
+      "elementType": "control",
+      "id": "02b6bc1c-ef85-44e1-b701-2539893a5fb3"
+    },
+    {
+      "name": "General server",
+      "abbreviation": "aa-1",
+      "description": "Generally speaking, a server's purpose is to serve man.",
+      "tailoringReferences": [],
+      "subType": "Server",
+      "status": "RUNNING",
+      "customAspects": {},
+      "elementType": "asset",
+      "id": "7b10f28f-8d92-4a49-b5a8-30428e4b3f0c"
+    }
+  ],
+  "elementTypeDefinitions": {
+    "asset": {
+      "subTypes": {
+        "Information": {
+          "statuses": [
+            "CURRENT",
+            "OUTDATED"
+          ]
+        },
+        "Server": {
+          "statuses": [
+            "RUNNING",
+            "DOWN"
+          ]
+        }
+      },
+      "customAspects": {
+        "storage": {
+          "attributeDefinitions": {
+            "totalCapacityInTb": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "links": {
+        "admin": {
+          "targetType": "person",
+          "targetSubType": "MasterOfDisaster",
+          "attributeDefinitions": {
+            "accessProtocol": {
+              "type": "enum",
+              "allowedValues": [
+                "ssh",
+                "rdp",
+                "physical"
+              ]
+            }
+          }
+        },
+        "requires": {
+          "targetType": "asset",
+          "targetSubType": "Server",
+          "attributeDefinitions": {
+            "howBadly": {
+              "type": "enum",
+              "allowedValues": [
+                "musthave",
+                "wouldbenice",
+                "ifnothingelseisavailable"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "control": {
+      "customAspects": {
+        "implementation": {
+          "attributeDefinitions": {
+            "explanation": {
+              "type": "text"
+            }
+          }
+        }
+      },
+      "links": {
+        "Control_details_Control": {
+          "targetType": "control",
+          "targetSubType": "TOM"
+        },
+        "literature": {
+          "targetType": "document",
+          "targetSubType": "Manual",
+          "attributeDefinitions": {
+            "chapters": {
+              "type": "list",
+              "itemDefinition": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "subTypes": {
+        "TOM": {
+          "statuses": [
+            "NEW",
+            "OLD"
+          ]
+        }
+      }
+    },
+    "document": {
+      "customAspects": {
+        "details": {
+          "attributeDefinitions": {
+            "numberOfPages": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "links": {
+        "author": {
+          "targetType": "person",
+          "targetSubType": "MasterOfDisaster",
+          "attributeDefinitions": {
+            "writingFinished": {
+              "type": "date"
+            }
+          }
+        }
+      },
+      "subTypes": {
+        "Manual": {
+          "statuses": [
+            "CURRENT",
+            "OUTDATED"
+          ]
+        }
+      }
+    },
+    "incident": {
+      "subTypes": {
+        "DISASTER": {
+          "statuses": [
+            "DETECTED",
+            "INVESTIGATED"
+          ]
+        }
+      },
+      "customAspects": {
+        "general": {
+          "attributeDefinitions": {
+            "timeOfOccurrence": {
+              "type": "dateTime"
+            }
+          }
+        }
+      },
+      "links": {
+        "responsiblePerson": {
+          "targetType": "person",
+          "targetSubType": "MasterOfDisaster",
+          "attributeDefinitions": {
+            "takesAllTheBlame": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "person": {
+      "subTypes": {
+        "Programmer": {
+          "statuses": [
+            "CODING",
+            "REVIEWING"
+          ]
+        },
+        "MasterOfDisaster": {
+          "statuses": [
+            "WATCHING_DISASTER_MOVIES",
+            "CAUSING_REAL_DISASTERS"
+          ]
+        }
+      },
+      "customAspects": {
+        "general": {
+          "attributeDefinitions": {
+            "dateOfBirth": {
+              "type": "date"
+            }
+          }
+        }
+      },
+      "links": {
+        "employer": {
+          "targetType": "scope",
+          "targetSubType": "Company",
+          "attributeDefinitions": {
+            "employedSince": {
+              "type": "date"
+            }
+          }
+        }
+      }
+    },
+    "process": {
+      "subTypes": {
+        "BusinessProcess": {
+          "statuses": [
+            "NEW"
+          ]
+        }
+      },
+      "customAspects": {
+        "general": {
+          "attributeDefinitions": {
+            "complexity": {
+              "type": "enum",
+              "allowedValues": [
+                "low",
+                "medium",
+                "high"
+              ]
+            }
+          }
+        }
+      },
+      "links": {
+        "necessaryData": {
+          "targetType": "asset",
+          "targetSubType": "Information",
+          "attributeDefinitions": {
+            "essential": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "translations": {
+        "de": {
+          "necessaryData": "notwendige Daten",
+          "complexity": "Komplexität",
+          "essential": "wesentlich",
+          "high": "hoch",
+          "low": "niedrig",
+          "medium": "mittel",
+          "process_BusinessProcess_plural": "Geschäftsprozesse",
+          "process_BusinessProcess_singular": "Geschäftsprozess",
+          "process_BusinessProcess_status_NEW": "neu"
+        },
+        "en": {
+          "necessaryData": "necessary data",
+          "complexity": "complexity",
+          "essential": "essential",
+          "high": "high",
+          "low": "low",
+          "medium": "medium",
+          "process_BusinessProcess_plural": "business processes",
+          "process_BusinessProcess_singular": "business process",
+          "process_BusinessProcess_status_NEW": "new"
+        }
+      }
+    },
+    "scenario": {
+      "subTypes": {
+        "Attack": {
+          "statuses": [
+            "NEW"
+          ]
+        }
+      },
+      "customAspects": {
+        "help": {
+          "attributeDefinitions": {
+            "technicalArticle": {
+              "type": "externalDocument"
+            }
+          }
+        }
+      },
+      "links": {
+        "expert": {
+          "targetType": "person",
+          "targetSubType": "MasterOfDisaster",
+          "attributeDefinitions": {
+            "experienceSince": {
+              "type": "date"
+            }
+          }
+        }
+      }
+    },
+    "scope": {
+      "subTypes": {
+        "Company": {
+          "statuses": [
+            "NEW"
+          ]
+        }
+      },
+      "customAspects": {
+        "staff": {
+          "attributeDefinitions": {
+            "numberOfEmployees": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "links": {
+        "dataProtectionOfficer": {
+          "targetType": "person",
+          "targetSubType": "MasterOfDisaster",
+          "attributeDefinitions": {
+            "experienceSince": {
+              "type": "date"
+            }
+          }
+        }
+      }
+    }
+  },
+  "riskDefinitions": {
+    "riskyDef": {
+      "id": "riskyDef",
+      "probability": {
+        "id": "",
+        "levels": [
+          {
+            "ordinalValue": 0
+          },
+          {
+            "ordinalValue": 1
+          },
+          {
+            "ordinalValue": 2
+          }
+        ]
+      },
+      "implementationStateDefinition": {
+        "id": "",
+        "levels": [
+          {
+            "ordinalValue": 0
+          },
+          {
+            "ordinalValue": 1
+          }
+        ]
+      },
+      "categories": [
+        {
+          "id": "C",
+          "potentialImpacts": [
+            {
+              "ordinalValue": 0
+            },
+            {
+              "ordinalValue": 1
+            },
+            {
+              "ordinalValue": 2
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "potentialImpacts": [
+            {
+              "ordinalValue": 0
+            },
+            {
+              "ordinalValue": 1
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "potentialImpacts": [
+            {
+              "ordinalValue": 0
+            },
+            {
+              "ordinalValue": 1
+            },
+            {
+              "ordinalValue": 2
+            }
+          ],
+          "valueMatrix": [
+            [
+              {
+                "ordinalValue": 0,
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 0,
+                "symbolicRisk": "symbolic_risk_1"
+              },
+              {
+                "ordinalValue": 1,
+                "symbolicRisk": "symbolic_risk_2"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 1,
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "symbolicRisk": "symbolic_risk_3"
+              },
+              {
+                "ordinalValue": 2,
+                "symbolicRisk": "symbolic_risk_3"
+              }
+            ],
+            [
+              {
+                "ordinalValue": 1,
+                "symbolicRisk": "symbolic_risk_2"
+              },
+              {
+                "ordinalValue": 2,
+                "symbolicRisk": "symbolic_risk_3"
+              },
+              {
+                "ordinalValue": 3,
+                "symbolicRisk": "symbolic_risk_4"
+              }
+            ]
+          ]
+        }
+      ],
+      "riskValues": [
+        {
+          "ordinalValue": 0,
+          "symbolicRisk": "symbolic_risk_1"
+        },
+        {
+          "ordinalValue": 1,
+          "symbolicRisk": "symbolic_risk_2"
+        },
+        {
+          "ordinalValue": 2,
+          "symbolicRisk": "symbolic_risk_3"
+        },
+        {
+          "ordinalValue": 3,
+          "symbolicRisk": "symbolic_risk_4"
+        }
+      ],
+      "riskMethod": {}
+    }
+  }
+}

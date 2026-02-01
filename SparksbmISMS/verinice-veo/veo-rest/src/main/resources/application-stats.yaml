@@ -1,0 +1,66 @@
+server:
+  port: 8070
+
+veo:
+  cors:
+    origins: <ALLOWED_ORIGIN1>, <ALLOWED_ORIGIN2>
+  logging:
+    properties: 'spring.datasource.url,spring.jpa.database-platform'
+    datasource:
+      slow_threshold_ms: 60
+      all_queries: true
+      row_count: true
+spring:
+  jmx:
+    enabled: true
+  data:
+    rest:
+      detection-strategy: annotated
+  jackson:
+    default-property-inclusion: non_null
+  jpa:
+    properties:
+      hibernate:
+        generate_statistics: true
+    open-in-view: false
+  mvc:
+    async:
+      request-timeout: 3600000
+
+logging:
+  level:
+    org.springframework: WARN
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.transaction: DEBUG
+    org.veo.adapter: DEBUG
+    org.veo: DEBUG
+    org.hibernate: INFO
+    org.hibernate.engine.internal: INFO
+    org.hibernate.engine.transaction.internal.TransactionImpl: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.EnumType: TRACE
+    org.hibernate.stat: DEBUG
+    net.ttddyy: INFO
+
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      cors:
+        allowed-headers: '*'
+        allowed-methods: OPTIONS, GET, POST
+        allowed-origins: '*'
+      exposure:
+        include: '*'
+

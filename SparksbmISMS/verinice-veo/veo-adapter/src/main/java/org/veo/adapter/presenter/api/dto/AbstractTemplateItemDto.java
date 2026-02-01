@@ -1,0 +1,132 @@
+/*******************************************************************************
+ * verinice.veo
+ * Copyright (C) 2021  Urs Zeidler.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
+package org.veo.adapter.presenter.api.dto;
+
+import java.util.Optional;
+
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+import org.veo.adapter.presenter.api.common.ReferenceAssembler;
+import org.veo.adapter.presenter.api.common.SymIdRef;
+import org.veo.adapter.presenter.api.dto.full.LinkTailoringReferenceDto;
+import org.veo.adapter.service.domaintemplate.dto.ControlImplementationTailoringReferenceDto;
+import org.veo.adapter.service.domaintemplate.dto.RequirementImplementationTailoringReferenceDto;
+import org.veo.adapter.service.domaintemplate.dto.RiskTailoringReferenceDto;
+import org.veo.core.entity.ControlImplementationTailoringReference;
+import org.veo.core.entity.ElementType;
+import org.veo.core.entity.Identifiable;
+import org.veo.core.entity.LinkTailoringReference;
+import org.veo.core.entity.RequirementImplementationTailoringReference;
+import org.veo.core.entity.RiskTailoringReference;
+import org.veo.core.entity.TailoringReference;
+import org.veo.core.entity.TemplateItem;
+import org.veo.core.entity.aspects.ElementDomainAssociation;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper = true)
+public abstract class AbstractTemplateItemDto<
+        T extends TemplateItem<T, TNamespace>, TNamespace extends Identifiable>
+    extends AbstractVersionedSelfReferencingDto implements NameableDto {
+  @NotNull private String name;
+
+  private String abbreviation;
+
+  private String description;
+
+  @NotNull
+  @Schema(description = "Entity type identifier")
+  private ElementType elementType;
+
+  @NotNull
+  @Schema(description = "The subtype for the Element.", example = "PER")
+  @Size(min = 1, max = ElementDomainAssociation.SUB_TYPE_MAX_LENGTH)
+  private String subType;
+
+  protected TailoringReferenceDto<T, TNamespace> createTailoringReferenceDto(
+      TailoringReference<T, TNamespace> source, ReferenceAssembler referenceAssembler) {
+    var target = supplyDto(source, referenceAssembler);
+    target.setId(source.getId());
+    target.setReferenceType(source.getReferenceType());
+    target.setTarget(SymIdRef.from(source.getTarget(), referenceAssembler));
+    return target;
+  }
+
+  private TailoringReferenceDto<T, TNamespace> supplyDto(
+      TailoringReference<T, TNamespace> source, ReferenceAssembler uriAssembler) {
+    if (source instanceof LinkTailoringReference<T, TNamespace> linkSource) {
+      var linkRefDto = new LinkTailoringReferenceDto<T, TNamespace>();
+      linkRefDto.setLinkType(linkSource.getLinkType());
+      linkRefDto.setAttributes(linkSource.getAttributes());
+      return linkRefDto;
+    } else if (source instanceof RiskTailoringReference<T, TNamespace> riskSource) {
+      var riskRefDto = new RiskTailoringReferenceDto<T, TNamespace>();
+      Optional.ofNullable(riskSource.getMitigation())
+          .map(m -> SymIdRef.from(m, uriAssembler))
+          .ifPresent(riskRefDto::setMitigation);
+      Optional.ofNullable(riskSource.getRiskOwner())
+          .map(p -> SymIdRef.from(p, uriAssembler))
+          .ifPresent(riskRefDto::setRiskOwner);
+      riskRefDto.setRiskDefinitions(riskSource.getRiskDefinitions());
+      return riskRefDto;
+    } else if (source instanceof ControlImplementationTailoringReference<T, TNamespace> ciSource) {
+      var ciRefDto = new ControlImplementationTailoringReferenceDto<T, TNamespace>();
+      Optional.ofNullable(ciSource.getResponsible())
+          .map(r -> SymIdRef.from(r, uriAssembler))
+          .ifPresent(ciRefDto::setResponsible);
+      ciRefDto.setDescription(ciSource.getDescription());
+      return ciRefDto;
+    } else if (source
+        instanceof RequirementImplementationTailoringReference<T, TNamespace> riSource) {
+      var riRefDto = new RequirementImplementationTailoringReferenceDto<T, TNamespace>();
+      riRefDto.setStatus(riSource.getStatus());
+      riRefDto.setImplementationStatement(riSource.getImplementationStatement());
+      riRefDto.setImplementationUntil(riSource.getImplementationUntil());
+      Optional.ofNullable(riSource.getResponsible())
+          .map(r -> SymIdRef.from(r, uriAssembler))
+          .ifPresent(riRefDto::setResponsible);
+      riRefDto.setCost(riSource.getCost());
+      riRefDto.setImplementationDate(riSource.getImplementationDate());
+      Optional.ofNullable(riSource.getImplementedBy())
+          .map(r -> SymIdRef.from(r, uriAssembler))
+          .ifPresent(riRefDto::setImplementedBy);
+      Optional.ofNullable(riSource.getDocument())
+          .map(r -> SymIdRef.from(r, uriAssembler))
+          .ifPresent(riRefDto::setDocument);
+      riRefDto.setLastRevisionDate(riSource.getLastRevisionDate());
+      Optional.ofNullable(riSource.getLastRevisionBy())
+          .map(r -> SymIdRef.from(r, uriAssembler))
+          .ifPresent(riRefDto::setLastRevisionBy);
+      riRefDto.setNextRevisionDate(riSource.getNextRevisionDate());
+      Optional.ofNullable(riSource.getNextRevisionBy())
+          .map(r -> SymIdRef.from(r, uriAssembler))
+          .ifPresent(riRefDto::setNextRevisionBy);
+      riRefDto.setAssessmentDate(riSource.getAssessmentDate());
+      Optional.ofNullable(riSource.getAssessmentBy())
+          .map(r -> SymIdRef.from(r, uriAssembler))
+          .ifPresent(riRefDto::setAssessmentBy);
+
+      return riRefDto;
+    }
+    return new TailoringReferenceDto<>();
+  }
+}

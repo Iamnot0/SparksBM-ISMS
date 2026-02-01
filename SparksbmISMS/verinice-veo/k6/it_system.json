@@ -1,0 +1,20 @@
+{
+  "name": "IT system (created for k6 load test)",
+  "description": "E-Mail Server auf Basis von CentOS 8",
+  "domains": {},
+  "owner": {
+    "targetUri": "https://api.develop.verinice.com/veo/units/d8af429e-8706-4b05-b894-3c8cc262b9fd"
+  },
+  "links": {},
+  "customAspects": {
+    "asset_details": {
+      "domains": [],
+      "attributes": {
+        "asset_details_number": 1,
+        "asset_details_operatingStage": "asset_details_operatingStage_rollout"
+      }
+    }
+  },
+  "type": "asset",
+  "parts": []
+}

@@ -1,0 +1,21 @@
+apply plugin: 'groovy'
+
+dependencies {
+
+    compileOnly 'jakarta.validation:jakarta.validation-api'
+
+    implementation 'com.fasterxml.jackson.core:jackson-annotations'
+    implementation 'io.swagger.core.v3:swagger-annotations-jakarta:2.2.41'
+}
+
+testing {
+    suites {
+        test {
+            dependencies {
+                implementation 'jakarta.validation:jakarta.validation-api'
+                implementation 'org.hibernate.validator:hibernate-validator'
+                implementation 'org.springframework.boot:spring-boot-starter-test'
+            }
+        }
+    }
+}
