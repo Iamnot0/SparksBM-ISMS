@@ -35,7 +35,7 @@ services:
     envVars:
       - key: KC_DB
         value: postgres
-      # Use a dedicated DB so Keycloak's Liquibase doesn't hit "relation already exists" (KC ignores schema in Liquibase)
+      # Must be JDBC URL (jdbc:postgresql://...), NOT a psql command. In Neon: CREATE DATABASE keycloak on same branch.
       - key: KC_DB_URL
         value: jdbc:postgresql://ep-young-bread-a1f8nuq1-pooler.ap-southeast-1.aws.neon.tech/keycloak?sslmode=require
       - key: KC_DB_USERNAME
