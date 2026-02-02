@@ -84,6 +84,8 @@ export default defineNuxtConfig({
       documentationUrl: process.env.VEO_DOCUMENTATION_URL || 'veo-documentation-url-example',
       hideSerNetReferences: process.env.VEO_HIDE_SERNET_REFERENCES || 'veo-hide-sernet-references-example',
       notebookllmApiUrl: process.env.NOTEBOOKLLM_API_URL || 'http://localhost:8000',
+      /** Public URL of this app (e.g. https://sparksbm-web.onrender.com). Used for OIDC redirect_uri when set. */
+      publicAppUrl: process.env.VEO_PUBLIC_APP_URL || '',
       featureFlags: createFeatureFlags(process.env)
     }
   },

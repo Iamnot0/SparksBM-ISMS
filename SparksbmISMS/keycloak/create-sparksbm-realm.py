@@ -6,6 +6,7 @@ Required for ISMS dashboard, agent (list scopes), and Java backend.
 Run once after Keycloak is deployed (e.g. on Render):
 
   KEYCLOAK_URL=https://keycloak-server-5xv3.onrender.com \\
+  KEYCLOAK_WEB_APP_URL=https://sparksbm-web.onrender.com \\
   KEYCLOAK_ADMIN=admin \\
   KEYCLOAK_ADMIN_PASSWORD=admin123 \\
   python create-sparksbm-realm.py
@@ -24,6 +25,7 @@ KEYCLOAK_ADMIN = os.getenv("KEYCLOAK_ADMIN", "admin")
 KEYCLOAK_ADMIN_PASSWORD = os.getenv("KEYCLOAK_ADMIN_PASSWORD", "admin123")
 REALM_NAME = os.getenv("KEYCLOAK_REALM", "sparksbm")
 CLIENT_ID = os.getenv("KEYCLOAK_CLIENT_ID", "sparksbm")
+KEYCLOAK_WEB_APP_URL = os.getenv("KEYCLOAK_WEB_APP_URL", "https://sparksbm-web.onrender.com").rstrip("/")
 USER_EMAIL = os.getenv("SPARKSBM_USERNAME", "admin@sparksbm.com")
 USER_PASSWORD = os.getenv("SPARKSBM_PASSWORD", "admin123")
 
@@ -93,6 +95,8 @@ def create_realm(token):
 
 def create_client(token):
     """Create sparksbm client with Direct access grants (resource owner password)."""
+    redirect_uris = [f"{KEYCLOAK_WEB_APP_URL}/*", KEYCLOAK_WEB_APP_URL]
+    web_origins = [KEYCLOAK_WEB_APP_URL]
     payload = {
         "clientId": CLIENT_ID,
         "name": "SparksBM",
@@ -105,6 +109,9 @@ def create_client(token):
         "protocol": "openid-connect",
         "fullScopeAllowed": True,
         "defaultClientScopes": ["openid", "profile", "email"],
+        "redirectUris": redirect_uris,
+        "webOrigins": web_origins,
+        "rootUrl": KEYCLOAK_WEB_APP_URL,
     }
     r = requests.post(
         f"{KEYCLOAK_URL}/admin/realms/{REALM_NAME}/clients",
@@ -119,9 +126,50 @@ def create_client(token):
         print(f"  Client '{CLIENT_ID}' created (Direct access grants enabled).")
         return True
     if r.status_code == 409:
-        print(f"  Client '{CLIENT_ID}' already exists.")
-        return True
+        print(f"  Client '{CLIENT_ID}' already exists; ensuring redirect URIs are set.")
+        return update_client_redirect_uris(token)
     print(f"  Failed to create client: {r.status_code} {r.text[:200]}")
+    return False
+
+
+def update_client_redirect_uris(token):
+    """Set redirectUris and webOrigins on existing sparksbm client."""
+    r = requests.get(
+        f"{KEYCLOAK_URL}/admin/realms/{REALM_NAME}/clients",
+        params={"clientId": CLIENT_ID},
+        headers={"Authorization": f"Bearer {token}"},
+        timeout=REQUEST_TIMEOUT,
+    )
+    if r.status_code != 200 or not r.json():
+        print(f"  Could not find client '{CLIENT_ID}'.")
+        return False
+    client_id_uuid = r.json()[0]["id"]
+    r_get = requests.get(
+        f"{KEYCLOAK_URL}/admin/realms/{REALM_NAME}/clients/{client_id_uuid}",
+        headers={"Authorization": f"Bearer {token}"},
+        timeout=REQUEST_TIMEOUT,
+    )
+    if r_get.status_code != 200:
+        print(f"  Could not get client representation: {r_get.status_code}")
+        return False
+    client = r_get.json()
+    redirect_uris = [f"{KEYCLOAK_WEB_APP_URL}/*", KEYCLOAK_WEB_APP_URL]
+    client["redirectUris"] = redirect_uris
+    client["webOrigins"] = [KEYCLOAK_WEB_APP_URL]
+    client["rootUrl"] = KEYCLOAK_WEB_APP_URL
+    r2 = requests.put(
+        f"{KEYCLOAK_URL}/admin/realms/{REALM_NAME}/clients/{client_id_uuid}",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+        json=client,
+        timeout=REQUEST_TIMEOUT,
+    )
+    if r2.status_code in (200, 204):
+        print(f"  Client '{CLIENT_ID}' redirect URIs updated.")
+        return True
+    print(f"  Failed to update client: {r2.status_code} {r2.text[:200]}")
     return False
 
 

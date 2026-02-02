@@ -42,12 +42,13 @@ Use this as a checklist in the Render dashboard. **Your live URLs** (above) diff
 ```bash
 cd SparksbmISMS/keycloak
 KEYCLOAK_URL=https://keycloak-server-5xv3.onrender.com \
+KEYCLOAK_WEB_APP_URL=https://sparksbm-web.onrender.com \
 KEYCLOAK_ADMIN=admin \
 KEYCLOAK_ADMIN_PASSWORD=admin123 \
 python create-sparksbm-realm.py
 ```
 
-Then in Keycloak Admin → **Manage realms** you should see **sparksbm**; in **Clients** (after switching to realm sparksbm) you should see **sparksbm**.
+Then in Keycloak Admin → **Manage realms** you should see **sparksbm**; in **Clients** (after switching to realm sparksbm) you should see **sparksbm** with **Valid redirect URIs** including `https://sparksbm-web.onrender.com/*`. If the client already existed, re-running the script updates its redirect URIs.
 
 | Key | Value |
 |-----|--------|
@@ -63,6 +64,11 @@ Then in Keycloak Admin → **Manage realms** you should see **sparksbm**; in **C
 **URL:** https://keycloak-server-5xv3.onrender.com
 
 **404 on login?** Keycloak Quarkus (17+) serves at **root**, not `/auth`. If you get "Page not found" on `.../auth/realms/sparksbm/...`, set SparksBM-Web env to use the base **without** `/auth` (see SparksBM-Web table below). Or redeploy Keycloak from the repo — the Dockerfile now builds with `--http-relative-path=/auth` so `/auth` works after a fresh deploy.
+
+**404 on `.../realms/sparksbm/protocol/openid-connect/auth` (Resource not found):**
+1. **Check realm exists** – Open `https://keycloak-server-5xv3.onrender.com/realms/sparksbm` in the browser. You should get realm public info (JSON or a page). If 404, the realm is missing: run `create-sparksbm-realm.py` again (see "One-time: create the sparksbm realm" above).
+2. **Client redirect URIs** – In Keycloak Admin → Realm **sparksbm** → **Clients** → **sparksbm** → **Valid redirect URIs**: add `https://sparksbm-web.onrender.com/*` (and `https://sparksbm-web.onrender.com` if needed). Save.
+3. **Keycloak awake** – On free tier, Keycloak may sleep; first request can take 60+ seconds or fail. Open Keycloak root in a tab, wait for it to load, then try login again.
 
 ---
 
@@ -85,20 +91,21 @@ Then in Keycloak Admin → **Manage realms** you should see **sparksbm**; in **C
 
 ### 4. SparksBM-Web (ISMS dashboard)
 
-Use **no /auth** in OIDC URLs if your Keycloak is Quarkus (default; realms at `/realms/...`). Use **/auth** only if Keycloak was built with `--http-relative-path=/auth`.
+Match your Keycloak base: if Admin is at `.../auth/admin/...`, use base **with** `/auth`. If Admin is at `.../admin/...` (no auth), use base **without** `/auth`.
 
-| Key | Value (Quarkus Keycloak – no /auth) |
-|-----|--------------------------------------|
+| Key | Value (Keycloak with /auth – your instance) |
+|-----|---------------------------------------------|
 | NOTEBOOKLLM_API_URL | https://sparksbm-agent.onrender.com |
 | VEO_DEFAULT_API_URL | https://sparksbm.onrender.com |
-| VEO_OIDC_URL | https://keycloak-server-5xv3.onrender.com |
+| VEO_OIDC_URL | https://keycloak-server-5xv3.onrender.com/auth |
 | VEO_OIDC_REALM | sparksbm |
 | VEO_OIDC_CLIENT | sparksbm |
-| VEO_ACCOUNT_PATH | https://keycloak-server-5xv3.onrender.com/realms/sparksbm/account |
-| VEO_OIDC_ACCOUNT_APPLICATION | https://keycloak-server-5xv3.onrender.com/realms/sparksbm/account |
+| VEO_ACCOUNT_PATH | https://keycloak-server-5xv3.onrender.com/auth/realms/sparksbm/account |
+| VEO_OIDC_ACCOUNT_APPLICATION | https://keycloak-server-5xv3.onrender.com/auth/realms/sparksbm/account |
+| VEO_PUBLIC_APP_URL | https://sparksbm-web.onrender.com |
 
 **URL:** https://sparksbm-web.onrender.com  
-**Note:** These are used at **build time**. After changing any value, trigger a **Manual Deploy** so the image is rebuilt.
+**Note:** These are used at **build time**. `VEO_PUBLIC_APP_URL` fixes "Invalid parameter: redirect_uri" by ensuring the OIDC redirect URI is correct. After changing any value, trigger a **Manual Deploy** so the image is rebuilt.
 
 ---
 

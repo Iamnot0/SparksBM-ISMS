@@ -44,6 +44,12 @@ const keycloakInitializationStarted = ref(false);
 const keycloakInitialized = ref(false);
 const tablePageSize = ref<number>(25);
 
+function getAppOrigin(): string {
+  const config = useRuntimeConfig();
+  const base = (config.public.publicAppUrl as string || '').replace(/\/$/, '');
+  return base || (typeof window !== 'undefined' ? window.location.origin : '');
+}
+
 export const useVeoUser: () => IVeoUserComposable = () => {
   const initialize = async (context: any) => {
     if (keycloakInitialized.value || keycloakInitializationStarted.value) {
@@ -68,10 +74,11 @@ export const useVeoUser: () => IVeoUserComposable = () => {
       }
     };
 
+    const appOrigin = getAppOrigin() || window.location.origin;
     try {
       await keycloak.value.init({
         onLoad: 'check-sso',
-        silentCheckSsoRedirectUri: window.location.origin + '/sso',
+        silentCheckSsoRedirectUri: appOrigin + '/sso',
         checkLoginIframe: false,
         // Render / slow Keycloak: 3rd party cookie check iframe often times out; give it more time
         messageReceiveTimeout: 25000
@@ -148,8 +155,9 @@ export const useVeoUser: () => IVeoUserComposable = () => {
    */
   const login = async (destination?: string) => {
     if (keycloak.value) {
+      const baseUrl = getAppOrigin() || window.location.origin;
       await keycloak.value.login({
-        redirectUri: `${window.location.origin}${destination || '/'}`,
+        redirectUri: `${baseUrl}${destination || '/'}`,
         scope: 'openid'
       });
       try {
@@ -176,8 +184,9 @@ export const useVeoUser: () => IVeoUserComposable = () => {
     if (keycloak.value) {
       if (!queryParameters) queryParameters = {};
       queryParameters.redirect_uri = false;
+      const baseUrl = getAppOrigin() || window.location.origin;
       await keycloak.value.logout({
-        redirectUri: `${window.location.origin}${destination}?${Object.entries(queryParameters)
+        redirectUri: `${baseUrl}${destination}?${Object.entries(queryParameters)
           .map(([key, value]) => `${key}=${value}`)
           .join('&')}`,
         id_token_hint: keycloak.value.idToken
