@@ -620,7 +620,7 @@ const sendMessage = async () => {
     chatHistory.value.push({
       id: generateMessageId(),
       role: 'assistant',
-      content: `Error: ${errorMsg}${isTimeout ? ' (Request took too long. Try waiting or use a simpler query.)' : '\n\nPlease check:\n1. NotebookLLM API is running (http://localhost:8000)\n2. ISMS backend is running (http://localhost:8070)\n3. Network connection is working'}`
+      content: `Error: ${errorMsg}${isTimeout ? ' (Request took too long. Try waiting or use a simpler query.)' : '\n\nPlease check:\n1. NotebookLLM API is running at ' + API_BASE + '\n2. ISMS backend if needed (e.g. http://localhost:8070)\n3. Network connection is working'}`
     })
   } finally {
     isProcessing.value = false
