@@ -2,7 +2,7 @@ services:
   # 1. Java Backend (ISMS Core)
   - type: web
     name: sparksbm-core
-    env: docker
+    runtime: docker
     dockerContext: .
     dockerfilePath: Dockerfile.core
     plan: starter # Java needs more RAM than free tier usually offers
@@ -29,9 +29,9 @@ services:
   # 2. Keycloak (Authentication)
   - type: web
     name: sparksbm-auth
-    env: docker
-    dockerfilePath: ./k8s/keycloak.dockerfile # We need to create a simple wrapper or use image directly if Render supports it (it prefers Dockerfiles for 'web')
-    # Since Render wants a repo, we'll point to a simple Dockerfile we create
+    runtime: docker
+    dockerfilePath: ./k8s/keycloak.dockerfile
+    plan: starter
     envVars:
       - key: KC_DB
         value: postgres
@@ -53,7 +53,7 @@ services:
   # 3. Python Agent (NotebookLLM API)
   - type: web
     name: sparksbm-agent
-    env: docker
+    runtime: docker
     dockerContext: .
     dockerfilePath: NotebookLLM/api/Dockerfile
     envVars:
@@ -65,5 +65,5 @@ services:
   # 4. RabbitMQ (Queue)
   - type: pserv
     name: sparksbm-queue
-    env: docker
+    runtime: docker
     dockerfilePath: ./k8s/rabbitmq.dockerfile
