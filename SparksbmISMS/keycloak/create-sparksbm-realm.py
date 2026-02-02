@@ -3,9 +3,9 @@
 One-time setup: create the sparksbm realm, client, and user in Keycloak.
 Required for ISMS dashboard, agent (list scopes), and Java backend.
 
-Run once after Keycloak is deployed (e.g. on Render):
+Run once after Keycloak is deployed (e.g. on Render). If Keycloak uses /auth, set KEYCLOAK_URL with /auth:
 
-  KEYCLOAK_URL=https://keycloak-server-5xv3.onrender.com \\
+  KEYCLOAK_URL=https://keycloak-server-5xv3.onrender.com/auth \\
   KEYCLOAK_WEB_APP_URL=https://sparksbm-web.onrender.com \\
   KEYCLOAK_ADMIN=admin \\
   KEYCLOAK_ADMIN_PASSWORD=admin123 \\
@@ -17,7 +17,7 @@ Or with defaults for local Keycloak (http://localhost:8080):
 
 import os
 import sys
-import json
+import time
 import requests
 
 KEYCLOAK_URL = os.getenv("KEYCLOAK_URL", "http://localhost:8080").rstrip("/")
@@ -31,6 +31,22 @@ USER_PASSWORD = os.getenv("SPARKSBM_PASSWORD", "admin123")
 
 # Render free tier can be slow; admin API calls need longer timeout
 REQUEST_TIMEOUT = int(os.getenv("KEYCLOAK_REQUEST_TIMEOUT", "90"))
+REQUEST_RETRIES = int(os.getenv("KEYCLOAK_REQUEST_RETRIES", "3"))
+
+
+def _request_with_retry(method, url, **kwargs):
+    """Run a request with retries on connection/remote disconnect (e.g. Render cold start)."""
+    last_error = None
+    for attempt in range(REQUEST_RETRIES + 1):
+        try:
+            return requests.request(method, url, **kwargs)
+        except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
+            last_error = e
+            if attempt < REQUEST_RETRIES:
+                delay = (2 ** attempt) * 5
+                print(f"  Request failed ({e!r}), retrying in {delay}s...")
+                time.sleep(delay)
+    raise last_error
 
 
 def get_admin_token():
@@ -134,7 +150,8 @@ def create_client(token):
 
 def update_client_redirect_uris(token):
     """Set redirectUris and webOrigins on existing sparksbm client."""
-    r = requests.get(
+    r = _request_with_retry(
+        "get",
         f"{KEYCLOAK_URL}/admin/realms/{REALM_NAME}/clients",
         params={"clientId": CLIENT_ID},
         headers={"Authorization": f"Bearer {token}"},
@@ -144,7 +161,8 @@ def update_client_redirect_uris(token):
         print(f"  Could not find client '{CLIENT_ID}'.")
         return False
     client_id_uuid = r.json()[0]["id"]
-    r_get = requests.get(
+    r_get = _request_with_retry(
+        "get",
         f"{KEYCLOAK_URL}/admin/realms/{REALM_NAME}/clients/{client_id_uuid}",
         headers={"Authorization": f"Bearer {token}"},
         timeout=REQUEST_TIMEOUT,
@@ -157,7 +175,8 @@ def update_client_redirect_uris(token):
     client["redirectUris"] = redirect_uris
     client["webOrigins"] = [KEYCLOAK_WEB_APP_URL]
     client["rootUrl"] = KEYCLOAK_WEB_APP_URL
-    r2 = requests.put(
+    r2 = _request_with_retry(
+        "put",
         f"{KEYCLOAK_URL}/admin/realms/{REALM_NAME}/clients/{client_id_uuid}",
         headers={
             "Authorization": f"Bearer {token}",
