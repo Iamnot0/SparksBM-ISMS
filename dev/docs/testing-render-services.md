@@ -7,9 +7,9 @@ The **NotebookLLM frontend** (Chat/Studio UI) calls the agent API using a URL th
 **Fix:** Rebuild the frontend with the deployed API URL.
 
 - **Notebookllm (frontend) service on Render:** Set **Environment** → **API_BASE_URL** = `https://sparksbm-agent.onrender.com` (or your actual NotebookLLM API URL). Then **Manual Deploy** so the image is rebuilt. Render turns env vars into Docker build args automatically.
-- **SparksBM-Web (ISMS dashboard with chatbot):** Set **NOTEBOOKLLM_API_URL** = `https://sparksbm-agent.onrender.com` and redeploy.
+- **SparksBM-Web (ISMS dashboard with chatbot):** Set **NOTEBOOKLLM_API_URL** = `https://sparksbm-agent.onrender.com` (no trailing slash). Redeploy so the build picks it up. If the widget still shows "not accessible", wait 1–2 min and open the chat again—the agent may be cold-starting; the widget retries the health check once after 4s.
 
-The Dockerfiles now accept these as build args.
+The Dockerfiles accept these as build args. The chat widget normalizes the API base URL (no trailing slash) and retries the health check once to handle cold start.
 
 ## Test failures (timeout / 404)
 

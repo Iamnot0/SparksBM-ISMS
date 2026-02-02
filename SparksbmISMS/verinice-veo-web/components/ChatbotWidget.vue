@@ -138,21 +138,22 @@ const messagesContainer = ref<HTMLElement | null>(null)
 const connectionError = ref(false)
 
 
-// API Configuration - Get from runtime config
+// API Configuration - Get from runtime config (normalize: no trailing slash)
 const config = useRuntimeConfig()
-const API_BASE = (config.public.notebookllmApiUrl as string) || 'http://localhost:8000'
+const API_BASE = ((config.public.notebookllmApiUrl as string) || 'http://localhost:8000').replace(/\/+$/, '')
 
-const checkBackendHealth = async (): Promise<boolean> => {
+const checkBackendHealth = async (retry = true): Promise<boolean> => {
+  const url = `${API_BASE}/health`
   try {
-    const response = await $fetch<{ status: string }>(`${API_BASE}/health`, {
+    const response = await $fetch<{ status: string }>(url, {
       method: 'GET',
-      timeout: 3000 // 3 second timeout
+      timeout: 25000
     })
     return response?.status === 'healthy'
-  } catch (error: any) {
-    // Check if it's a connection error (server not running)
-    if (error?.code === 'ECONNREFUSED' || error?.message?.includes('fetch') || error?.statusCode === undefined) {
-      return false
+  } catch (_) {
+    if (retry) {
+      await new Promise(r => setTimeout(r, 4000))
+      return checkBackendHealth(false)
     }
     return false
   }
@@ -164,7 +165,10 @@ const createSession = async (): Promise<boolean> => {
     const isHealthy = await checkBackendHealth()
     if (!isHealthy) {
       connectionError.value = true
-      const errorMsg = `⚠️ Backend API at ${API_BASE} is not accessible.\n\nTo start the NotebookLLM API server, run:\n\n  cd /home/clay/Desktop/SparksBM/NotebookLLM\n  ./start.sh\n\nOr manually start the API:\n  cd /home/clay/Desktop/SparksBM/NotebookLLM\n  uvicorn api.main:app --reload --port 8000`
+      const isDeployed = API_BASE.startsWith('https://')
+      const errorMsg = isDeployed
+        ? `⚠️ Backend API at ${API_BASE} is not accessible.\n\nIf this is a deployed environment:\n1. The API service may be waking up (wait 1–2 min and try again).\n2. Ensure CORS on the API allows this origin.\n3. Check the API service is deployed and healthy.`
+        : `⚠️ Backend API at ${API_BASE} is not accessible.\n\nTo start the NotebookLLM API server locally, run:\n  cd NotebookLLM && ./start.sh\nOr: uvicorn api.main:app --reload --port 8000`
       
       messages.value.push({
         role: 'assistant',
@@ -194,7 +198,10 @@ const createSession = async (): Promise<boolean> => {
     
     // Provide more helpful error messages
     if (errorMsg.includes('NetworkError') || errorMsg.includes('fetch') || error?.code === 'ECONNREFUSED') {
-      errorMsg = `⚠️ Cannot connect to backend API at ${API_BASE}.\n\nPlease ensure:\n1. The NotebookLLM API server is running\n2. Start it with: cd /home/clay/Desktop/SparksBM/NotebookLLM && ./start.sh\n3. The API is accessible at ${API_BASE}\n4. There are no firewall or network issues`
+      const isDeployed = API_BASE.startsWith('https://')
+      errorMsg = isDeployed
+        ? `⚠️ Cannot connect to backend API at ${API_BASE}.\n\nTry again in 1–2 min (service may be waking). Ensure CORS on the API allows this site.`
+        : `⚠️ Cannot connect to backend API at ${API_BASE}.\n\nStart the API locally: cd NotebookLLM && ./start.sh`
     } else if (errorMsg.includes('CORS')) {
       errorMsg = `CORS error: The backend API is not allowing requests from this origin. Please check CORS configuration.`
     }
