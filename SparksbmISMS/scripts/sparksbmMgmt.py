@@ -28,13 +28,13 @@ import sys
 import os
 from typing import Dict, Optional, List
 
-# Configuration - Update these for your SparksBM setup
-KEYCLOAK_URL = "http://localhost:8080"
-REALM = "sparksbm"
-CLIENT_ID = "sparksbm"
-USERNAME = "admin@sparksbm.com"
-PASSWORD = "admin123"
-API_URL = "http://localhost:8070"
+# Configuration - use env in deployed environments (e.g. Render), else localhost
+KEYCLOAK_URL = os.getenv("KEYCLOAK_URL", "http://localhost:8080").rstrip("/")
+API_URL = os.getenv("VERINICE_API_URL", os.getenv("API_URL", "http://localhost:8070")).rstrip("/")
+REALM = os.getenv("KEYCLOAK_REALM", "sparksbm")
+CLIENT_ID = os.getenv("KEYCLOAK_CLIENT_ID", "sparksbm")
+USERNAME = os.getenv("SPARKSBM_USERNAME", "admin@sparksbm.com")
+PASSWORD = os.getenv("SPARKSBM_PASSWORD", "admin123")
 
 # Endpoints
 KEYCLOAK_TOKEN_URL = f"{KEYCLOAK_URL}/realms/{REALM}/protocol/openid-connect/token"

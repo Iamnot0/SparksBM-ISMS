@@ -91,10 +91,10 @@
     "delete_object_exception": "Exception deleting object: {error}"
   },
   "connection": {
-    "isms_unavailable": "Could not connect to ISMS: {error}\n\nPlease ensure:\n1. Keycloak is running on http://localhost:8080\n2. ISMS backend is running on http://localhost:8070\n3. Credentials are correct",
+    "isms_unavailable": "Could not connect to ISMS: {error}\n\nPlease ensure Keycloak and the ISMS backend are running and reachable (set KEYCLOAK_URL and VERINICE_API_URL in your environment for deployed setups).",
     "isms_client_not_available": "ISMS client not available. Please check your configuration.",
-    "isms_client_not_available_detailed": "ISMS client not available. Please ensure:\n1. Keycloak is running on http://localhost:8080\n2. ISMS backend is running on http://localhost:8070\n3. Credentials in SparksbmISMS/scripts/sparksbmMgmt.py are correct",
-    "isms_init_failed": "ISMS client initialization failed: {error}\n\nPlease ensure:\n1. Keycloak is running (http://localhost:8080)\n2. ISMS backend is running (http://localhost:8070)\n3. Credentials are correct in SparksbmISMS/scripts/sparksbmMgmt.py",
+    "isms_client_not_available_detailed": "ISMS client not available. Set KEYCLOAK_URL and VERINICE_API_URL (or API_URL) in your environment to point to Keycloak and the ISMS backend.",
+    "isms_init_failed": "ISMS client initialization failed: {error}\n\nPlease ensure Keycloak and the ISMS backend are running and reachable. In deployed environments set KEYCLOAK_URL and VERINICE_API_URL.",
     "isms_auth_failed": "ISMS authentication failed. Please check Keycloak credentials.",
     "isms_object_manager_unavailable": "ISMS object manager not available. Please ensure Keycloak and ISMS backend are running.",
     "isms_object_manager_not_initialized": "Object manager not initialized",

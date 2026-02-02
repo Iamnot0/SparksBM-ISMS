@@ -20,6 +20,12 @@ services:
           type: web
           name: sparksbm-auth
           property: host
+      - key: SPRING_SECURITY_OAUTH2_ISSUER_URI
+        value: https://sparksbm-auth.onrender.com/realms/sparksbm
+      - key: SPRING_SECURITY_OAUTH2_JWK_SET_URI
+        value: https://sparksbm-auth.onrender.com/realms/sparksbm/protocol/openid-connect/certs
+      - key: VEO_CORS_ORIGINS
+        value: https://sparksbm-web.onrender.com
       - key: SPRING_RABBITMQ_HOST
         fromService:
           type: pserv
@@ -63,11 +69,42 @@ services:
         value: 8000
       - key: GEMINI_API_KEY
         sync: false
-      # Allow frontend(s) to call API (set to your NotebookLLM UI + SparksBM-Web URLs)
       - key: CORS_ORIGINS
         value: https://notebookllm-aukc.onrender.com,https://sparksbm-web.onrender.com
+      - key: VERINICE_API_URL
+        value: https://sparksbm-core.onrender.com
+      - key: KEYCLOAK_URL
+        value: https://sparksbm-auth.onrender.com
+      - key: KEYCLOAK_REALM
+        value: sparksbm
+      - key: SPARKSBM_USERNAME
+        value: admin@sparksbm.com
+      - key: SPARKSBM_PASSWORD
+        value: admin123
 
-  # 4. RabbitMQ (Queue)
+  # 4. SparksBM-Web (ISMS dashboard) – set build env so redirect and unit/domain work
+  - type: web
+    name: sparksbm-web
+    runtime: docker
+    dockerContext: .
+    dockerfilePath: SparksbmISMS/verinice-veo-web/Dockerfile
+    envVars:
+      - key: NOTEBOOKLLM_API_URL
+        value: https://sparksbm-agent.onrender.com
+      - key: VEO_DEFAULT_API_URL
+        value: https://sparksbm-core.onrender.com
+      - key: VEO_OIDC_URL
+        value: https://sparksbm-auth.onrender.com/auth
+      - key: VEO_OIDC_REALM
+        value: sparksbm
+      - key: VEO_OIDC_CLIENT
+        value: sparksbm
+      - key: VEO_ACCOUNT_PATH
+        value: https://sparksbm-auth.onrender.com/auth/realms/sparksbm/account
+      - key: VEO_OIDC_ACCOUNT_APPLICATION
+        value: https://sparksbm-auth.onrender.com/auth/realms/sparksbm/account
+
+  # 5. RabbitMQ (Queue)
   - type: pserv
     name: sparksbm-queue
     runtime: docker

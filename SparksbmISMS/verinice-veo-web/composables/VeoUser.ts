@@ -72,7 +72,9 @@ export const useVeoUser: () => IVeoUserComposable = () => {
       await keycloak.value.init({
         onLoad: 'check-sso',
         silentCheckSsoRedirectUri: window.location.origin + '/sso',
-        checkLoginIframe: false
+        checkLoginIframe: false,
+        // Render / slow Keycloak: 3rd party cookie check iframe often times out; give it more time
+        messageReceiveTimeout: 25000
       });
 
       if (keycloak.value.authenticated) {
@@ -81,9 +83,9 @@ export const useVeoUser: () => IVeoUserComposable = () => {
         } catch (profileError: any) {
           const errorMessage = profileError?.message || profileError?.toString() || 'Unknown error';
           if (profileError?.error === 'invalid_request' || errorMessage.includes('CORS') || errorMessage.includes('account')) {
-            console.warn(`Profile loading skipped due to CORS (this is expected for account endpoint): ${errorMessage}`);
+            console.info(`Profile loading skipped due to CORS (this is expected for account endpoint): ${errorMessage}`);
           } else {
-            console.warn(`Failed to load user profile: ${errorMessage}`);
+            console.error(`Failed to load user profile: ${errorMessage}`);
           }
         }
       }
@@ -96,6 +98,14 @@ export const useVeoUser: () => IVeoUserComposable = () => {
       if (error?.error === 'login_required' || errorMessage.includes('login_required')) {
         console.info('Authentication: User not logged in (login_required) - this is expected');
         keycloakInitialized.value = true; // Mark as initialized even without auth
+        return;
+      }
+      // 3rd party cookie check iframe timeout (Keycloak slow / cross-origin) - treat as "not logged in", show login
+      if (errorMessage.includes('Timeout when waiting for 3rd party check') || errorMessage.includes('3rd party check iframe')) {
+        console.info('Keycloak silent check timed out (e.g. slow server or 3p cookies); continuing as unauthenticated.');
+        keycloakInitialized.value = true;
+        keycloakInitializationStarted.value = false;
+        _keycloak.value = keycloak.value;
         return;
       }
       
@@ -141,9 +151,9 @@ export const useVeoUser: () => IVeoUserComposable = () => {
       } catch (profileError: any) {
         const errorMessage = profileError?.message || profileError?.toString() || 'Unknown error';
         if (errorMessage.includes('CORS') || errorMessage.includes('account')) {
-          console.warn(`Profile loading skipped after login (CORS expected): ${errorMessage}`);
+          console.info(`Profile loading skipped after login (CORS expected): ${errorMessage}`);
         } else {
-          console.warn(`Failed to load user profile after login: ${errorMessage}`);
+          console.error(`Failed to load user profile after login: ${errorMessage}`);
         }
       }
     } else {
@@ -177,7 +187,7 @@ export const useVeoUser: () => IVeoUserComposable = () => {
   const token = computed<string | undefined>(() => keycloak.value?.token);
 
   const roles = computed<string[]>(() => [
-    ...(keycloak.value?.tokenParsed?.realm_accessRoles || []),
+    ...(keycloak.value?.tokenParsed?.realm_access?.roles || []),
     ...(keycloak.value?.tokenParsed?.resource_access?.['veo-accounts']?.roles || [])
   ]);
 
@@ -189,7 +199,7 @@ export const useVeoUser: () => IVeoUserComposable = () => {
   }));
 
   const accountDisabled = computed<boolean>(
-    () => !keycloak.value?.tokenParsed?.realm_access?.roles.includes('veo-user')
+    () => !(keycloak.value?.tokenParsed?.realm_access?.roles?.includes('veo-user') ?? false)
   );
 
   if (authenticated.value && accountDisabled.value) {
