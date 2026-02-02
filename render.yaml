@@ -42,12 +42,11 @@ services:
         value: neondb_owner
       - key: KC_DB_PASSWORD
         value: npg_UYhru41qVIZS
+      # Public hostname for redirects (Render default: service-name.onrender.com)
       - key: KC_HOSTNAME
-        value: 0.0.0.0
-      - key: KC_PROXY
-        value: edge
-      - key: KC_HTTP_ENABLED
-        value: "true"
+        value: sparksbm-auth.onrender.com
+      - key: KC_PROXY_HEADERS
+        value: xforwarded
       - key: KEYCLOAK_ADMIN
         value: admin
       - key: KEYCLOAK_ADMIN_PASSWORD
