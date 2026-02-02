@@ -106,7 +106,9 @@ if (!keycloakInitialized.value) {
 }
 
 // Needed as a separate function, as _login would be undefined if directly called from within the template.
-const login = () => _login((route.query.redirect_uri as string | undefined) || '/');
+// Treat query redirect_uri "false" or non-path as default "/" so we never send redirect_uri=https://...false
+const dest = route.query.redirect_uri as string | undefined;
+const login = () => _login(dest && dest !== 'false' && dest.startsWith('/') ? dest : '/');
 const { data: customerConfig } = await useFetch<any>('/customer/config.json');
 function useLocalizedField(key: string) {
   return computed(() => customerConfig.value?.[key]?.[locale.value] ?? customerConfig.value?.[key]?.['en']);
