@@ -56,6 +56,7 @@ import lombok.extern.slf4j.Slf4j;
 public class WebSecurity {
 
   private static final String ROOT_PATH = "/";
+  private static final String ERROR_PATH = "/error";
 
   private static final String[] DOMAINTEMPLATE_PATHS = {
     "/domain-templates/**",
@@ -170,7 +171,7 @@ public class WebSecurity {
     http.authorizeHttpRequests(
         auth -> {
           // public access to root and actuator endpoints:
-          auth.requestMatchers(ROOT_PATH, ACTUATOR_PATHS).permitAll();
+          auth.requestMatchers(ROOT_PATH, ERROR_PATH, ACTUATOR_PATHS).permitAll();
 
           // public access to swagger-ui:
           auth.requestMatchers(HttpMethod.GET, SWAGGER_UI_PATHS).permitAll();
