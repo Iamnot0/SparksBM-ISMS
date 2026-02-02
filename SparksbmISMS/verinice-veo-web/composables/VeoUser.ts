@@ -100,9 +100,15 @@ export const useVeoUser: () => IVeoUserComposable = () => {
         keycloakInitialized.value = true; // Mark as initialized even without auth
         return;
       }
-      // 3rd party cookie check iframe timeout (Keycloak slow / cross-origin) - treat as "not logged in", show login
-      if (errorMessage.includes('Timeout when waiting for 3rd party check') || errorMessage.includes('3rd party check iframe')) {
-        console.info('Keycloak silent check timed out (e.g. slow server or 3p cookies); continuing as unauthenticated.');
+      // 3rd party cookie check failed (timeout, 404 on 3p-cookies/step1.html, or Keycloak doesn't expose it) - treat as "not logged in", show login
+      const is3pCheckFailure =
+        errorMessage.includes('Timeout when waiting for 3rd party check') ||
+        errorMessage.includes('3rd party check iframe') ||
+        errorMessage.includes('3p-cookies') ||
+        errorMessage.includes('step1.html') ||
+        (errorDetails && String(errorDetails).includes('404'));
+      if (is3pCheckFailure) {
+        console.info('Keycloak silent/3p check failed (timeout or 404); continuing as unauthenticated.');
         keycloakInitialized.value = true;
         keycloakInitializationStarted.value = false;
         _keycloak.value = keycloak.value;
