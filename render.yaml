@@ -35,8 +35,9 @@ services:
     envVars:
       - key: KC_DB
         value: postgres
+      # Use a dedicated DB so Keycloak's Liquibase doesn't hit "relation already exists" (KC ignores schema in Liquibase)
       - key: KC_DB_URL
-        value: jdbc:postgresql://ep-young-bread-a1f8nuq1-pooler.ap-southeast-1.aws.neon.tech/SparksBM?sslmode=require
+        value: jdbc:postgresql://ep-young-bread-a1f8nuq1-pooler.ap-southeast-1.aws.neon.tech/keycloak?sslmode=require
       - key: KC_DB_USERNAME
         value: neondb_owner
       - key: KC_DB_PASSWORD
