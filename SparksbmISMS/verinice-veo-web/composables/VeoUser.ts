@@ -88,9 +88,12 @@ export const useVeoUser: () => IVeoUserComposable = () => {
         try {
         await keycloak.value.loadUserProfile();
         } catch (profileError: any) {
-          const errorMessage = profileError?.message || profileError?.toString() || 'Unknown error';
-          if (profileError?.error === 'invalid_request' || errorMessage.includes('CORS') || errorMessage.includes('account')) {
-            console.info(`Profile loading skipped due to CORS (this is expected for account endpoint): ${errorMessage}`);
+          const errorMessage = (profileError?.message ?? profileError?.toString() ?? 'Unknown error').toString();
+          const isCorsOrAccount =
+            profileError?.error === 'invalid_request' ||
+            /CORS|account|Failed to fetch|NetworkError|Load failed|Unknown error|401/i.test(errorMessage);
+          if (isCorsOrAccount) {
+            console.info(`Profile loading skipped (account endpoint CORS/401 expected): ${errorMessage}`);
           } else {
             console.error(`Failed to load user profile: ${errorMessage}`);
           }
@@ -161,11 +164,13 @@ export const useVeoUser: () => IVeoUserComposable = () => {
         scope: 'openid'
       });
       try {
-      await keycloak.value.loadUserProfile();
+        await keycloak.value.loadUserProfile();
       } catch (profileError: any) {
-        const errorMessage = profileError?.message || profileError?.toString() || 'Unknown error';
-        if (errorMessage.includes('CORS') || errorMessage.includes('account')) {
-          console.info(`Profile loading skipped after login (CORS expected): ${errorMessage}`);
+        const errorMessage = (profileError?.message ?? profileError?.toString() ?? 'Unknown error').toString();
+        const isCorsOrAccount =
+          /CORS|account|Failed to fetch|NetworkError|Load failed|Unknown error|401/i.test(errorMessage);
+        if (isCorsOrAccount) {
+          console.info(`Profile loading skipped after login (account endpoint CORS/401 expected): ${errorMessage}`);
         } else {
           console.error(`Failed to load user profile after login: ${errorMessage}`);
         }
