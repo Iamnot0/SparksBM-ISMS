@@ -63,6 +63,9 @@ services:
         value: 8000
       - key: GEMINI_API_KEY
         sync: false
+      # Allow frontend(s) to call API (set to your NotebookLLM UI + SparksBM-Web URLs)
+      - key: CORS_ORIGINS
+        value: https://notebookllm-aukc.onrender.com,https://sparksbm-web.onrender.com
 
   # 4. RabbitMQ (Queue)
   - type: pserv
