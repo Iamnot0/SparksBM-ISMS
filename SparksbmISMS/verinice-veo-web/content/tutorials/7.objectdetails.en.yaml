@@ -1,0 +1,74 @@
+title: The object view
+description: Description of the object view
+route: /:unit()/domains/:domain()/:objectType()/:subType()/:object()
+lang: en
+steps:
+  - title: 'Object view'
+    element: '[data-component-name=object-details-page]'
+    intro: The object view consists of the two areas object-details (left) and form (right).
+    # This has been implemented in the shortcut dialog and removed from here.
+    # - title: 'Show or hide areas'
+    # element: '[data-component-name=object-details-page] > div:nth-child(2) > div > button'
+    # element: '[data-component-name=object-details-page] > div:nth-child(2) > div:nth-child(2) > button'
+    # intro: The object details on the left can be hidden or displayed by button or shortcut Alt/STRG + 1.<br>The form can be hidden or displayed by button or shortcut Alt/STRG + 2.
+  # details
+  - title: 'Object details'
+    element: '[data-component-name=object-details-details]'
+    intro: On the left side you can see the environment of the selected object in detail.
+  # - title: 'Hide/display object-details' element: '[data-component-name=object-details
+  # element: '[data-component-name=object-details-page] > div:nth-child(2) > div > button'
+  # intro: The object details can be hidden or displayed via button or shortcut Alt/STRG + 1.
+  - title: 'Scopes'
+    element: '[data-component-name=object-details-childScopes-tab]'
+    intro: In this section you can see all (sub-)scopes of the active scope.
+  - title: 'Parts'
+    element: '[data-component-name=object-details-childObjects-tab]'
+    intro: In this section you will see all objects of the scope or object under consideration.
+  - title: 'In Scope'
+    element: '[data-component-name=object-details-parentScopes-tab]'
+    intro: In this section you can see in which scopes the selected object is contained.
+  - title: 'Part of'
+    element: '[data-component-name=object-details-parentObjects-tab]'
+    intro: In this section you can see in which objects the selected object is contained.
+  - title: 'Links'
+    element: '[data-component-name=object-details-links-tab]'
+    intro: The Links section shows all objects linked in the form.
+  - title: 'Measures'
+    element: '[data-component-name=object-details-controls-tab]'
+    intro: Depending on the domain, modules or controls can be stored for some objects.
+  - title: 'Risks'
+    element: '[data-component-name=object-details-risks-tab]'
+    intro: Depending on the domain, risks can be documented and processed for some objects (scopes, processes, assets).
+  - title: 'Add'
+    element: '[data-component-name=object-details-actions-button]'
+    intro: Depending on the active section, you can use the Add-Button to add objects and scopes as components or make the active object part of another and add risks if available.
+  # form
+  - title: 'Form'
+    element: '[data-component-name=object-form-form]'
+    intro: On the right side, all details in the form are displayed.
+  # title: 'Hide/display form
+  # element: '[data-component-name=object-details-page] > div:nth-child(2) > div:nth-child(2) > button'
+  # intro: The form can be hidden or displayed via button or shortcut Alt/STRG + 2.
+  - title: 'Save form'
+    element: '[data-component-name=object-details-actions]'
+    intro: You can save forms after changes or reset all changes.
+  - title: 'Sidebar'
+    element: '[data-component-name=object-form-sidebar]'
+    intro: More features are available in the sidebar...
+  - title: 'Sidebar - View'
+    element: '[data-component-name=object-form-view-tab]'
+    intro: Switch between different representations of the object.
+  - title: 'Sidebar - Contents'
+    element: '[data-component-name=object-form-toc-tab]'
+    intro: Quickly navigate to specific form sections.
+  - title: 'Sidebar - History'
+    element: '[data-component-name=object-form-history-tab]'
+    intro: In the object history you can see all previous versions and restore an older version.
+  - title: 'Sidebar - Messages'
+    element: '[data-component-name=object-form-messages-tab]'
+    intro: Errors, warnings and hints about the object will be shown here.
+  - title: 'Sidebar – More Actions'
+    element: '[data-component-name=object-form-more-actions-button]'
+    intro: Click here to perform additional operations on the object, such as deleting it.
+  - title: 'Done'
+    intro: Further information can also be found in the documentation.

@@ -1,0 +1,12 @@
+{
+  "en": {
+    "noMatrix": "No risk matrix defined.",
+    "createMatrix": "Create a risk matrix",
+    "impact": "Potential impacts"
+  },
+  "de": {
+    "noMatrix": "Keine Risikomatrix definiert.",
+    "createMatrix": "Matrix erstellen",
+    "impact": "Mögliche Auswirkungen"
+  }
+}

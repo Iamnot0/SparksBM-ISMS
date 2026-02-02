@@ -1,0 +1,22 @@
+{
+  "en": {
+    "object": "Object",
+    "controlNoDataText": "No modules applied yet. Please apply modules from the {catalogLink}.",
+    "nonControlNoDataText": "There is currently no {subType}. Please {correspondingObject}",
+    "correspondingObject": "Create a corresponding object.",
+    "noSearchResults": "Your search did not match any results",
+    "catalog": "Catalog",
+    "addTarget": "Add {0}",
+    "select": "Select {0}"
+  },
+  "de": {
+    "object": "Objekt",
+    "controlNoDataText": "Bisher wurden noch keine Bausteine angewendet. Bitte zuerst Bausteine aus dem {catalogLink} anwenden.",
+    "nonControlNoDataText": "Es gibt aktuell keine {subType}. Bitte {correspondingObject}",
+    "correspondingObject": "legen Sie ein entsprechendes Objekt an.",
+    "noSearchResults": "Ihre Suche ergab keine Treffer",
+    "catalog": "Katalog",
+    "addTarget": "{0} hinzufügen",
+    "select": "{0} auswählen"
+  }
+}

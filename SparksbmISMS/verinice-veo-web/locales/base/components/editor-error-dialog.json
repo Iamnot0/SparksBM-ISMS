@@ -1,0 +1,10 @@
+{
+  "en": {
+    "schemaValidationErrors": "Errors",
+    "schemaValidationWarnings": "Warnings"
+  },
+  "de": {
+    "schemaValidationErrors": "Fehler",
+    "schemaValidationWarnings": "Warnungen"
+  }
+}

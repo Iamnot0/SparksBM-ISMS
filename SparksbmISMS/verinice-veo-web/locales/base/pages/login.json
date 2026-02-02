@@ -1,0 +1,28 @@
+{
+  "en": {
+    "access": "Account disabled.",
+    "subscribeCTA": "Subscribe to\nverinice.cloud",
+    "dataProtectionRegulations": "Data protection regulations",
+    "error-message": "Please contact your account manager.",
+    "imprint": "Imprint",
+    "login": "Login",
+    "loginCTA": "Enter the\nverinice.cloud",
+    "loginV": "Enter \nverinice",
+    "policy": "Security policy",
+    "subscribe": "Subscribe",
+    "Wenn sie noch keine Anmeldedaten haben, wenden Sie sich an Ihre Administrator*innen": "If you do not yet have login credentials, please contact your administrators."
+  },
+  "de": {
+    "access": "Account deaktiviert.",
+    "subscribeCTA": "Abonnieren Sie die\nverinice.cloud",
+    "dataProtectionRegulations": "Datenschutzerklärung",
+    "error-message": "Bitte kontaktieren Sie Ihren Account-Manager.",
+    "imprint": "Impressum",
+    "login": "Anmelden",
+    "loginCTA": "Direkt zur\nverinice.cloud",
+    "loginV": "Direkt zu\nverinice",
+    "policy": "Sicherheitsrichtlinie",
+    "subscribe": "Abonnieren",
+    "Wenn sie noch keine Anmeldedaten haben, wenden Sie sich an Ihre Administrator*innen": "Wenn sie noch keine Anmeldedaten haben, wenden Sie sich an Ihre Administrator*innen."
+  }
+}

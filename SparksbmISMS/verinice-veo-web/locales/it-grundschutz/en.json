@@ -1,0 +1,11 @@
+{
+  "linkControl": "Model {0}",
+  "riEditor": {
+    "targetObject": "Target object",
+    "description": "Description",
+    "abbreviation": "Abbreviation",
+    "protectionApproach": "Protection approach",
+    "name": "Name",
+    "originationDescription": "Requirement description"
+  }
+}

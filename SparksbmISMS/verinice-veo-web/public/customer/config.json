@@ -1,0 +1,44 @@
+{
+  "onprem": false,
+  "logoLink": {
+    "en": "http://localhost:3001"
+  },
+  "loginInstruction": {
+    "en": "Enter the\n sparksbm.cloud"
+  },
+  "registrationInstruction": {
+    "en": "Subscribe to\n sparksbm.cloud"
+  },
+  "registrationAction": {
+    "en": "Subscribe"
+  },
+  "registrationLink": {
+    "en": "http://localhost:3001"
+  },
+  "links": [
+    {
+      "label": {
+        "en": "Data protection regulations"
+      },
+      "link": {
+        "en": "http://localhost:3001/security"
+      }
+    },
+    {
+      "label": {
+        "en": "Imprint"
+      },
+      "link": {
+        "en": "http://localhost:3001"
+      }
+    },
+    {
+      "label": {
+        "en": "Security policy"
+      },
+      "link": {
+        "en": "http://localhost:3001/security"
+      }
+    }
+  ]
+}

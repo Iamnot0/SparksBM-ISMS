@@ -1,0 +1,112 @@
+import { containsCustom, getCustom } from '../commands/base';
+import { acceptAllCookies } from '../commands/cookies';
+import { testDashboardWidgets, testEmptyDashboard } from '../commands/dashboard';
+import { addDomain, getSelectedDomain, getVeoDomains, selectDomain, selectRandomDomain } from '../commands/domains';
+import { checkSubTypePage } from '../commands/elements';
+import { importUnit } from '../commands/importUnit';
+import { handleLanguageBug, languageTo } from '../commands/language';
+import { login } from '../commands/login';
+import { navigateTo, selectFirstSubType, visitObject, visitDashboard } from '../commands/navigation';
+import { veoRequest } from '../commands/requests/veoRequest';
+import { checkPagination } from '../commands/table/pagination';
+import 'cypress-axe';
+import { checkAxeViolations } from '../commands/axe';
+import {
+  createUnit,
+  deleteUnit,
+  deleteUnitGUI,
+  editUnit,
+  getVeoTestUnitCard,
+  goToUnitDashboard,
+  goToUnitSelection,
+  selectUnit,
+  deleteTestUnits,
+  deleteUnitsOlderThan
+} from '../commands/units';
+import { setupVeo } from '../commands/setup';
+import '../commands/potentialImpact';
+import { createDomain, deleteDomain, deleteDomainsOlderThan } from '../commands/requests/domains';
+import { createRiskDefinition } from '../commands/requests/risk-definitions';
+
+Cypress.Commands.addAll({
+  veoRequest,
+  getVeoDomains,
+  addDomain,
+  login,
+  acceptAllCookies,
+  goToUnitSelection,
+  goToUnitDashboard,
+  selectUnit,
+  createUnit,
+  deleteUnit,
+  editUnit,
+  navigateTo,
+  deleteUnitGUI,
+  importUnit,
+  languageTo,
+  getVeoTestUnitCard,
+  testDashboardWidgets,
+  testEmptyDashboard,
+  selectRandomDomain,
+  getSelectedDomain,
+  selectDomain,
+  handleLanguageBug,
+  checkSubTypePage,
+  selectFirstSubType,
+  checkPagination,
+  getCustom,
+  containsCustom,
+  visitObject,
+  deleteTestUnits,
+  visitDashboard,
+  checkAxeViolations,
+  setupVeo,
+  createDomain,
+  deleteDomain,
+  deleteDomainsOlderThan,
+  createRiskDefinition
+});
+
+before(() => {
+  deleteUnitsOlderThan().then(() => deleteDomainsOlderThan());
+
+  // Initialize env var to share test data between tests
+  Cypress.env('dynamicTestData', { testUnits: [], testDomain: null });
+});
+
+after(() => {
+  cy.log('--- GLOBAL AFTER ---');
+  const domainId = Cypress.env('dynamicTestData')?.testUnits[0]?.domains[0]?.id;
+  cy.deleteTestUnits().then(() => cy.deleteDomain(domainId));
+});
+
+// Uncaught exeptions make cypress test runs fail
+// However, this is not always correct, some errors can be ignored
+Cypress.on('uncaught:exception', (err, _runnable) => {
+  // Prevent tests from failing on localhost
+  if (err.message.includes('Cannot read properties of null')) {
+    return false;
+  }
+
+  // Prevent ResizeObserver errors when testing in headless firefox
+  if (err.message.includes('ResizeObserver loop completed with undelivered notifications.')) {
+    return false;
+  }
+
+  if (err.message.includes('ResizeObserver loop limit exceeded')) {
+    return false;
+  }
+
+  return false;
+});
+
+const dismissAlertIfPresent = () => {
+  setInterval(() => {
+    const alert = Cypress.$('div[role="alert"][params="[object Object]"]');
+    if (alert.length > 0) {
+      alert.first().trigger('click');
+    }
+  }, 1000);
+};
+
+dismissAlertIfPresent();

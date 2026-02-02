@@ -1,0 +1,121 @@
+/*
+ * verinice.veo web
+ * Copyright (C) 2023  Jonas Heitmann
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+@use 'sass:color';
+
+@use '_variables.scss';
+@use 'intro.scss';
+
+html {
+  overflow: hidden !important;
+}
+
+// Enable scrolling of content
+html,
+body,
+#__nuxt,
+#__nuxt > div {
+  height: 100%;
+}
+
+main {
+  max-height: 100%;
+}
+
+// Only color non-vuetify links,as we would overwrite the color of buttons, etc otherwise
+a:not([class^='v-']) {
+  color: variables.$primary;
+}
+
+.fill-width {
+  width: 100%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.veo-border {
+  border: 1px solid color.adjust(variables.$background-primary, $lightness: 7%) !important;
+}
+
+.veo-generated-fs-group-border {
+  border: 1px dashed color.adjust(variables.$background-primary, $lightness: 7%) !important;
+  border-radius: 12px;
+}
+
+.vf-form-element:not(:last-of-type) {
+  margin-right: 12px;
+}
+
+.veo-pseudo-hover {
+  &::before {
+    background-color: rgba(0, 0, 0, 0);
+    content: '';
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: background-color 200ms ease-in-out;
+  }
+}
+
+.veo-pseudo-hover:hover {
+  &::before {
+    background-color: rgba(0, 0, 0, 0.12);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+.v-label {
+  --v-medium-emphasis-opacity: 0.8;
+}
+.veo-primary-navigation-title {
+  font-size: 0.75rem;
+}
+
+.veo-primary-action-fab {
+  bottom: 12px;
+  position: absolute;
+  right: 0;
+}
+
+pre,
+code {
+  background: variables.$light-grey;
+  color: variables.$code-black;
+}
+
+pre {
+  padding: 8px 12px;
+
+  code {
+    white-space: break-spaces;
+  }
+}
+
+.small-caps {
+  font-variant: small-caps;
+}
+
+.text-pre-wrap {
+  white-space: pre-wrap;
+}

@@ -1,0 +1,25 @@
+title: Die Reports
+description: Beschreibung der Reports
+route: /:unit()/domains/:domain()/reports/:report()
+lang: de
+steps:
+  - title: 'Reports'
+    element: '[data-component-name=report-page]'
+    intro: In diesem Bereich erstellen Sie nach Auswahl einer Reportvorlage den gewünschten Report.
+  - title: 'Ausgewählter Report'
+    element: '[data-component-name=report-selected]'
+    intro: Im oberen Bereich finden Sie Informationen zum ausgewählten Report.
+  - title: 'Scopeauswahl'
+    element: '[data-component-name=report-entity-selection]'
+    intro: In der bereits bekannten Listenansicht wählen Sie den Scope aus, für den der Report erzeugt werden soll.
+  - title: 'Wichtig'
+    element: '[data-component-name=report-entity-selection-filter-bar]'
+    intro: Unterschiedliche Reports werden auf spezifischen Scopes ausgeführt, weswegen Objekttyp und Subtyp als Filterkriterien unveränderlich sind!
+  - title: 'Scoping!'
+    element: '[data-component-name=report-entity-selection]'
+    intro: Um ein und den selben Report für unterschiedliche (Teil-)Bereiche zu erzeugen, arbeiten Sie mit verschachtelten Scopes.
+  - title: 'Report generieren'
+    element: '[data-component-name=generate-report-button]'
+    intro: Erzeugen Sie den Report zur Ausgabe als PDF.
+  - title: 'Geschafft'
+    intro: Weitere Informationen finden Sie auch in der Dokumentation.

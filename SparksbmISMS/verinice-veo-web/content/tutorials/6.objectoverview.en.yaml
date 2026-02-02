@@ -1,0 +1,62 @@
+title: The object overview
+description: Description of the object overview
+route: /:unit()/domains/:domain()/:objectType()/:subType()
+exact: true
+lang: en
+steps:
+  - title: 'Object overview'
+    element: '[data-component-name=object-overview-page]'
+    intro: The object-overview lists all available objects.
+  - title: 'Filter'
+    element: '[data-component-name=filter-bar-filter-button]'
+    intro: The object overview is always based on a filter.
+  - title: 'Active filter criteria'
+    element: '[data-component-name=filter-bar-active-filters]'
+    intro: Active filter criteria are displayed in so-called 'chips'.
+  - title: 'Delete filter criteria'
+    element: '[data-component-name=veo-object-chip]:nth-child(2) .v-chip__close'
+    intro: Optional filter criteria can be deleted directly by mouse click without calling up the filter dialogue.
+  - title: 'IMPORTANT!'
+    element: '[data-component-name=filter-bar-active-filters] span:nth-child(1)'
+    intro: The object type as minimum criterion can only be changed via the filter dialogue!
+  - title: 'Search Function'
+    element: '[data-component-name=veo-search]'
+    intro: The search box allows you to quickly find items. Enter either the name, the abbreviation, or a combination of both to get relevant results.
+  - title: 'By the way ...'
+    element: '[data-component-name=breadcrumbs]'
+    intro: ... via the breadcrumb you navigate directly to all listed elements by mouse click.
+  - title: 'Object list'
+    element: '[data-component-name=object-overview-page]'
+    intro: The object list can be modified in different ways to find objects quickly.
+  - title: 'Sorting'
+    element: '[data-component-name=object-overview-table] thead'
+    intro: Sort the object list by clicking on the column headers to quickly find specific objects.
+  - title: 'Pagination'
+    element: '[data-component-name=object-overview-table] > .v-data-table-footer'
+    intro: If there are many objects, you can use pagination to adjust the number of objects displayed per page and navigate between the individual pages.
+  - title: 'Edit object'
+    element: '[data-component-name=object-overview-page]'
+    intro: Open an object in the list for editing by a single mouse click.
+  - title: 'The type'
+    element: '[data-component-name=object-overview-table] tbody > tr:nth-child(1) > td:nth-child(2)'
+    intro: The type defines the category or classification of the object in the system.
+  - title: 'The Designator'
+    element: '[data-component-name=object-overview-table] tbody > tr:nth-child(1) > td:nth-child(3)'
+    intro: The designator is assigned by the system as a unique and unchangeable criterion that can be used to quickly search for objects.
+  - title: 'Duplicate object'
+    element: '[data-component-name=object-overview-clone-button]'
+    intro: You can duplicate any object by mouse click ...
+  - title: 'Delete object'
+    element: '[data-component-name=object-overview-delete-button]'
+    intro: ... and delete it just as quickly.
+  - title: 'Assign object'
+    element: '[data-component-name=object-overview-assign-button]'
+    intro: Assign object to another domain.
+  - title: 'Create object'
+    element: '[data-component-name=create-object-button]'
+    intro: Use the 'Create object' button to create a new object for the active filter settings.
+  - title: 'Import Items'
+    element: '[data-component-name=csv-button]'
+    intro: Click to browse and select a file manually.
+  - title: 'Created'
+    intro: Further information can also be found in the documentation.

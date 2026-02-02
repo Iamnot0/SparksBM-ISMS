@@ -1,0 +1,10 @@
+{
+  "linkControl": "{0} auswählen",
+  "riEditor": {
+    "targetObject": "Objekt",
+    "description": "Beschreibung",
+    "abbreviation": "Abkürzung",
+    "name": "Name",
+    "originationDescription": "Anforderungsbeschreibung"
+  }
+}

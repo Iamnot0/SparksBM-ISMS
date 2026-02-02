@@ -1,0 +1,22 @@
+{
+  "en": {
+    "by": "by",
+    "createdAt": "Created",
+    "loadingData": "Loading data...",
+    "updatedAt": "Updated",
+    "deselectRow": "Deselect Row",
+    "selectRow": "Select Row",
+    "deselect": "Deselect All",
+    "selectAll": "Select All"
+  },
+  "de": {
+    "by": "von",
+    "createdAt": "Erstellt",
+    "loadingData": "Daten werden geladen",
+    "updatedAt": "Aktualisiert",
+    "deselectRow": "Zeile Abwählen",
+    "selectRow": "Zeile Auswählen",
+    "deselect": "Alle Abwählen",
+    "selectAll": "Alle Auswählen"
+  }
+}

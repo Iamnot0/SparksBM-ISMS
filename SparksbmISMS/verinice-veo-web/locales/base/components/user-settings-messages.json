@@ -1,0 +1,34 @@
+{
+  "en": {
+    "settings": "Settings",
+    "alertHeader": "Settings could not be loaded.",
+    "errorHeader": "Update failed.",
+    "errorBody": "An error occurred while updating your settings. ",
+    "successHeader": "Settings updated successfully.",
+    "userSettingsPage": {
+      "header": "User Settings",
+      "body": "Customize your interface preferences, including layout options and appearance settings."
+    },
+    "compact-styles": {
+      "header": "Compact Table View",
+      "body": "Enable compact mode to reduce spacing in tables."
+    },
+    "save": "Save"
+  },
+  "de": {
+    "settings": "Einstellungen",
+    "alertHeader": "Einstellungen konnten nicht geladen werden.",
+    "errorHeader": "Aktualisierung fehlgeschlagen.",
+    "errorBody": "Beim Aktualisieren Ihrer Einstellungen ist ein Fehler aufgetreten.",
+    "successHeader": "Einstellungen erfolgreich aktualisiert.",
+    "userSettingsPage": {
+      "header": "Benutzereinstellungen",
+      "body": "Passen Sie Ihre Anzeigeeinstellungen an, einschließlich Layout- und Darstellungsoptionen."
+    },
+    "compact-styles": {
+      "header": "Kompakte Tabellenansicht",
+      "body": "Aktivieren Sie den Kompaktmodus, um Abstände in Tabellen zu reduzieren."
+    },
+    "save": "Speichern"
+  }
+}

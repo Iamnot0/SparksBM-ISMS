@@ -1,0 +1,23 @@
+{
+  // https://v3.nuxtjs.org/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "noUncheckedIndexedAccess": true,
+    "types": ["vitest/importMeta"],
+    "baseUrl": ".",
+    "paths": {
+      "~": ["."],
+      "~~": ["."],
+      "~/*": ["./*"],
+      "~~/*": ["./*"],
+      "@": ["."],
+      "@@": ["."],
+      "@/*": ["./*"],
+      "@@/*": ["./*"],
+      "#imports": [".nuxt/imports.d.ts"],
+      "#build/mdc-image-component.mjs": [".nuxt/mdc-image-component.mjs"],
+      "#content/components": [".nuxt/content/components.ts"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

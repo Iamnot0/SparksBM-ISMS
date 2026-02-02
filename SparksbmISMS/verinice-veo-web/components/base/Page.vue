@@ -1,0 +1,88 @@
+<!--
+   - verinice.veo web
+   - Copyright (C) 2021  Jonas Heitmann, Davit Svandize
+   -
+   - This program is free software: you can redistribute it and/or modify
+   - it under the terms of the GNU Affero General Public License as published by
+   - the Free Software Foundation, either version 3 of the License, or
+   - (at your option) any later version.
+   -
+   - This program is distributed in the hope that it will be useful,
+   - but WITHOUT ANY WARRANTY; without even the implied warranty of
+   - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   - GNU Affero General Public License for more details.
+   -
+   - You should have received a copy of the GNU Affero General Public License
+   - along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<template>
+  <v-col :class="['veo-page', 'bg-basepage', noPaddingTop ? 'pt-0' : 'pt-6', noPadding ? 'px-0' : 'px-2']" cols="12">
+    <LayoutPageHeader v-bind="omit(props, 'contentClass', 'stickyFooter', 'height', 'noPadding', 'noPaddingTop')">
+      <template v-if="$slots.title" #title>
+        <slot name="title"></slot>
+      </template>
+      <template v-if="$slots.header" #header>
+        <slot name="header"></slot>
+      </template>
+    </LayoutPageHeader>
+    <v-row no-gutters :style="{ 'max-height': '100%', 'min-height': 0, height }" class="pa-0 flex-column flex-nowrap">
+      <v-col :class="contentClass">
+        <slot name="default"></slot>
+      </v-col>
+      <v-col
+        v-if="$slots.footer"
+        :style="{
+          bottom: 0,
+          position: stickyFooter ? 'sticky' : undefined,
+          'flex-grow': 0
+        }"
+      >
+        <slot name="footer"></slot>
+      </v-col>
+    </v-row>
+  </v-col>
+</template>
+<script setup lang="ts">
+import { omit } from 'lodash';
+import { PageHeaderAlignment } from '~/components/layout/PageHeader.vue';
+
+interface Props {
+  contentClass?: string;
+  headingLevel?: number | string;
+  stickyHeader?: boolean;
+  stickyFooter?: boolean;
+  height?: string;
+  loading?: boolean;
+  noPadding?: boolean;
+  noPaddingTop?: boolean;
+  title?: string;
+  titlebarAlignment?: PageHeaderAlignment;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  contentClass: '',
+  headingLevel: 1,
+  stickyHeader: false,
+  stickyFooter: false,
+  height: 'auto',
+  loading: false,
+  noPadding: false,
+  noPaddingTop: false,
+  title: undefined,
+  titlebarAlignment: PageHeaderAlignment.LEFT
+});
+</script>
+
+<style lang="scss" scoped>
+.veo-page {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  height: 100%;
+  margin: 0;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+</style>

@@ -1,0 +1,34 @@
+title: The menu
+description: Description of the menu
+route: /:unit()/domains/:domain()
+lang: en
+steps:
+  - title: 'The menu'
+    element: '[data-component-name=primary-navigation]'
+    intro: Use the menu to navigate to the various detail pages.
+  - title: 'Unit Selector'
+    element: '[data-component-name=unit-select]'
+    intro: Use the Unit Selector to select one of the available units.
+  - title: 'Domain Selector'
+    element: '[data-component-name=domain-select]'
+    intro: Use the Domain Selector to select one of the available domains.
+  - title: 'Dashboard'
+    element: '[data-component-name=domain-dashboard-nav-item]'
+    intro: On the Dashboard you can see all objects per subtype and status (life cycle) at a glance and navigate directly to them.
+  - title: 'Objects'
+    element: '[data-component-name=objects-nav-item]'
+    intro: In the Objects section, you navigate directly to the overview pages of the object types <i>Scopes</i>, <i>Processes</i>, <i>Assets</i>, <i>Persons</i>, <i>Incidents</i>, <i>Documents</i>, <i>Scenarios</i> and <i>Controls</i>.
+  - title: 'Catalogs'
+    element: '[data-component-name=catalogs-nav-item]'
+    intro: Under Catalogs you can apply <i>objects</i> from one of the available catalogs.
+  - title: 'Reports'
+    element: '[data-component-name=reports-nav-item]'
+    intro: To output a report select one of the available report templates in the Reports section.
+  - title: 'Risks'
+    element: '[data-component-name=risks-nav-item]'
+    intro: In the Risks section you can view one of the available risk definitions.
+  - title: 'Hide menu'
+    element: '[data-component-name=toggle-navigation]'
+    intro: With hide menu you can expand or collapse the navigation.
+  - title: 'Done'
+    intro: Further information can also be found in the documentation.

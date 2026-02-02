@@ -1,0 +1,38 @@
+title: The Dashboard
+description: Description of the dashboard
+route: /:unit()/domains/:domain()
+exact: true
+lang: en
+steps:
+  - title: 'The Dashboard'
+    element: '[data-component-name=domain-dashboard-page]'
+    intro: The dashboard shows your most recently edited objects as well as a graphical representation of all objects. By clicking on the bar charts, you can navigate directly to the object overview for all subtypes in the respective status or to the most recently edited object.
+  - title: 'My most recently edited objects'
+    element: '[data-component-name=domain-dashboard-latest-revisions-widget]'
+    intro: In this section you can quickly navigate to your most recently edited objects.
+  - title: 'Scopes'
+    element: '[data-component-name=domain-dashboard-scope-widget]'
+    intro: This area displays subtypes of an object type, here the available scopes.
+  - title: 'Processes'
+    element: '[data-component-name=domain-dashboard-process-widget]'
+    intro: The subtypes are used to display the objects of a type differently in special forms. For example, processes can be presented as processing activities or business processes.
+  - title: 'Assets'
+    element: '[data-component-name=domain-dashboard-asset-widget]'
+    intro: Each subtype can have a specific status. By default, a life cycle of the individual objects is presented, e.g. for the assets.
+  - title: 'Persons'
+    element: '[data-component-name=domain-dashboard-person-widget]'
+    intro: The statuses of the objects are color-coded:<br>dark gray = New<br>yellow = In progress<br>blue = For review<br>green = Released<br>light gray = Archived.
+  - title: 'Controls'
+    element: '[data-component-name=domain-dashboard-control-widget]'
+    intro: Dark gray, yellow and blue objects require further documentation; you have defined green and light gray objects as sufficiently documented.
+  - title: 'Incidents'
+    element: '[data-component-name=domain-dashboard-incident-widget]'
+    intro: A new incident that requires a timely response is displayed in <b>dark gray</b> in the Incidents area.<br>
+  - title: 'Documents'
+    element: '[data-component-name=domain-dashboard-document-widget]'
+    intro: Documents to be checked can be found in blue in the bar chart in this area, for example.
+  - title: 'Scenarios'
+    element: '[data-component-name=domain-dashboard-scenario-widget]'
+    intro: Navigate from the dashboard directly to the yellow scenarios that need further consideration.
+  - title: 'Done'
+    intro: Further information can also be found in the documentation.

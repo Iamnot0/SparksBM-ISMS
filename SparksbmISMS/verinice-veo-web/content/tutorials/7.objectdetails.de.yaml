@@ -1,0 +1,74 @@
+title: Die Objektansicht
+description: Beschreibung der Objektansicht
+route: /:unit()/domains/:domain()/:objectType()/:subType()/:object()
+lang: de
+steps:
+  - title: 'Objektansicht'
+    element: '[data-component-name=object-details-page]'
+    intro: Die Objektansicht besteht aus den beiden Bereichen Objektdetails (links) und Formular (rechts).
+    # Dies wurde im Shortcut-Dialog umgesetzt und von hier entfernt.
+  # - title: 'Bereiche ein- oder ausblenden'
+  #    element: '[data-component-name=object-details-page] > div:nth-child(2) > div > button'
+  #    element: '[data-component-name=object-details-page] > div:nth-child(2) > div:nth-child(2) > button'
+  # intro: Die Objektdetails links können per Schaltfläche oder Shortcut Alt/STRG + 1 versteckt bzw. angezeigt werden.<br>Das Formular kann per Schaltfläche oder Shortcut Alt/STRG + 2 versteckt bzw. angezeigt werden.
+  # details
+  - title: 'Objektdetails'
+    element: '[data-component-name=object-details-details]'
+    intro: Auf der linken Seite sehen Sie das Umfeld des ausgewählten Objekts im Detail.
+  #  - title: 'Objektdetails verstecken/anzeigen'
+  #    element: '[data-component-name=object-details-page] > div:nth-child(2) > div > button'
+  #    intro: Die Objektdetails können per Schaltfläche oder Shortcut Alt/STRG + 1 versteckt bzw. angezeigt werden.
+  - title: 'Scopes'
+    element: '[data-component-name=object-details-childScopes-tab]'
+    intro: In diesem Abschnitt sehen Sie alle (Unter-)Scopes des aktiven Scopes.
+  - title: 'Teile'
+    element: '[data-component-name=object-details-childObjects-tab]'
+    intro: In diesem Abschnitt sehen Sie alle Objekte des betrachteten Scopes oder Objektes.
+  - title: 'In Scope'
+    element: '[data-component-name=object-details-parentScopes-tab]'
+    intro: In diesem Abschnitt sehen Sie, in welchen Scopes das ausgewählte Objekt enthalten ist.
+  - title: 'Teil von'
+    element: '[data-component-name=object-details-parentObjects-tab]'
+    intro: In diesem Abschnitt sehen Sie, in welchen Objekten das gewählte Objekt enthalten ist.
+  - title: 'Verknüpfungen'
+    element: '[data-component-name=object-details-links-tab]'
+    intro: Der Abschnitt Links zeigt alle im Formular verknüpften Objekte an.
+  - title: 'Maßnahmen'
+    element: '[data-component-name=object-details-controls-tab]'
+    intro: Für einige Objekte können je nach Domäne Baustein oder Controls hinterlegt werden.
+  - title: 'Risiken'
+    element: '[data-component-name=object-details-risks-tab]'
+    intro: Für einige Objekte (Scopes, Prozesse, Assets) können je nach Domäne Risiken dokumentiert und bearbeitet werden.
+  - title: 'Hinzufügen'
+    element: '[data-component-name=object-details-actions-button]'
+    intro: Über die Schaltfläche "Hinzufügen" können Sie je nach aktivem Abschnitt Objekte und Scopes als Bestandteile hinzufügen bzw. das aktive Objekt zum Teil eines Anderen machen und falls vorhanden, Risiken hinzufügen.
+  # form
+  - title: 'Formular'
+    element: '[data-component-name=object-form-form]'
+    intro: Auf der rechten Seite werden alle Details im Formular dargestellt
+  #  - title: 'Formular verstecken/anzeigen'
+  #    element: '[data-component-name=object-details-page] > div:nth-child(2) > div:nth-child(2) > button'
+  #    intro: Das Formular kann per Schaltfläche oder Shortcut Alt/STRG + 2 versteckt bzw. angezeigt werden.
+  - title: 'Formular speichern'
+    element: '[data-component-name=object-details-actions]'
+    intro: Sie können Formulare nach Änderungen speichern oder alle Änderungen zurücksetzen.
+  - title: 'Seitenleiste'
+    element: '[data-component-name=object-form-sidebar]'
+    intro: Weitere Funktionen erwarten Sie in der Seitenleiste...
+  - title: 'Seitenleiste - Ansicht'
+    element: '[data-component-name=object-form-view-tab]'
+    intro: Wechseln Sie hier zwischen verschiedenen Darstellungen des Objektes.
+  - title: 'Seitenleiste - Inhalt'
+    element: '[data-component-name=object-form-toc-tab]'
+    intro: Navigieren Sie schnell zu bestimmten Abschnitten im Formular.
+  - title: 'Seitenleiste - Verlauf'
+    element: '[data-component-name=object-form-history-tab]'
+    intro: Im Verlauf sehen Sie alle vorherigen Versionen und können eine ältere Version wiederherstellen.
+  - title: 'Seitenleiste - Meldungen'
+    element: '[data-component-name=object-form-messages-tab]'
+    intro: Fehler, Warnungen und Hinweise zum Objekt werden hier angezeigt.
+  - title: 'Seitenleiste - Weitere Aktionen'
+    element: '[data-component-name=object-form-more-actions-button]'
+    intro: Klicken Sie hier, um zusätzliche Aktionen für das Objekt ausführen, wie zum Beispiel das Löschen des Objekts.
+  - title: 'Geschafft'
+    intro: Weitere Informationen finden Sie auch in der Dokumentation.

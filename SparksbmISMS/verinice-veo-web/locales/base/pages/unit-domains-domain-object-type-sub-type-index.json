@@ -1,0 +1,52 @@
+{
+  "en": {
+    "import.title": "Import Elements",
+    "import.dropzone.label": "Drag and drop CSV file here",
+    "import.button.browse": "Browse Files",
+    "assignObject": "Assign object to another domain",
+    "assignObjects": "Assign objects to another domain",
+    "filterObjects": "Filter objects",
+    "createObject": "Create {0}",
+    "clone": "Duplicated",
+    "cloneObject": "Clone object",
+    "cloneSuccess": "Object cloned successfully.",
+    "deleteObject": "Delete object",
+    "deleteObjects": "Delete objects",
+    "dpiaMandatory": "Privacy impact assessment required",
+    "errors": {
+      "clone": "Could not clone object",
+      "delete": "Could not delete object"
+    },
+    "objectDeleted": "Object deleted.",
+    "objectsDeleted": "Objects deleted.",
+    "open": "Open",
+    "VdA": "Procedure for securing",
+    "cardViewOn": "Show items as table",
+    "cardViewOff": "Show items as cards"
+  },
+  "de": {
+    "import.title": "Elemente importieren",
+    "import.dropzone.label": "Ziehen Sie die CSV-Datei hierher",
+    "import.button.browse": "Dateien durchsuchen",
+    "assignObject": "Objekt einer weiteren Domäne zuordnen",
+    "assignObjects": "Objekte einer weiteren Domäne zuordnen",
+    "filterObjects": "Objekte filtern",
+    "createObject": "{0} erstellen",
+    "clone": "Dupliziert",
+    "cloneObject": "Objekt duplizieren",
+    "cloneSuccess": "Objekt wurde erfolgreich dupliziert.",
+    "deleteObject": "Objekt löschen",
+    "deleteObjects": "Objekte löschen",
+    "dpiaMandatory": "DSFA verpflichtend",
+    "errors": {
+      "clone": "Das Objekt konnte nicht dupliziert werden",
+      "delete": "Das Objekt konnte nicht gelöscht werden"
+    },
+    "objectDeleted": "Objekt wurde gelöscht.",
+    "objectsDeleted": "Objekte wurden gelöscht.",
+    "open": "Öffnen",
+    "VdA": "Vorgehensweise der Absicherung",
+    "cardViewOn": "Zeige Einträge als Tabelle",
+    "cardViewOff": "Zeige Einträge als Karten"
+  }
+}

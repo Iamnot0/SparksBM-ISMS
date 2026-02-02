@@ -1,0 +1,22 @@
+{
+  "en": {
+    "createDPIA": "Create DPIA",
+    "display": "View as",
+    "history": "History",
+    "linkDPIA": "Link DPIA",
+    "messages": "Messages",
+    "objects": "Objects",
+    "tableOfContents": "Contents",
+    "unknown": "Unknown"
+  },
+  "de": {
+    "createDPIA": "DSFA erstellen",
+    "display": "Ansicht",
+    "history": "Verlauf",
+    "linkDPIA": "DSFA auswählen",
+    "messages": "Meldungen",
+    "objects": "Objekte",
+    "tableOfContents": "Inhalt",
+    "unknown": "Unbestimmt"
+  }
+}

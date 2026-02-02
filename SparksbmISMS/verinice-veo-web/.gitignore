@@ -1,0 +1,30 @@
+node_modules
+.env
+
+# Nuxt
+*.log*
+.cache
+.nitro
+.nuxt
+.output
+dist
+.data
+
+.DS_Store
+.history
+
+# Vitest
+coverage
+
+# Cypress
+cypress.env.json
+cypress/config
+cypress/results
+cypress/downloads
+cypress/screenshots
+cypress/videos
+
+# VS Code
+*.code-workspace
+.vscode/*
+.idea

@@ -1,0 +1,257 @@
+{
+  "clone": "Kopie",
+  "unsavedChanges": "Es gibt ungespeicherte Änderungen. Wollen Sie die Seite wirklich verlassen?",
+  "editor.basicproperties": "Standardattribute",
+  "editor.customaspects": "Individuelle Aspekte",
+  "editor.customaspects.add": "Aspekte hinzufügen",
+  "editor.customlinks": "Individuelle Links",
+  "editor.inputtypes.array": "Array",
+  "editor.inputtypes.boolean": "Wahrheitswert",
+  "editor.inputtypes.enum": "Auswahl",
+  "editor.inputtypes.integer": "Ganzzahl",
+  "editor.inputtypes.layout": "Gruppe",
+  "editor.inputtypes.null": "Null",
+  "editor.inputtypes.number": "Zahl",
+  "editor.inputtypes.object": "Objekt",
+  "editor.inputtypes.string": "Text",
+  "editor.inputtypes.label": "Text",
+  "editor.inputtypes.unknown": "Unbekannt",
+  "editor.inputtypes.composite": "Composite",
+  "editor.formschema.create.title": "Name des Formschemas",
+  "editor.formschema.create.title.text": "Name des neuen Formschemas",
+  "editor.formschema.create.type": "Objektschematyp",
+  "editor.formschema.create.type.text": "Typ des Objektschemas",
+  "editor.formschema.create.context": "Kontext",
+  "editor.formschema.create.context.elementDetails": "Objektansicht",
+  "editor.formschema.create.context.requirementImplementationControlView": "RI-Dialog: Controlansicht",
+  "editor.formschema.create.context.text": "Kontext des Objektschemas",
+  "editor.formschema.edit.css.class": "CSS-Klassen",
+  "editor.formschema.edit.css.style": "CSS-Styles",
+  "editor.formschema.edit.css.class.text": "Klassen",
+  "editor.formschema.edit.css.style.text": "Styles",
+  "editor.formschema.edit.input.direction": "Ausrichtung",
+  "editor.formschema.edit.input.direction.horizontal": "Horizontal",
+  "editor.formschema.edit.input.direction.vertical": "Vertikal",
+  "editor.formschema.edit.input.label": "Beschriftung",
+  "editor.formschema.edit.input.label.text": "Beschriftung des Elements",
+  "editor.formschema.headline": "Formschema-Editor",
+  "editor.formschema.sorting": "Sortierwert",
+  "editor.formschema.subtype": "Sub Typ",
+  "editor.formschema.translation": "Benutzerdefinierte Übersetzungen",
+  "editor.objectschema.headline": "Objektschema-Editor",
+  "editor.schema.download": "Schema herunterladen",
+  "editor.schema.properties": "Schema-Eigenschaften",
+  "editor.schema.warnings": "Hinweise",
+  "error.title": "Es ist ein Fehler aufgetreten",
+  "global.button.back": "Zurück",
+  "global.button.cancel": "Abbrechen",
+  "global.button.close": "Schließen",
+  "global.button.delete": "Löschen",
+  "global.button.next": "Weiter",
+  "global.button.no": "Nein",
+  "global.button.ok": "Okay",
+  "global.button.previous": "Zurück",
+  "global.button.save": "Speichern",
+  "global.button.import": "Importieren",
+  "global.button.save_quit": "Speichern und Schließen",
+  "global.button.apply": "Übernehmen",
+  "global.button.yes": "Ja",
+  "global.input.required": "Das Feld muss ausgefüllt werden",
+  "global.input.requiredfields": "* Pflichtfelder",
+  "global.input.hasSpecialChar": "Eingabe enthält ungültige Zeichen. Nur \"A-Z a-z 0-9 _ -\" sind zulässig.",
+  "global.input.invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+  "global.logout": "Logout",
+  "global.menu.collapse": "Menü verstecken",
+  "global.menu.expand": "Menü fixieren",
+  "userMessages": {
+    "info": {
+      "title": "Hinweis"
+    },
+    "warning": {
+      "title": "Warnung"
+    },
+    "error": {
+      "title": "Fehler"
+    }
+  },
+  "objectlist": {
+    "abbreviation": "Abkürzung",
+    "createdAt": "Erstellzeitpunkt",
+    "designator": "Designator",
+    "description": "Beschreibung",
+    "hasChildElements": "Hat Bestandteile",
+    "name": "Name",
+    "hasNoParentElements": "Nicht Teil eines anderen Objektes",
+    "objectType": "Objekttyp",
+    "status": "Status",
+    "subType": "Subtyp",
+    "updatedAt": "Letzte Änderung",
+    "updatedBy": "Bearbeiter",
+    "type": "Type",
+    "icon": "Type",
+    "actions": "Aktionen",
+    "source": "Quelle"
+  },
+  "sourceTooltip": "Benutzerdefiniert",
+  "domain.index.title": "Dashboard",
+  "unit-selection": " Auswahl der Unit",
+  "breadcrumbs": {
+    "administration": "Benutzerverwaltung",
+    "catalog": "Katalog",
+    "catalogs": "Katalog",
+    "compliance": "Compliance",
+    "create": "Unit anlegen",
+    "details": "Details",
+    "domain": "Domäne",
+    "editor": "Editoren",
+    "formschema": "Formschema Editor",
+    "help": "Handbuch",
+    "units": "Unit-Verwaltung",
+    "more": "Weitere Domänen",
+    "objects": "Objekte",
+    "objectschema": "Objektschema Editor",
+    "profiles": "Profile",
+    "reports": "Reports",
+    "risks": "Risikodefinitionen",
+    "security": "Sicherheitsrichtlinie",
+    "user-data": "Datenübertragung",
+    "welcome": "Willkommen",
+    "user-settings": "Einstellungen",
+    "edit": "Bearbeiten"
+  },
+  "compliance": {
+    "status": {
+      "NO": "Nein",
+      "PARTIAL": "Teilweise",
+      "UNKNOWN": "Unbearbeitet",
+      "YES": "Ja",
+      "N_A": "Entbehrlich"
+    },
+    "origination": {
+      "SYSTEM_SPECIFIC": "Systemspezifisch"
+    }
+  },
+  "potentialImpactsCalculated": "Berechnet (Maximumprinzip)",
+  "potentialImpacts": "Nutzervorgabe",
+  "potentialImpactsEffective": "Effektiv",
+  "potentialImpactReasons": "Begründung",
+  "potentialImpactExplanations": "Erläuterung",
+  "potentialImpactEffectiveReasons": "Begründung",
+  "error": {
+    "additionalProperties": "Das Feld \"{field}\" besitzt nicht im Objektschema erlaubte Attribute.",
+    "enum": "Das Feld \"{field}\" besitzt einen nicht erlaubten Wert",
+    "format": "Das Feld \"{field}\" muss dem Format \"{format}\" entsprechen",
+    "required": "Das Feld \"{field}\" muss ausgefüllt sein",
+    "required_link": "Der {position} Link in \"{field}\" muss auf ein Objekt zeigen oder entfernt werden"
+  },
+  "createEntitiesCTA": "Viele Wege führen zum Ziel... erfassen Sie die {0}, benennen Sie Ihre {1} oder legen Sie eine {2} an.",
+  "dashboardCTA": "Ein Schritt nach dem anderen... Das {0} bietet Ihnen einen Gesamtüberblick und führt Sie entlang des Lebebenszyklus Ihrer Assets direkt zu den nächsten Aufgaben oder den letzten Aktivitäten.",
+  "demoUnitCTA": "Sie möchten sich lieber erst orientieren? Dann werfen Sie einen Blick auf die {0}.",
+  "lastLine": "Viel Erfolg wünscht!{0}Ihr verinice.TEAM",
+  "piaMandatoryText": "Basierend auf Daten in diesem Objekt ist eine Datenschutz-Folgeabschätzung verpflichtend.{0}Bitte erstellen Sie diese über die Warnungsleiste rechts.",
+  "mitigationAreaOfApplicationExplanation": "Mitigierende Maßnahmen gelten über Schutzziele und Risikodefinitionen hinweg.{lineBreak} Alle hier ausgewählten Maßnahmen sind unter der Maßnahme \"Mitigierende Maßnahme für {risk}\" zu finden",
+  "furtherDomainInformation": "Das verinice.TEAM wird sukzessive weitere Domänen für verinice.veo zur Verfügung stellen, klicken Sie {here} für mehr Informationen.",
+  "residualRiskHint": "Das angezeigte Nettorisiko wurde automatisch berechnet.{0}Sie können es allerdings überschreiben.",
+  "deleteText": "Möchten Sie das Element \"{0}\" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "fix": "Beheben",
+  "userDataExport": {
+    "hint": {
+      "text": "Hier können Sie Ihr Recht auf Datenübertragbarkeit wahrnehmen. { linebreak } Laden Sie Ihre in verinice erfassten Daten herunter, um sie zu sichern oder in einem externen Dienst zu verwenden (JSON-Format, ZIP-komprimiert).",
+      "href": "https://dsgvo-gesetz.de/art-20-dsgvo/"
+    }
+  },
+  "firstSteps": {
+    "channel": "Auf unserem { 0 } finden Sie Videos zu verinice.",
+    "documentation": "Die { 0 } beschreibt ausführlich alle Funktionen von verinice.veo und erläutert die technischen Aspekte. Sie können diese Dokumentation jederzeit über das Symbol in der Anwendungsleiste rechts oben öffnen.",
+    "forum": "Im { 0 } finden Sie weitergehende Informationen und können am regen Austausch mit anderen Anwenderinnen und Anwendern teilnehmen.",
+    "tutorial": "Zur schnellen Orientierung stehen auf jeder Seite kontextbezogene { 0 } zur Verfügung. Verfügbare Tutorials können Sie jederzeit über das Symbol in der Anwendungsleiste rechts oben aufrufen.",
+    "webinar": "Sie können sich jederzeit zu unseren regelmäßigen, kostenlosen { 0 } anmelden."
+  },
+  "formSchemaTranslations": {
+    "formSchemaTranslationNotFoundSearchAll": "Keine passende Formschema-Übersetzung gefunden. {0}, um alle Übersetzungen zu durchsuchen."
+  },
+  "linkObject": "{0} auswählen",
+  "linkControl": "{0} auswählen",
+  "inputPlaceholders": {
+    "date": "tt.mm.jjjj"
+  },
+  "inputLabel": {
+    "name": "Name",
+    "description": "Beschreibung"
+  },
+  "VdA": "Vorgehensweise",
+  "na": "N/A",
+  "CatalogItemsApplied": "Katalogartikel angewendet",
+  "unit": {
+    "isAssociatingDomain": "Verknüpfe Domäne...",
+    "isApplyingProfile": "Wende Profil an...",
+    "isUpdatingDetails": "Aktualisiere Unitdetails...",
+    "isAssociatingDomains": "Assoziiere Domänen...",
+    "isCreatingUnit": "Erstelle Unit..."
+  },
+  "keys": {
+    "shift": "Shift-Taste, verwendet mit anderen Tasten"
+  },
+  "shortcuts": {
+    "navigation": {
+      "home": {
+        "name": "Dashboard",
+        "description": "Zum Dashboard navigieren"
+      },
+      "editor": {
+        "name": "Editoren",
+        "description": "Zu den Editoren navigieren"
+      },
+      "catalogs": {
+        "name": "Katalog",
+        "description": "Zum Katalog navigieren"
+      },
+      "reports": {
+        "name": "Reports",
+        "description": "Zu den Reports navigieren"
+      },
+      "riskDefinitions": {
+        "name": "Risikodefinitionen",
+        "description": "Zu den Risikodefinitionen navigieren"
+      },
+      "menu": {
+        "name": "Menü",
+        "description": "Menü verstecken/anzeigen"
+      },
+      "units": {
+        "name": "Unitverwaltung",
+        "description": "Zur Unitverwaltung navigieren"
+      }
+    },
+    "elements": {
+      "name": "{elementTypePlural} öffnen",
+      "description": "Zu allen {elementTypePlural} navigieren"
+    },
+    "objectAction": {
+      "hideObjectDetails": {
+        "name": "Objektdetails verstecken",
+        "description": "Zum Verstecken der Objektdetails"
+      },
+      "displayObjectDetails": {
+        "name": "Objektdetails anzeigen",
+        "description": "Zum Anzeigen der Objektdetails"
+      },
+      "hideForm": {
+        "name": "Formular verstecken",
+        "description": "Zum Verstecken des Formulars"
+      },
+      "displayForm": {
+        "name": "Formular anzeigen",
+        "description": "Zum Anzeigen des Formulars"
+      }
+    }
+  },
+  "noValue": "Kein Wert",
+
+  "permissions": {
+    "missingPermissionTooltip": "Fehlende Berechtigung für diese Aktion."
+  },
+  "i18n-t_messages": {
+    "preSelectedDomainBody": "Weil Sie Objekte aus dem Profil { profile } importieren, ist die Domäne { domain } vorausgewählt."
+  }
+}

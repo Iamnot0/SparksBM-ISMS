@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:best-practices", ":automergeAll", ":automergePr"],
+  "reviewers": ["FS", "JaE", "azk", "HH", "djm"],
+  "assignAutomerge": true,
+  "dependencyDashboardOSVVulnerabilitySummary": "all",
+  "osvVulnerabilityAlerts": true,
+  "packageRules": [
+    {
+      "groupName": "Vitest",
+      "matchPackageNames": ["/vitest/"]
+    },
+    {
+      "matchPackageNames": ["cypress/browsers"],
+      "versioning": "regex:^node-?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:-(?:[a-zA-Z]+\\d*|[\\d.]+))*$",
+      "allowedVersions": "!/ff-12\\d/"
+    }
+  ]
+}

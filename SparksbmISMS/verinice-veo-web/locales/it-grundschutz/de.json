@@ -1,0 +1,11 @@
+{
+  "linkControl": "{0} modellieren",
+  "riEditor": {
+    "targetObject": "Zielobjekt",
+    "description": "Beschreibung",
+    "abbreviation": "Abkürzung",
+    "protectionApproach": "Vorgehensweise",
+    "name": "Name",
+    "originationDescription": "Anforderungsbeschreibung"
+  }
+}

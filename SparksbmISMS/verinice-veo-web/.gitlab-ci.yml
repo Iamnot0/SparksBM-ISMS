@@ -1,0 +1,208 @@
+stages:
+  - setup
+  - test
+  - build
+  - deploy
+
+workflow:
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+      when: never
+    - when: always
+
+# Verification (tests and code analysis) is unnecessary on 'develop' &
+# 'master', because only verified MRs can be merged into those branches.
+.verification:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+      when: never
+    - if: $CI_COMMIT_BRANCH == "develop"
+      when: never
+    - when: on_success
+
+default:
+  image: node:25-alpine
+  cache: # Cache modules in between jobs
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm --prefer-offline
+
+store_project_version:
+  before_script: []
+  rules:
+    - when: on_success
+  cache: []
+  stage: setup
+  script:
+    - echo "PROJECT_VERSION=$(node -p "require('./package.json').version")" >> variables.env
+  interruptible: true
+  artifacts:
+    when: always
+    reports:
+      dotenv: variables.env
+
+determine-destinations:
+  before_script: []
+  image:
+    name: alpine/git
+    entrypoint: ['']
+  stage: setup
+  script:
+    - |-
+      IMAGE_NAME="eu.gcr.io/veo-projekt/veo-web"
+      DESTINATION_ARG="--destination $IMAGE_NAME:git-${CI_COMMIT_SHA} --destination $IMAGE_NAME:pipeline-id-${CI_PIPELINE_ID}"
+      if echo "$CI_COMMIT_TAG" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+        DESTINATION_ARG="$DESTINATION_ARG --destination $IMAGE_NAME:$CI_COMMIT_TAG"
+        git fetch --tags
+        LATEST_TAG=$(git tag --list | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n1)
+        if [ "$CI_COMMIT_TAG" = "$LATEST_TAG" ]; then
+          DESTINATION_ARG="$DESTINATION_ARG --destination $IMAGE_NAME:latest"
+        fi
+      fi
+      if [ "$CI_COMMIT_REF_NAME" = "develop" ]; then
+        DESTINATION_ARG="$DESTINATION_ARG --destination $IMAGE_NAME:develop"
+      fi
+
+      echo "DESTINATION_ARG=$DESTINATION_ARG" > destinations.env
+  artifacts:
+    reports:
+      dotenv: destinations.env
+    expire_in: 1 hour
+
+type_check:
+  stage: test
+  rules:
+    - !reference [.verification, rules]
+  needs: []
+  script:
+    - npm run typecheck | tee typecheck.log
+    - grep -q "error TS" typecheck.log && exit 1 || exit 0
+  interruptible: true
+
+check_formatting:
+  stage: test
+  rules:
+    - !reference [.verification, rules]
+  needs: []
+  script:
+    - npm run format:check
+    - if [[ ${?} -ne 0 ]]; then echo "Use 'npm run format' to format your code"; exit 1; fi
+  interruptible: true
+
+lint:
+  stage: test
+  rules:
+    - !reference [.verification, rules]
+  needs: []
+  variables:
+    DEBUG: 'eslint:cli-engine'
+  script:
+    - npm run lint
+    - if [[ ${?} -ne 0 ]]; then echo "Linting errors were found"; exit 1; fi
+  interruptible: true
+  allow_failure: false
+
+build_test_app:
+  stage: test
+  rules:
+    - !reference [.verification, rules]
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm --prefer-offline
+    - chmod +x ./setup-env.sh
+  script:
+    - ./setup-env.sh
+    - npm run generate
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/.output/public
+  interruptible: true
+
+.test_template:
+  image: cypress/base:25.0.0
+  needs: ['build_test_app']
+  stage: test
+  tags:
+    - native
+  rules:
+    - !reference [.verification, rules]
+  variables:
+    CYPRESS_parallel_group: 2
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/cypress/screenshots
+      - ${CI_PROJECT_DIR}/cypress/videos
+    reports:
+      junit:
+        - cypress/results/*.xml
+  parallel:
+    matrix:
+      - CI_NODE_INDEX: [0, 1]
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm --prefer-offline
+    - chmod +x ./setup-env.sh ./run-parallel-tests.sh
+    - ./setup-env.sh
+    - apt-get update && apt-get install -y xvfb
+    - Xvfb :99 & # Start Xvfb
+    - export DISPLAY=:99 # Set the DISPLAY environment variable
+    - export {http,https}_proxy="${http_proxy}"
+    - npx serve .output/public/ &
+  interruptible: true
+  retry: 2
+
+test:
+  extends: .test_template
+  script:
+    - ./run-parallel-tests.sh $CI_NODE_INDEX $CYPRESS_parallel_group
+    - pkill -f Xvfb # Kill Xvfb after tests
+
+docker_image:
+  stage: build
+  rules:
+    - when: on_success
+  needs: ['store_project_version', 'determine-destinations']
+  image:
+    name: gcr.io/kaniko-project/executor:v1.24.0-debug
+    entrypoint: ['']
+  variables:
+    # this does not work in Gitlab < 15.7, so we need the before_script workaround
+    # GOOGLE_APPLICATION_CREDENTIALS: $GCR_ACCESS_TOKEN
+  before_script:
+    - export GOOGLE_APPLICATION_CREDENTIALS=${GCR_ACCESS_TOKEN}
+  script:
+    - |-
+      VEO_DEBUG=false
+      NODE_ENV=production
+      if [ "$CI_COMMIT_REF_NAME" = "develop" ]; then
+        export VEO_DEBUG="true"
+        export NODE_ENV="development"
+      fi
+    - /kaniko/executor --context "${CI_PROJECT_DIR}" --dockerfile "${CI_PROJECT_DIR}/Dockerfile" --cache=true --cache-repo=eu.gcr.io/veo-projekt/kaniko-cache-veo-web $DESTINATION_ARG --build-arg VEO_DEBUG="${VEO_DEBUG}" --build-arg NODE_ENV="${NODE_ENV}" --build-arg CI_COMMIT_SHORT_SHA=${CI_COMMIT_SHORT_SHA} --build-arg CI_JOB_ID=${CI_JOB_ID} --label org.opencontainers.image.version="${PROJECT_VERSION}" --label org.opencontainers.image.revision=${CI_COMMIT_SHA} --build-arg "ftp_proxy=${ftp_proxy}" --build-arg "FTP_PROXY=${ftp_proxy}" --build-arg "http_proxy=${http_proxy}" --build-arg "HTTP_PROXY=${http_proxy}" --build-arg "https_proxy=${https_proxy}" --build-arg "HTTPS_PROXY=${https_proxy}" --build-arg "no_proxy=${no_proxy}" --build-arg "NO_PROXY=${no_proxy}"
+  interruptible: true
+
+trigger_deployment:
+  stage: deploy
+  only:
+    - develop
+    - tags
+  trigger:
+    project: veo/verinice-veo-deployment

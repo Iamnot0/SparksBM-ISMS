@@ -1,0 +1,277 @@
+/*
+ * verinice.veo web
+ * Copyright (C) 2022  Jonas Heitmann
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+import Cookies from 'js-cookie';
+import { defaultsDeep } from 'lodash';
+import type { Ref } from 'vue';
+
+import { useVeoUser } from '~/composables/VeoUser';
+import { sanitizeURLParams } from '~/lib/utils';
+import type { IVeoPaginationOptions } from '~/types/VeoTypes';
+
+export enum VeoApiResponseType {
+  JSON,
+  BLOB,
+  VOID
+}
+
+export class VeoApiError extends Error {
+  public readonly code;
+  public readonly url;
+  public additionalInformation: any;
+
+  constructor(url: string, code: number, message: string, additionalInformation: any) {
+    super(`Error ${code} while accessing ${url}: ${message}`);
+
+    this.url = url;
+    this.code = code;
+    this.message = message;
+    this.additionalInformation = additionalInformation;
+  }
+}
+
+export const ETAG_MAP = new Map<string, string>();
+
+export interface RequestOptions extends RequestInit {
+  query?: Record<string, string | number | undefined> & IVeoPaginationOptions;
+  params?: Record<string, string | number | undefined>;
+  json?: any;
+  method?: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE' | 'OPTIONS';
+  responseType?: VeoApiResponseType;
+}
+
+function generateEtagMapKey({ requestOptions }: { requestOptions: RequestOptions }): string {
+  if (typeof requestOptions.params?.id !== 'string') return '';
+  // TODO: The etag should be refactored after getting rid of objects-querydefinition
+  if (requestOptions.params?.scenarioId) {
+    return `${requestOptions.params.scenarioId}-${requestOptions.params.id}`;
+  } else if (requestOptions.params?.endpoint) {
+    return `${requestOptions.params.endpoint}-${requestOptions.params.id}`;
+  } else {
+    return requestOptions.params.id; // default case
+  }
+}
+
+export const useRequest = () => {
+  const context = useNuxtApp();
+  const user = useVeoUser();
+
+  let locale: Ref<string>;
+  // Get current locale, either through i18n composable or through header. Reason for try catch is use via dev plugin
+  try {
+    locale = useI18n().locale;
+  } catch (_e: any) {
+    locale = ref(Cookies.get('i18n_redirected') || 'en');
+  }
+
+  // Remove trailing slashes from each endpoint
+  const apiEndpoints = reactive<Record<string, string>>({
+    accounts: context.$config.public.accountsApiUrl.replace(/\/$/, ''),
+    forms: context.$config.public.formsApiUrl.replace(/\/$/, ''),
+    history: context.$config.public.historyApiUrl.replace(/\/$/, ''),
+    reporting: context.$config.public.reportsApiUrl.replace(/\/$/, ''),
+    default: context.$config.public.apiUrl.replace(/\/$/, '')
+  });
+
+  const getUrl = (url: string) => {
+    const parsedUrl = url.match(/\/api\/([\w-]+)((\/|\?)(.*)|$)/);
+    if (!parsedUrl) {
+      throw new Error(`Request::getUrl: Couldn't parse request url "${url}"`);
+    }
+
+    let path;
+    let endpoint;
+    if (apiEndpoints[parsedUrl[1] ?? '']) {
+      endpoint = apiEndpoints[parsedUrl[1] ?? ''];
+      path = parsedUrl[2];
+    } else {
+      endpoint = apiEndpoints.default;
+      path = `${parsedUrl[1]}${parsedUrl[2]}`;
+    }
+    if (path?.startsWith('/')) {
+      path = path.substring(1);
+    }
+
+    return `${endpoint}/${path}`;
+  };
+
+  const parseResponse = async <T>(res: Response, options: RequestOptions, originalUrl?: string, originalOptions?: RequestOptions): Promise<T> => {
+    let parsedResponseBody;
+
+    try {
+      switch (options.responseType) {
+        case VeoApiResponseType.BLOB:
+          parsedResponseBody = await res.blob();
+          break;
+        case VeoApiResponseType.VOID:
+          break;
+        default:
+          parsedResponseBody = await parseJson(res);
+          break;
+      }
+    } catch (_e: any) {
+      console.error(`API Plugin::parseResponse: Error while parsing response for ${res.url}`);
+    }
+
+    const status = Number(res.status);
+    if (status >= 200 && status <= 300) {
+      return parsedResponseBody;
+    } else if (status === 401) {
+      if (user.keycloak.value && user.authenticated.value) {
+        try {
+        await user.refreshKeycloakSession();
+          const newToken = user.keycloak.value?.token;
+          if (newToken && originalUrl && originalOptions) {
+            const retryOptions = { ...originalOptions };
+            if (retryOptions.headers) {
+              retryOptions.headers = { ...retryOptions.headers, Authorization: `Bearer ${newToken}` };
+            } else {
+              retryOptions.headers = { Authorization: `Bearer ${newToken}` };
+            }
+            return request(originalUrl, retryOptions);
+          }
+        } catch (refreshError: any) {
+          console.error(`Failed to refresh token: ${refreshError.message}`);
+          if (user.authenticated.value) {
+            await user.logout();
+      }
+    }
+      }
+      const errorMessage = parsedResponseBody?.message || 'Unauthorized - Please log in again';
+      throw new VeoApiError(res.url, res.status, errorMessage, parsedResponseBody);
+    }
+    const errorMessage = parsedResponseBody?.message || `Request failed with status ${status}`;
+    throw new VeoApiError(res.url, res.status, errorMessage, parsedResponseBody);
+  };
+
+  const parseJson = async (res: Response): Promise<any> => {
+    const raw = await res.text();
+
+    if (!raw || raw.trim() === '') {
+      if (res.status >= 200 && res.status < 300) {
+        return null;
+      }
+      console.info(`API Plugin::parseJson: Empty response body for request ${res.url} with response type JSON`);
+      return undefined;
+    }
+    try {
+    const parsed = JSON.parse(raw);
+    return parsed;
+    } catch (parseError: any) {
+      console.error(`API Plugin::parseJson: Failed to parse JSON for ${res.url}: ${parseError.message}`);
+      return undefined;
+    }
+  };
+
+  const updateETagMapIfEtagExists = (response: Response, etagMapKey: string) => {
+    const etag = response.headers.get('etag');
+    if (!etag || !etagMapKey) return;
+    ETAG_MAP.set(etagMapKey, etag);
+  };
+
+  const request = async <TResult = any>(url: string, options: RequestOptions): Promise<TResult> => {
+    if (!user.keycloakInitialized.value) {
+      await user.initialize(context);
+    }
+
+    if (!user.keycloak.value?.token) {
+      if (user.authenticated.value) {
+        try {
+          await user.refreshKeycloakSession();
+        } catch (e: any) {
+          console.error(`Failed to refresh token before request: ${e.message}`);
+        }
+      }
+      if (!user.keycloak.value?.token) {
+        throw new VeoApiError(url, 401, 'No authentication token available', null);
+      }
+    }
+
+    const splittedUrl = url.split('/');
+    for (const index in splittedUrl) {
+      if (splittedUrl[index]?.startsWith(':')) {
+        const replaceValue = options.params?.[splittedUrl[index]?.substring(1) ?? ''];
+        if (replaceValue) {
+          splittedUrl[index] = sanitizeURLParams(String(replaceValue));
+        } else {
+          throw new Error(`API Request to ${url} is missing the value for parameter "${splittedUrl[index]}"`);
+        }
+      }
+    }
+    url = splittedUrl.join('/');
+
+    let token = user.keycloak.value?.token;
+    if (!token) {
+      if (user.authenticated.value) {
+        try {
+          await user.refreshKeycloakSession();
+          token = user.keycloak.value?.token;
+        } catch (e: any) {
+          console.error(`Failed to refresh token before request: ${e.message}`);
+        }
+      }
+      if (!token) {
+        throw new VeoApiError(url, 401, 'Authentication token is missing', null);
+      }
+    }
+
+    const defaults = {
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + token,
+        'Accept-Language': locale.value
+      } as Record<string, string>,
+      method: 'GET',
+      mode: 'cors'
+    };
+
+    /**
+     * When modifying resources an etag header is required
+     * Existing etags are stored in `ETAG_MAP` using either the resource ID,
+     * or a combination of the endpoint's name AND the resource ID as keys
+     * The latter is done to keep keys unique
+     */
+    const etagMapKey = generateEtagMapKey({ requestOptions: options });
+    const etag = ETAG_MAP.get(etagMapKey);
+
+    if (options.method !== 'GET' && etag) {
+      defaults.headers['If-Match'] = etag.replace(/"+/g, '').replace(/^(.*)W\//gi, '');
+    }
+
+    if (options.json) {
+      options.body = JSON.stringify(options.json);
+      defaults.method = 'POST';
+      defaults.headers['Content-Type'] = 'application/json';
+    }
+
+    const combinedOptions = defaultsDeep(options, defaults);
+    combinedOptions.headers.Authorization = defaults.headers.Authorization;
+
+    // Create an URLSearchParams Object after filtering out all undefined query options
+    const queryParameters = new URLSearchParams(
+      Object.fromEntries(Object.entries(options.query || {}).filter(([_param, value]) => value !== undefined))
+    );
+
+    const combinedUrl = `${url}${queryParameters.toString() ? '?' : ''}${queryParameters.toString()}`;
+    const reqURL = getUrl(combinedUrl);
+    const res = await fetch(reqURL, combinedOptions);
+    updateETagMapIfEtagExists(res, etagMapKey);
+    return await parseResponse(res, options, url, options);
+  };
+
+  return { request };
+};

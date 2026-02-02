@@ -1,0 +1,20 @@
+{
+  "de": {
+    "thAbbreviation": "Abkürzung",
+    "thName": "Anforderung",
+    "thOrigin": "Umsetzungsherkunft",
+    "thResponsibleBody": "Verantwortlich",
+    "thStatus": "Status",
+    "noRequirementImplementations": "Keine Requirement Implementations vorhanden.",
+    "edit": "{0} bearbeiten"
+  },
+  "en": {
+    "thAbbreviation": "Abbreviation",
+    "thName": "Requirement",
+    "thOrigin": "Origin",
+    "thResponsibleBody": "Responsible",
+    "thStatus": "Status",
+    "noRequirementImplementations": "No requirement implementations available.",
+    "edit": "Edit {0}"
+  }
+}

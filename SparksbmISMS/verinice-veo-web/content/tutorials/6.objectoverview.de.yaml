@@ -1,0 +1,62 @@
+title: Die Objektübersicht
+description: Beschreibung der Objektübersicht
+route: /:unit()/domains/:domain()/:objectType()/:subType()
+exact: true
+lang: de
+steps:
+  - title: 'Objektübersicht'
+    element: '[data-component-name=object-overview-page]'
+    intro: In der Objektübersicht werden alle verfügbaren Objekte aufgelistet.
+  - title: 'Filter'
+    element: '[data-component-name=filter-bar-filter-button]'
+    intro: Die Objektübersicht wird dazu immer auf Grundlage eines Filters aufgebaut.
+  - title: 'Aktive Filterkriterien'
+    element: '[data-component-name=filter-bar-active-filters]'
+    intro: Aktive Filterkriterien werden in sogenannten 'Chips' dargestellt.
+  - title: 'Filterkriterien löschen'
+    element: '[data-component-name=veo-object-chip]:nth-child(2) .v-chip__close'
+    intro: Optionale Filterkriterien können durch Mausklick direkt ohne Aufruf des Filterdialogs gelöscht werden.
+  - title: 'WICHTIG!'
+    element: '[data-component-name=filter-bar-active-filters] span:nth-child(1)'
+    intro: Der Objekttyp als Mindestkriterium kann nur über den Filterdialog geändert werden!
+  - title: 'Suchfunktion'
+    element: '[data-component-name=veo-search]'
+    intro: Mit der Suche können Sie schnell Objekte finden. Geben Sie entweder den Namen, die Abkürzung oder eine Kombination aus beidem ein, um passende Ergebnisse zu erhalten.
+  - title: 'Übrigens ...'
+    element: '[data-component-name=breadcrumbs]'
+    intro: ... über die Breadcrumbs navigieren Sie per Mausklick direkt zu allen aufgelisteten Elementen.
+  - title: 'Objektliste'
+    element: '[data-component-name=object-overview-page]'
+    intro: Die Objektliste kann auf unterschiedliche Art und Weise zum schnellen Auffinden von Objekten modifiziert werden.
+  - title: 'Sortierung'
+    element: '[data-component-name=object-overview-table] thead'
+    intro: Sortieren Sie die Objektliste durch Mausklick auf die Spaltenüberschriften, um bestimmte Objekte schnell zu finden.
+  - title: 'Paginierung'
+    element: '[data-component-name=object-overview-table] > .v-data-table-footer'
+    intro: Existieren viele Objekte können Sie durch die Paginierung die Anzahl der je Seite dargestellten Objekte anpassen und zwischen den einzelnen Seiten navigieren.
+  - title: 'Objekt bearbeiten'
+    element: '[data-component-name=object-overview-page]'
+    intro: Öffnen Sie ein Objekt in der Liste durch einfachen Mausklick zum Bearbeiten.
+  - title: 'Der Typ'
+    element: '[data-component-name=object-overview-table] tbody > tr:nth-child(1) > td:nth-child(2)'
+    intro: Der Typ legt die Kategorie oder Klassifizierung des Objekts im System fest.
+  - title: 'Der Designator'
+    element: '[data-component-name=object-overview-table] tbody tr:nth-child(1) > td:nth-child(3)'
+    intro: Der Designator wird vom System als eindeutiges und nicht änderbares Kriterium vergeben, dass zur schnellen Suche von Objekten verwendet kann.
+  - title: 'Objekt duplizieren'
+    element: '[data-component-name=object-overview-clone-button]'
+    intro: Sie können jedes Objekt durch Mausklick duplizieren ...
+  - title: 'Objekt löschen'
+    element: '[data-component-name=object-overview-delete-button]'
+    intro: ... und genau so schnell löschen.
+  - title: 'Objekt zuordnen'
+    element: '[data-component-name=object-overview-assign-button]'
+    intro: Objekt einer weiteren Domäne zuordnen.
+  - title: 'Objekt erstellen'
+    element: '[data-component-name=create-object-button]'
+    intro: Über die Schaltfläche "Objekt erstellen" können Sie ein neues Objekt zu den aktiven Filtereinstellungen erstellen.
+  - title: 'Elemente importieren'
+    element: '[data-component-name=csv-button]'
+    intro: Klicken Sie, um eine Datei manuell zu erstellen.
+  - title: 'Geschafft'
+    intro: Weitere Informationen finden Sie auch in der Dokumentation.

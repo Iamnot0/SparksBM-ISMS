@@ -4,6 +4,3 @@
 [submodule "SparksbmISMS/verinice-veo-history"]
 	path = SparksbmISMS/verinice-veo-history
 	url = https://github.com/Iamnot0/verinice-veo-history
-[submodule "SparksbmISMS/verinice-veo-web"]
-	path = SparksbmISMS/verinice-veo-web
-	url = https://github.com/Iamnot0/verinice-veo-web
