@@ -1,7 +1,7 @@
 FROM quay.io/keycloak/keycloak:latest
 
-# Pre-build for PostgreSQL so runtime uses start --optimized (no Quarkus augmentation; much faster startup)
-RUN /opt/keycloak/bin/kc.sh build --db=postgres
+# Pre-build for PostgreSQL; use /auth so app config (VEO_OIDC_URL with /auth) works (Quarkus default is no /auth)
+RUN /opt/keycloak/bin/kc.sh build --db=postgres --http-relative-path=/auth
 
 # Cap JVM heap for Render instance; bind to all interfaces
 ENV JAVA_OPTS_APPEND="-Xmx256m -Xms128m -Dquarkus.http.host=0.0.0.0"

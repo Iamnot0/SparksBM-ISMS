@@ -62,6 +62,8 @@ Then in Keycloak Admin → **Manage realms** you should see **sparksbm**; in **C
 
 **URL:** https://keycloak-server-5xv3.onrender.com
 
+**404 on login?** Keycloak Quarkus (17+) serves at **root**, not `/auth`. If you get "Page not found" on `.../auth/realms/sparksbm/...`, set SparksBM-Web env to use the base **without** `/auth` (see SparksBM-Web table below). Or redeploy Keycloak from the repo — the Dockerfile now builds with `--http-relative-path=/auth` so `/auth` works after a fresh deploy.
+
 ---
 
 ### 3. Notebookllm-API (NotebookLLM API) – *your service: sparksbm-agent.onrender.com*
@@ -83,15 +85,17 @@ Then in Keycloak Admin → **Manage realms** you should see **sparksbm**; in **C
 
 ### 4. SparksBM-Web (ISMS dashboard)
 
-| Key | Value |
-|-----|--------|
+Use **no /auth** in OIDC URLs if your Keycloak is Quarkus (default; realms at `/realms/...`). Use **/auth** only if Keycloak was built with `--http-relative-path=/auth`.
+
+| Key | Value (Quarkus Keycloak – no /auth) |
+|-----|--------------------------------------|
 | NOTEBOOKLLM_API_URL | https://sparksbm-agent.onrender.com |
 | VEO_DEFAULT_API_URL | https://sparksbm.onrender.com |
-| VEO_OIDC_URL | https://keycloak-server-5xv3.onrender.com/auth |
+| VEO_OIDC_URL | https://keycloak-server-5xv3.onrender.com |
 | VEO_OIDC_REALM | sparksbm |
 | VEO_OIDC_CLIENT | sparksbm |
-| VEO_ACCOUNT_PATH | https://keycloak-server-5xv3.onrender.com/auth/realms/sparksbm/account |
-| VEO_OIDC_ACCOUNT_APPLICATION | https://keycloak-server-5xv3.onrender.com/auth/realms/sparksbm/account |
+| VEO_ACCOUNT_PATH | https://keycloak-server-5xv3.onrender.com/realms/sparksbm/account |
+| VEO_OIDC_ACCOUNT_APPLICATION | https://keycloak-server-5xv3.onrender.com/realms/sparksbm/account |
 
 **URL:** https://sparksbm-web.onrender.com  
 **Note:** These are used at **build time**. After changing any value, trigger a **Manual Deploy** so the image is rebuilt.
